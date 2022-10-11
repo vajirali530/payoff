@@ -1,0 +1,231 @@
+// google fonts
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// variables
+$Black:#241F1F;
+$LightSkyBlue:#748EFF;
+$DarkRed:#9D0000;
+$White:#ffffff;
+$Gray:#848484;
+$Green:#009D0C;
+
+// mixins
+@mixin extensionStyle {
+    height: 600px;
+    width: 450px;
+    max-height: 600px;
+    padding: 30px;
+}
+@mixin primaryLogo {
+    height: 30px;
+    width: 40px;
+}
+@mixin commonBtn {
+    height: 50px;
+    width: 195px;
+    border-radius: 24px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 19px;
+    border: none;
+}
+@mixin commonHeader {
+    font-family: 'Fredoka One', cursive;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 36px;
+    color: $LightSkyBlue;
+}
+@mixin commonSubHeader {
+    color: $LightSkyBlue;
+    font-weight: 900;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+}
+@mixin commonSubHeaderInfo {
+    color: $Gray;
+    font-weight: normal;
+    line-height: 19px;
+    font-size: 16px;
+}
+@mixin commonInput {
+    border-radius: 6px;
+    background-color: $White;
+    border: 1px solid $Black;
+}
+@mixin loginRegisterLinkText {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 19px;
+    color: $Black;
+}
+@mixin loginRegisterActiveLink {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 18px;
+    color: $LightSkyBlue;
+}
+@mixin logoutBtn {
+    color: $DarkRed;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 16px;
+}
+
+// placeholder
+::placeholder{
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 19px;
+    color: $Gray;
+    font-family: 'Raleway', sans-serif;
+}
+
+// universal css
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+// nested css
+.credifana{
+    @include extensionStyle;
+    .credifanaHeader{
+        margin-bottom: 30px;
+        header{
+            nav{
+                display: flex;
+                align-items: center;
+                .logo{
+                    margin-right: 5px;
+                    img{
+                        @include primaryLogo;
+                    }
+                }
+                .title{
+                    h1{
+                        @include commonHeader;
+                    }
+                }
+            }
+        }
+    }
+    .credifanaLogin{
+            .container{
+                .formHeader{
+                    margin-bottom: 20px;
+                    h2{
+                        @include commonSubHeader;
+                        margin-bottom: 5px;
+                    }
+                    span{
+                        @include commonSubHeaderInfo()
+                    }
+                }
+                .loginForm{
+                    .formInput{
+                        .fnameLname{
+                            display: flex;
+                            align-items: center;
+                            .firstName{
+                                margin-right: 16px;
+                            }
+                        }
+                        .form-group{
+                            margin-bottom: 16px;
+                            input{
+                                @include commonInput;
+                                &:focus{
+                                    box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
+                                }
+                            }
+                        }
+                        .loginPsw{
+                            margin-bottom: 0px;
+                        }
+                    }
+                    .loginBtn{
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 10px;
+                        margin-top: 20px;
+                        button{
+                            @include commonBtn;
+                            background-color: $Black;
+                            color: $White;
+                        }
+                    }
+                    .registerFormLink{
+                        text-align: center;
+                        .text{
+                            @include loginRegisterLinkText;
+                            .registerLink{
+                                @include loginRegisterActiveLink;
+                            }
+                        }                        
+                    }
+                }
+            }
+    }
+    .credifanaRegister{
+        .container{
+            .formHeader{
+                margin-bottom: 20px;
+                h2{
+                    @include commonSubHeader;
+                    margin-bottom: 5px;
+                }
+                span{
+                    @include commonSubHeaderInfo()
+                }
+            }
+            .registerForm{
+                .formInput{
+                    .fnameLname{
+                        display: flex;
+                        align-items: center;
+                        .firstName{
+                            margin-right: 16px;
+                        }
+                    }
+                    .form-group{
+                        margin-bottom: 16px;
+                        input{
+                            @include commonInput;
+                            &:focus{
+                                box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
+                            }
+                        }
+                    }
+                }
+                .registerBtn{
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 10px;
+                    margin-top: 20px;
+                    button{
+                        @include commonBtn;
+                        background-color: $Black;
+                        color: $White;
+                    }
+                }
+                .loginFormLink{
+                    text-align: center;
+                    .text{
+                        @include loginRegisterLinkText;
+                        .loginLink{
+                            @include loginRegisterActiveLink;
+                        }
+                    }                        
+                }
+            }
+        }
+}
+}

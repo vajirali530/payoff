@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+::placeholder {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 19px;
+  color: #848484;
+  font-family: "Raleway", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.credifana {
+  height: 600px;
+  width: 450px;
+  max-height: 600px;
+  padding: 30px;
+}
+.credifana .credifanaHeader {
+  margin-bottom: 30px;
+}
+.credifana .credifanaHeader header nav {
+  display: flex;
+  align-items: center;
+}
+.credifana .credifanaHeader header nav .logo {
+  margin-right: 5px;
+}
+.credifana .credifanaHeader header nav .logo img {
+  height: 30px;
+  width: 40px;
+}
+.credifana .credifanaHeader header nav .title h1 {
+  font-family: "Fredoka One", cursive;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 36px;
+  color: #748EFF;
+}
+.credifana .credifanaLogin .container .formHeader {
+  margin-bottom: 20px;
+}
+.credifana .credifanaLogin .container .formHeader h2 {
+  color: #748EFF;
+  font-weight: 900;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+.credifana .credifanaLogin .container .formHeader span {
+  color: #848484;
+  font-weight: normal;
+  line-height: 19px;
+  font-size: 16px;
+}
+.credifana .credifanaLogin .container .loginForm .formInput .fnameLname {
+  display: flex;
+  align-items: center;
+}
+.credifana .credifanaLogin .container .loginForm .formInput .fnameLname .firstName {
+  margin-right: 16px;
+}
+.credifana .credifanaLogin .container .loginForm .formInput .form-group {
+  margin-bottom: 16px;
+}
+.credifana .credifanaLogin .container .loginForm .formInput .form-group input {
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: 1px solid #241F1F;
+}
+.credifana .credifanaLogin .container .loginForm .formInput .form-group input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
+}
+.credifana .credifanaLogin .container .loginForm .formInput .loginPsw {
+  margin-bottom: 0px;
+}
+.credifana .credifanaLogin .container .loginForm .loginBtn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.credifana .credifanaLogin .container .loginForm .loginBtn button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
+  background-color: #241F1F;
+  color: #ffffff;
+}
+.credifana .credifanaLogin .container .loginForm .registerFormLink {
+  text-align: center;
+}
+.credifana .credifanaLogin .container .loginForm .registerFormLink .text {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 19px;
+  color: #241F1F;
+}
+.credifana .credifanaLogin .container .loginForm .registerFormLink .text .registerLink {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 18px;
+  color: #748EFF;
+}
+.credifana .credifanaRegister .container .formHeader {
+  margin-bottom: 20px;
+}
+.credifana .credifanaRegister .container .formHeader h2 {
+  color: #748EFF;
+  font-weight: 900;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+.credifana .credifanaRegister .container .formHeader span {
+  color: #848484;
+  font-weight: normal;
+  line-height: 19px;
+  font-size: 16px;
+}
+.credifana .credifanaRegister .container .registerForm .formInput .fnameLname {
+  display: flex;
+  align-items: center;
+}
+.credifana .credifanaRegister .container .registerForm .formInput .fnameLname .firstName {
+  margin-right: 16px;
+}
+.credifana .credifanaRegister .container .registerForm .formInput .form-group {
+  margin-bottom: 16px;
+}
+.credifana .credifanaRegister .container .registerForm .formInput .form-group input {
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: 1px solid #241F1F;
+}
+.credifana .credifanaRegister .container .registerForm .formInput .form-group input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
+}
+.credifana .credifanaRegister .container .registerForm .registerBtn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.credifana .credifanaRegister .container .registerForm .registerBtn button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
+  background-color: #241F1F;
+  color: #ffffff;
+}
+.credifana .credifanaRegister .container .registerForm .loginFormLink {
+  text-align: center;
+}
+.credifana .credifanaRegister .container .registerForm .loginFormLink .text {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 19px;
+  color: #241F1F;
+}
+.credifana .credifanaRegister .container .registerForm .loginFormLink .text .loginLink {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 18px;
+  color: #748EFF;
+}
+
+/*# sourceMappingURL=popup.css.map */

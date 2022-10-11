@@ -1,1 +1,2 @@
-import { setChromeStorage, getChromeStorage } from "../helper.js";
+import { setChromeStorage, getChromeStorage } from "../../helper.js";
+

@@ -5,25 +5,90 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <!-- custom css -->
     <link rel="stylesheet" href="./assets/css/popup.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="credifanaHeader">
-                <div>
-                    <img src="./assets/images/icon.png" alt="">
+    <main class="credifana">
+        <div class="credifanaHeader">
+            <header>
+                <nav>
+                    <div class="logo">
+                        <img src="./assets/images/credifanaLogo.png" alt="credifanaPrimaryLogo">
+                    </div>
+                    <div class="title">
+                        <h1>credifana</h1>
+                    </div>
+                </nav>
+            </header>
+        </div>
+        <div class="credifanaLogin">
+            <div class="container">
+                <div class="formHeader">
+                    <h2>Login</h2>
+                    <span>Please login to your account</span>
                 </div>
-                <div>
-                    <h1>Credifana</h1>
-                </div>
+                <form action="/action_page.php" class="loginForm">
+                    <div class="formInput">
+                        <div class="form-group">
+                          <input type="email" class="form-control" id="loginEmail" placeholder="Email Address" name="loginEmail">
+                        </div>
+                        <div class="form-group loginPsw">
+                          <input type="password" class="form-control" id="loginPsw" placeholder="Password" name="loginPsw">
+                        </div>
+                    </div>
+                    <div class="loginBtn">
+                        <button type="submit" class="btn" id="loginBtn">Login</button>
+                    </div>
+                    <div class="registerFormLink">
+                        <div class="text">New here? <a href="#" class="registerLink">Register Now</a></div>
+                    </div>  
+                </form>
             </div>
-        </nav>
-    </header>
-    <div class="">
-
-    </div>
-    <script src="./assets/js/jquery.min.js" type="module"></script>
+        </div>
+        <div class="credifanaRegister d-none">
+            <div class="container">
+                <div class="formHeader">
+                    <h2>Register</h2>
+                    <span>Please create your account in seconds!.</span>
+                </div>
+                <form action="/action_page.php" class="registerForm">
+                    <div class="formInput">
+                        <div class="fnameLname">
+                            <div class="form-group firstName">
+                              <input type="text" class="form-control" id="registerFname" placeholder="First Name" name="registerFname">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" id="registerLname" placeholder="Last Name" name="registerLname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="registerEmail" placeholder="Email Address" name="registerEmail">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="registerPsw" placeholder="Email Address" name="registerPsw">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="registerConfirmPsw" placeholder="Email Address" name="registerConfirmPsw">
+                        </div>
+                    </div>
+                    <div class="registerBtn">
+                        <button type="submit" class="btn" id="registerBtn">Register</button>
+                    </div>
+                    <div class="loginFormLink">
+                        <div class="text">Already have an account? <a href="#" class="loginLink">Login Now</a></div>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- bootstrap js -->
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <!-- jquery -->
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <!-- custom js -->
     <script src="./assets/js/popup.js" type="module"></script>
 </body>
 </html>
