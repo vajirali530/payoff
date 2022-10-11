@@ -1,0 +1,27 @@
+{
+    "name": "Credifana",
+    "version": "0.2",
+    "description": "Extension showing price of all listed products when paid with credit card, listing the time period and percentage of interest per product.",
+    "permissions": ["tabs", "storage"],
+    "host_permissions": [],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["./assets/js/contentScript.js"],
+        "css": ["./assets/css/credifana.css"]
+      }
+    ],
+    "icons": { 
+        "16": "assets/images/icon.png",
+        "48": "assets/images/icon.png",
+       "128": "assets/images/icon.png" 
+    },
+    "action": {
+      "default_title": "Credifana",
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}
