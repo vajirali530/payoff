@@ -15,72 +15,245 @@
         <div class="credifanaHeader">
             <header>
                 <nav>
-                    <div class="logo">
-                        <img src="./assets/images/credifanaLogo.png" alt="credifanaPrimaryLogo">
+                    <div class="logo-title">
+                        <div class="logo">
+                            <img src="./assets/images/icon.png" alt="credifanaPrimaryLogo">
+                        </div>
+                        <div class="title">
+                            <h1>credifana</h1>
+                        </div>
                     </div>
-                    <div class="title">
-                        <h1>credifana</h1>
+                    <div class="logout-btn">
+                        <button class="btn" type="submit">LOGOUT</button>
                     </div>
                 </nav>
             </header>
         </div>
         <div class="credifanaLogin">
-            <div class="container">
-                <div class="formHeader">
-                    <h2>Login</h2>
-                    <span>Please login to your account</span>
+            <div class="formHeader">
+                <h2>Login</h2>
+                <span>Please login to your account</span>
+            </div>
+            <form action="/action_page.php" class="loginForm" id="login_form">
+                <div class="formInput">
+                    <div class="form-group">
+                      <input type="email" class="form-control" id="loginEmail" placeholder="Email Address" name="loginEmail">
+                    </div>
+                    <div class="form-group loginPsw">
+                      <input type="password" class="form-control" id="loginPsw" placeholder="Password" name="loginPsw">
+                    </div>
                 </div>
-                <form action="/action_page.php" class="loginForm">
-                    <div class="formInput">
+                <div class="loginBtn">
+                    <button type="submit" class="btn" id="loginBtn">Login</button>
+                </div>
+                <div class="registerFormLink">
+                    <div class="text">New here? <a href="#" class="registerLink">Register Now</a></div>
+                </div>  
+            </form>
+        </div>
+        <div class="credifanaRegister">
+            <div class="formHeader">
+                <h2>Register</h2>
+                <span>Please create your account in seconds!.</span>
+            </div>
+            <form action="" class="registerForm" id="register_form">
+                <div class="formInput">
+                    <div class="fnameLname">
+                        <div class="form-group firstName">
+                            <input type="text" class="form-control" id="registerFname" placeholder="First Name" name="fname">
+                            <div class="error-message"></div>
+                        </div>
                         <div class="form-group">
-                          <input type="email" class="form-control" id="loginEmail" placeholder="Email Address" name="loginEmail">
-                        </div>
-                        <div class="form-group loginPsw">
-                          <input type="password" class="form-control" id="loginPsw" placeholder="Password" name="loginPsw">
+                            <input type="text" class="form-control" id="registerLname" placeholder="Last Name" name="lname">
+                            <div class="error-message"></div>
                         </div>
                     </div>
-                    <div class="loginBtn">
-                        <button type="submit" class="btn" id="loginBtn">Login</button>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="registerEmail" placeholder="Email Address" name="email">
+                        <div class="error-message"></div>
                     </div>
-                    <div class="registerFormLink">
-                        <div class="text">New here? <a href="#" class="registerLink">Register Now</a></div>
-                    </div>  
-                </form>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="registerPsw" placeholder="Password" name="password">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="registerConfirmPsw" placeholder="Confirm Password" name="confirmpassword">
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+                <div class="registerBtn">
+                    <button type="button" class="btn" id="registerBtn" data-action="register">Register</button>
+                </div>
+                <div class="loginFormLink">
+                    <div class="text">Already have an account? <a href="#" class="loginLink">Login Now</a></div>
+                </div>  
+            </form>
+        </div>
+        <div class="realtor-site-screen">
+            <div class="site-header">
+                <h2>Realtor Sites</h2>
+                <span>Our plugin supports below list for now.</span>
+            </div>
+            <div class="site-list">
+                <a href="">
+                    <span class="site-log">
+                        <img src="./assets/images/realtorLogo.png" alt="realtorLogo">
+                    </span>
+                </a>
+                <a href="">
+                    <span class="site-log">
+                        <img src="./assets/images/realtorLogo.png" alt="realtorLogo">
+                    </span>
+                </a>
+                <a href="">
+                    <span class="site-log">
+                        <img src="./assets/images/realtorLogo.png" alt="realtorLogo">
+                    </span>
+                </a>
+            </div>
+            <div class="site-message">
+                <h2>No Property</h2>
+                <span>Please select any property to Evaluate</span>
             </div>
         </div>
-        <div class="credifanaRegister d-none">
-            <div class="container">
-                <div class="formHeader">
-                    <h2>Register</h2>
-                    <span>Please create your account in seconds!.</span>
+        <div class="realtor-property-details">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-property-details" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-plan-details" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-property-history" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-property-details" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="property-details-wrapper">
+                        <div class="property-title-img-price">
+                            <div class="property-title">
+                                <span>2130 Cyril Ave.</span>
+                            </div>
+                            <div class="property-img-price">
+                                <img src="./assets/images/pro-img.webp" alt="" style="height:150px;width: 100%;">
+                                <span class="property-price">$699,888</span>
+                            </div>
+                        </div>
+                        <form action="#" id="property_details">
+                            <div class="details-container">
+                                    <div class="downpayment">
+                                        <span>Down Payment</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="closing-cost">
+                                        <span>Closing Cost</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="details-container">
+                                    <div class="estimate-costof-repair">
+                                        <span>Estimate Cost of Repair</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="loan-term">
+                                        <span>Loan Term</span>
+                                        <div>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                                <option value="25">25</option>
+                                                <option value="30" selected>30</option>
+                                              </select>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="details-container">
+                                    <div class="interest-rate">
+                                        <span>Interest Rate</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="vacancy">
+                                        <span>Vacancy</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="details-container">
+                                    <div class="maintenance">
+                                        <span>Maintenance</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="unit">
+                                        <span>Unit</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="details-container">
+                                    <div class="bedrooms">
+                                        <span>Bedrooms</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="bathrooms">
+                                        <span>Bathrooms</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="details-container">
+                                    <div class="property-tax">
+                                        <span>Property Tax</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="home-insurance">
+                                        <span>Home Insurance</span>
+                                        <div>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="details-container">
+                                    <div class="city">
+                                        <span>City</span>
+                                        <div>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="state">
+                                        <span>State</span>
+                                        <div>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="evalute-btn">
+                                <button type="button" class="btn" id="evalute_btn">EVALUATE</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form action="/action_page.php" class="registerForm">
-                    <div class="formInput">
-                        <div class="fnameLname">
-                            <div class="form-group firstName">
-                              <input type="text" class="form-control" id="registerFname" placeholder="First Name" name="registerFname">
-                            </div>
-                            <div class="form-group">
-                              <input type="text" class="form-control" id="registerLname" placeholder="Last Name" name="registerLname">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="registerEmail" placeholder="Email Address" name="registerEmail">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="registerPsw" placeholder="Email Address" name="registerPsw">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="registerConfirmPsw" placeholder="Email Address" name="registerConfirmPsw">
-                        </div>
-                    </div>
-                    <div class="registerBtn">
-                        <button type="submit" class="btn" id="registerBtn">Register</button>
-                    </div>
-                    <div class="loginFormLink">
-                        <div class="text">Already have an account? <a href="#" class="loginLink">Login Now</a></div>
-                    </div>  
-                </form>
+                <div class="tab-pane fade" id="pills-plan-details" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+                <div class="tab-pane fade" id="pills-property-history" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
             </div>
         </div>
     </main>

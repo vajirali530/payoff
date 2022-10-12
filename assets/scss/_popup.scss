@@ -1,0 +1,261 @@
+// nested css
+.credifana{
+    @include extensionStyle;
+    .credifanaHeader{
+        margin-bottom: 30px;
+        header{
+            nav{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .logo-title{
+                    display: flex;
+                    align-items: center;
+                    .logo{
+                        margin-right: 5px;
+                        img{
+                            @include primaryLogo;
+                        }
+                    }
+                    .title{
+                        h1{
+                            @include commonHeader;
+                        }
+                    }
+                }
+                .logout-btn{
+                    display: none;
+                    button{
+                        @include logoutBtn;
+                    }
+                }
+            }
+        }
+    }
+    .credifanaLogin{
+        display: none;
+        .formHeader{
+                    margin-bottom: 20px;
+                    h2{
+                        @include commonSubHeader;
+                        margin-bottom: 5px;
+                    }
+                    span{
+                        @include commonSubHeaderInfo()
+                    }
+        }
+        .loginForm{
+            .formInput{
+                .fnameLname{
+                    display: flex;
+                    align-items: center;
+                    .firstName{
+                        margin-right: 16px;
+                    }
+                }
+                .form-group{
+                    margin-bottom: 16px;
+                    input{
+                        @include commonInput;
+                        &:focus{
+                            box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
+                        }
+                    }
+                }
+                .loginPsw{
+                    margin-bottom: 0px;
+                }
+            }
+            .loginBtn{
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+                margin-top: 20px;
+                button{
+                    @include commonBtn;
+                    background-color: $Black;
+                    color: $White;
+                }
+            }
+            .registerFormLink{
+                text-align: center;
+                .text{
+                    @include loginRegisterLinkText;
+                    .registerLink{
+                        @include loginRegisterActiveLink;
+                    }
+                }                        
+            }
+        }
+    }
+    .credifanaRegister{
+        // display: none;
+        .formHeader{
+            margin-bottom: 20px;
+            h2{
+                @include commonSubHeader;
+                margin-bottom: 5px;
+            }
+            span{
+                @include commonSubHeaderInfo()
+            }
+        }
+        .registerForm{
+            .formInput{
+                .fnameLname{
+                    display: flex;
+                    align-items: center;
+                    .firstName{
+                        margin-right: 16px;
+                    }
+                }
+                .form-group{
+                    margin-bottom: 16px;
+                    input{
+                        @include commonInput;
+                        &:focus{
+                            box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
+                        }
+                    }
+                }
+            }
+            .registerBtn{
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+                margin-top: 20px;
+                button{
+                    @include commonBtn;
+                    background-color: $Black;
+                    color: $White;
+                }
+            }
+            .loginFormLink{
+                text-align: center;
+                .text{
+                    @include loginRegisterLinkText;
+                    .loginLink{
+                        @include loginRegisterActiveLink;
+                    }
+                }                        
+            }
+        }
+    }
+    .realtor-site-screen{
+        display: none;
+        .site-header{
+            margin-bottom: 20px;
+            h2{
+                @include commonSubHeader;
+                margin-bottom: 5px
+            }
+            span{
+                @include commonSubHeaderInfo;
+            }
+        }
+        .site-list{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 80px;
+            a{
+                @include sites;
+            }
+        }
+        .site-message{
+            text-align: center;
+            h2{
+                @include commonSubHeader;
+            }
+            span{
+                @include commonSubHeaderInfo;
+            }
+        }
+    }
+    .realtor-property-details{
+        display: none;
+        overflow: auto;
+        #pills-tab{
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px !important;
+            .nav-item{
+                margin-right: 5px;
+                .nav-link{
+                    @include commonBtnTabs;
+                }
+                .nav-link.active{
+                    background-color: $LightSkyBlue;
+                    color: $White;
+                }
+                &:nth-child(1){
+                    .nav-link{
+                        border-radius: 6px 0px 0px 6px;
+                    }
+                }
+                &:nth-child(2){
+                    .nav-link{
+                        width: 110px;
+                    }
+                }
+                &:nth-child(3){
+                    margin-right: 0px;
+                    .nav-link{
+                        border-radius: 0px 6px 6px 0px;
+                    }
+                }
+            }
+        }
+        #pills-tabContent{
+            #pills-property-details{
+                .property-details-wrapper{
+                    .property-title-img-price{
+                            margin-bottom: 30px;
+                            .property-title{
+                                margin-bottom: 6px;
+                                @include propertyTitle;
+                            }
+                            .property-img-price{
+                                position: relative;
+                                .property-price{
+                                    @include propertyPrice;
+                                }
+                            }
+                    }
+                    #property_details{
+                        .details-container{
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 16px;
+                                &:last-child{
+                                    margin-bottom: 30px;
+                                }
+                                div{
+                                    div{
+                                        margin-top: 5px;
+                                        input{
+                                            &:focus{
+                                                box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
+                                            }
+                                        }
+                                    }
+                                    &:first-child{
+                                        margin-right: 16px;
+                                    }
+        
+                                }
+                        }
+                        .evalute-btn{
+                            text-align: center;
+                            margin-bottom: 38px;
+                            button{
+                                @include commonBtn;
+                                background-color: $Black;
+                                color: $White;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

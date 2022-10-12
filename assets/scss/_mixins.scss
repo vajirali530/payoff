@@ -1,0 +1,129 @@
+@mixin extensionStyle {
+    height: 600px;
+    width: 450px;
+    max-height: 600px;
+    padding: 30px;
+}
+@mixin primaryLogo {
+    height: 30px;
+    width: 40px;
+}
+@mixin commonBtn {
+    height: 50px;
+    width: 195px;
+    border-radius: 24px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 19px;
+    border: none;
+}
+@mixin commonHeader {
+    font-family: 'Fredoka One', cursive;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 36px;
+    color: $LightSkyBlue;
+}
+@mixin commonSubHeader {
+    color: $LightSkyBlue;
+    font-weight: 900;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+}
+@mixin commonSubHeaderInfo {
+    color: $Gray;
+    font-weight: normal;
+    line-height: 19px;
+    font-size: 16px;
+}
+@mixin commonInput {
+    border-radius: 6px;
+    background-color: $White;
+    border: 1px solid $Black;
+}
+@mixin loginRegisterLinkText {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 19px;
+    color: $Black;
+}
+@mixin loginRegisterActiveLink {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 18px;
+    color: $LightSkyBlue;
+}
+@mixin logoutBtn {
+    color: $DarkRed;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 16px;
+}
+@mixin sites {
+    height: 46px;
+    width: 119px;
+    background-color: $Whitesmoke;
+    position: relative;
+    border-radius: 6px 6px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::after{
+        position: absolute;
+        content: "VISIT NOW";
+        width: 100%;
+        height: 30px;
+        background-color: $Black;
+        bottom: -30px;
+        left: 0;
+        border-radius: 0px 0px 6px 6px;
+        color: $White;
+        font-family: 'Raleway', sans-serif;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@mixin commonBtnTabs {
+    height: 50px;
+    width: 135px;
+    background-color: $Whitesmoke;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 16px;
+    color: $Black;
+    border-radius: 0px;
+}
+@mixin propertyPrice {
+    position: absolute;
+    background-color: white;
+    height: 50px;
+    width: 160px;
+    border-radius: 25px 0px 0px 25px;
+    font-size: 27px;
+    font-weight: 900;
+    line-height: 31px;
+    color: $Black;
+    bottom: -25px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+}
+@mixin propertyTitle {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: $Black;
+}

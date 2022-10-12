@@ -1,19 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-::placeholder {
-  font-size: 16px;
-  font-weight: normal;
-  line-height: 19px;
-  color: #848484;
-  font-family: "Raleway", sans-serif;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .credifana {
   height: 600px;
   width: 450px;
@@ -26,25 +12,43 @@
 .credifana .credifanaHeader header nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.credifana .credifanaHeader header nav .logo {
+.credifana .credifanaHeader header nav .logo-title {
+  display: flex;
+  align-items: center;
+}
+.credifana .credifanaHeader header nav .logo-title .logo {
   margin-right: 5px;
 }
-.credifana .credifanaHeader header nav .logo img {
+.credifana .credifanaHeader header nav .logo-title .logo img {
   height: 30px;
   width: 40px;
 }
-.credifana .credifanaHeader header nav .title h1 {
+.credifana .credifanaHeader header nav .logo-title .title h1 {
   font-family: "Fredoka One", cursive;
   font-size: 30px;
   font-weight: normal;
   line-height: 36px;
   color: #748EFF;
 }
-.credifana .credifanaLogin .container .formHeader {
+.credifana .credifanaHeader header nav .logout-btn {
+  display: none;
+}
+.credifana .credifanaHeader header nav .logout-btn button {
+  color: #9D0000;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 16px;
+}
+.credifana .credifanaLogin {
+  display: none;
+}
+.credifana .credifanaLogin .formHeader {
   margin-bottom: 20px;
 }
-.credifana .credifanaLogin .container .formHeader h2 {
+.credifana .credifanaLogin .formHeader h2 {
   color: #748EFF;
   font-weight: 900;
   font-family: "Raleway", sans-serif;
@@ -52,40 +56,40 @@
   line-height: 24px;
   margin-bottom: 5px;
 }
-.credifana .credifanaLogin .container .formHeader span {
+.credifana .credifanaLogin .formHeader span {
   color: #848484;
   font-weight: normal;
   line-height: 19px;
   font-size: 16px;
 }
-.credifana .credifanaLogin .container .loginForm .formInput .fnameLname {
+.credifana .credifanaLogin .loginForm .formInput .fnameLname {
   display: flex;
   align-items: center;
 }
-.credifana .credifanaLogin .container .loginForm .formInput .fnameLname .firstName {
+.credifana .credifanaLogin .loginForm .formInput .fnameLname .firstName {
   margin-right: 16px;
 }
-.credifana .credifanaLogin .container .loginForm .formInput .form-group {
+.credifana .credifanaLogin .loginForm .formInput .form-group {
   margin-bottom: 16px;
 }
-.credifana .credifanaLogin .container .loginForm .formInput .form-group input {
+.credifana .credifanaLogin .loginForm .formInput .form-group input {
   border-radius: 6px;
   background-color: #ffffff;
   border: 1px solid #241F1F;
 }
-.credifana .credifanaLogin .container .loginForm .formInput .form-group input:focus {
+.credifana .credifanaLogin .loginForm .formInput .form-group input:focus {
   box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
 }
-.credifana .credifanaLogin .container .loginForm .formInput .loginPsw {
+.credifana .credifanaLogin .loginForm .formInput .loginPsw {
   margin-bottom: 0px;
 }
-.credifana .credifanaLogin .container .loginForm .loginBtn {
+.credifana .credifanaLogin .loginForm .loginBtn {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
   margin-top: 20px;
 }
-.credifana .credifanaLogin .container .loginForm .loginBtn button {
+.credifana .credifanaLogin .loginForm .loginBtn button {
   height: 50px;
   width: 195px;
   border-radius: 24px;
@@ -97,27 +101,27 @@
   background-color: #241F1F;
   color: #ffffff;
 }
-.credifana .credifanaLogin .container .loginForm .registerFormLink {
+.credifana .credifanaLogin .loginForm .registerFormLink {
   text-align: center;
 }
-.credifana .credifanaLogin .container .loginForm .registerFormLink .text {
+.credifana .credifanaLogin .loginForm .registerFormLink .text {
   font-family: "Raleway", sans-serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 19px;
   color: #241F1F;
 }
-.credifana .credifanaLogin .container .loginForm .registerFormLink .text .registerLink {
+.credifana .credifanaLogin .loginForm .registerFormLink .text .registerLink {
   font-family: "Raleway", sans-serif;
   font-size: 15px;
   font-weight: 900;
   line-height: 18px;
   color: #748EFF;
 }
-.credifana .credifanaRegister .container .formHeader {
+.credifana .credifanaRegister .formHeader {
   margin-bottom: 20px;
 }
-.credifana .credifanaRegister .container .formHeader h2 {
+.credifana .credifanaRegister .formHeader h2 {
   color: #748EFF;
   font-weight: 900;
   font-family: "Raleway", sans-serif;
@@ -125,37 +129,37 @@
   line-height: 24px;
   margin-bottom: 5px;
 }
-.credifana .credifanaRegister .container .formHeader span {
+.credifana .credifanaRegister .formHeader span {
   color: #848484;
   font-weight: normal;
   line-height: 19px;
   font-size: 16px;
 }
-.credifana .credifanaRegister .container .registerForm .formInput .fnameLname {
+.credifana .credifanaRegister .registerForm .formInput .fnameLname {
   display: flex;
   align-items: center;
 }
-.credifana .credifanaRegister .container .registerForm .formInput .fnameLname .firstName {
+.credifana .credifanaRegister .registerForm .formInput .fnameLname .firstName {
   margin-right: 16px;
 }
-.credifana .credifanaRegister .container .registerForm .formInput .form-group {
+.credifana .credifanaRegister .registerForm .formInput .form-group {
   margin-bottom: 16px;
 }
-.credifana .credifanaRegister .container .registerForm .formInput .form-group input {
+.credifana .credifanaRegister .registerForm .formInput .form-group input {
   border-radius: 6px;
   background-color: #ffffff;
   border: 1px solid #241F1F;
 }
-.credifana .credifanaRegister .container .registerForm .formInput .form-group input:focus {
+.credifana .credifanaRegister .registerForm .formInput .form-group input:focus {
   box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
 }
-.credifana .credifanaRegister .container .registerForm .registerBtn {
+.credifana .credifanaRegister .registerForm .registerBtn {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
   margin-top: 20px;
 }
-.credifana .credifanaRegister .container .registerForm .registerBtn button {
+.credifana .credifanaRegister .registerForm .registerBtn button {
   height: 50px;
   width: 195px;
   border-radius: 24px;
@@ -167,22 +171,194 @@
   background-color: #241F1F;
   color: #ffffff;
 }
-.credifana .credifanaRegister .container .registerForm .loginFormLink {
+.credifana .credifanaRegister .registerForm .loginFormLink {
   text-align: center;
 }
-.credifana .credifanaRegister .container .registerForm .loginFormLink .text {
+.credifana .credifanaRegister .registerForm .loginFormLink .text {
   font-family: "Raleway", sans-serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 19px;
   color: #241F1F;
 }
-.credifana .credifanaRegister .container .registerForm .loginFormLink .text .loginLink {
+.credifana .credifanaRegister .registerForm .loginFormLink .text .loginLink {
   font-family: "Raleway", sans-serif;
   font-size: 15px;
   font-weight: 900;
   line-height: 18px;
   color: #748EFF;
+}
+.credifana .realtor-site-screen {
+  display: none;
+}
+.credifana .realtor-site-screen .site-header {
+  margin-bottom: 20px;
+}
+.credifana .realtor-site-screen .site-header h2 {
+  color: #748EFF;
+  font-weight: 900;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+.credifana .realtor-site-screen .site-header span {
+  color: #848484;
+  font-weight: normal;
+  line-height: 19px;
+  font-size: 16px;
+}
+.credifana .realtor-site-screen .site-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+.credifana .realtor-site-screen .site-list a {
+  height: 46px;
+  width: 119px;
+  background-color: #F5F5F5;
+  position: relative;
+  border-radius: 6px 6px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.credifana .realtor-site-screen .site-list a::after {
+  position: absolute;
+  content: "VISIT NOW";
+  width: 100%;
+  height: 30px;
+  background-color: #241F1F;
+  bottom: -30px;
+  left: 0;
+  border-radius: 0px 0px 6px 6px;
+  color: #ffffff;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.credifana .realtor-site-screen .site-message {
+  text-align: center;
+}
+.credifana .realtor-site-screen .site-message h2 {
+  color: #748EFF;
+  font-weight: 900;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+}
+.credifana .realtor-site-screen .site-message span {
+  color: #848484;
+  font-weight: normal;
+  line-height: 19px;
+  font-size: 16px;
+}
+.credifana .realtor-property-details {
+  display: none;
+  overflow: auto;
+}
+.credifana .realtor-property-details #pills-tab {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px !important;
+}
+.credifana .realtor-property-details #pills-tab .nav-item {
+  margin-right: 5px;
+}
+.credifana .realtor-property-details #pills-tab .nav-item .nav-link {
+  height: 50px;
+  width: 135px;
+  background-color: #F5F5F5;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 16px;
+  color: #241F1F;
+  border-radius: 0px;
+}
+.credifana .realtor-property-details #pills-tab .nav-item .nav-link.active {
+  background-color: #748EFF;
+  color: #ffffff;
+}
+.credifana .realtor-property-details #pills-tab .nav-item:nth-child(1) .nav-link {
+  border-radius: 6px 0px 0px 6px;
+}
+.credifana .realtor-property-details #pills-tab .nav-item:nth-child(2) .nav-link {
+  width: 110px;
+}
+.credifana .realtor-property-details #pills-tab .nav-item:nth-child(3) {
+  margin-right: 0px;
+}
+.credifana .realtor-property-details #pills-tab .nav-item:nth-child(3) .nav-link {
+  border-radius: 0px 6px 6px 0px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price {
+  margin-bottom: 30px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price .property-title {
+  margin-bottom: 6px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price .property-img-price {
+  position: relative;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price .property-img-price .property-price {
+  position: absolute;
+  background-color: white;
+  height: 50px;
+  width: 160px;
+  border-radius: 25px 0px 0px 25px;
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 31px;
+  color: #241F1F;
+  bottom: -25px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container:last-child {
+  margin-bottom: 30px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div {
+  margin-top: 5px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div:first-child {
+  margin-right: 16px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .evalute-btn {
+  text-align: center;
+  margin-bottom: 38px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .evalute-btn button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
+  background-color: #241F1F;
+  color: #ffffff;
 }
 
 /*# sourceMappingURL=popup.css.map */
