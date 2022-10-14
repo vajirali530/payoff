@@ -127,3 +127,49 @@
     line-height: 19px;
     color: $Black;
 }
+@mixin apiDataBlock {
+    background-color: $White;
+    border-radius: 6px;
+    box-shadow: 0px 0px 6px rgba(#000000, 16%);
+    height: 83px;
+    width: 185px;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    flex-direction: column;
+}
+@mixin apiDataBlockTitle {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: normal;
+    font-family: 'Raleway', sans-serif;
+    color: $Black;
+}
+@mixin apiDataPrice {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    color: $Black;
+}
+@mixin clicks {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 29px;
+    color: $Black;
+}
+@mixin shadowBox {
+    box-shadow: 0px 0px 6px rgba(#000000, 16%);
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+@mixin error {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    color: $DarkRed;
+    margin-top: 6px;
+}

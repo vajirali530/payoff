@@ -36,14 +36,22 @@
   display: none;
 }
 .credifana .credifanaHeader header nav .logout-btn button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
   color: #9D0000;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 900;
   line-height: 16px;
-}
-.credifana .credifanaLogin {
-  display: none;
+  height: auto !important;
+  width: auto !important;
+  padding: 0 !important;
 }
 .credifana .credifanaLogin .formHeader {
   margin-bottom: 20px;
@@ -72,6 +80,9 @@
 .credifana .credifanaLogin .loginForm .formInput .form-group {
   margin-bottom: 16px;
 }
+.credifana .credifanaLogin .loginForm .formInput .form-group:last-child {
+  margin-bottom: 0px;
+}
 .credifana .credifanaLogin .loginForm .formInput .form-group input {
   border-radius: 6px;
   background-color: #ffffff;
@@ -80,14 +91,36 @@
 .credifana .credifanaLogin .loginForm .formInput .form-group input:focus {
   box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
 }
+.credifana .credifanaLogin .loginForm .formInput .form-group .error-message {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #9D0000;
+  margin-top: 6px;
+}
 .credifana .credifanaLogin .loginForm .formInput .loginPsw {
   margin-bottom: 0px;
+}
+.credifana .credifanaLogin .loginForm .response_errors .response_error {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #9D0000;
+  margin-top: 6px;
 }
 .credifana .credifanaLogin .loginForm .loginBtn {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
   margin-top: 20px;
+  flex-direction: column;
+}
+.credifana .credifanaLogin .loginForm .loginBtn #loginSpinner {
+  display: none;
+  margin-bottom: 10px;
 }
 .credifana .credifanaLogin .loginForm .loginBtn button {
   height: 50px;
@@ -118,6 +151,9 @@
   line-height: 18px;
   color: #748EFF;
 }
+.credifana .credifanaRegister {
+  display: none;
+}
 .credifana .credifanaRegister .formHeader {
   margin-bottom: 20px;
 }
@@ -137,13 +173,15 @@
 }
 .credifana .credifanaRegister .registerForm .formInput .fnameLname {
   display: flex;
-  align-items: center;
 }
 .credifana .credifanaRegister .registerForm .formInput .fnameLname .firstName {
   margin-right: 16px;
 }
 .credifana .credifanaRegister .registerForm .formInput .form-group {
   margin-bottom: 16px;
+}
+.credifana .credifanaRegister .registerForm .formInput .form-group:last-child {
+  margin-bottom: 0px;
 }
 .credifana .credifanaRegister .registerForm .formInput .form-group input {
   border-radius: 6px;
@@ -153,11 +191,33 @@
 .credifana .credifanaRegister .registerForm .formInput .form-group input:focus {
   box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
 }
+.credifana .credifanaRegister .registerForm .formInput .form-group .error-message {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #9D0000;
+  margin-top: 6px;
+}
+.credifana .credifanaRegister .registerForm .response_errors .response_error {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #9D0000;
+  margin-top: 6px;
+}
 .credifana .credifanaRegister .registerForm .registerBtn {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
   margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+.credifana .credifanaRegister .registerForm .registerBtn #registerSpinner {
+  display: none;
+  margin-bottom: 10px;
 }
 .credifana .credifanaRegister .registerForm .registerBtn button {
   height: 50px;
@@ -279,6 +339,7 @@
   line-height: 16px;
   color: #241F1F;
   border-radius: 0px;
+  padding: 5px;
 }
 .credifana .realtor-property-details #pills-tab .nav-item .nav-link.active {
   background-color: #748EFF;
@@ -296,10 +357,10 @@
 .credifana .realtor-property-details #pills-tab .nav-item:nth-child(3) .nav-link {
   border-radius: 0px 6px 6px 0px;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-name-img-price {
   margin-bottom: 30px;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price .property-title {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-name-img-price .property-name {
   margin-bottom: 6px;
   font-family: "Raleway", sans-serif;
   font-weight: bold;
@@ -307,10 +368,15 @@
   line-height: 19px;
   color: #241F1F;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price .property-img-price {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-name-img-price .property-img-price {
   position: relative;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-title-img-price .property-img-price .property-price {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-name-img-price .property-img-price img {
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-name-img-price .property-img-price #property_price {
   position: absolute;
   background-color: white;
   height: 50px;
@@ -327,10 +393,14 @@
   align-items: center;
   font-family: "Raleway", sans-serif;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details {
+  display: none;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+  justify-content: space-between;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container:last-child {
   margin-bottom: 30px;
@@ -338,11 +408,14 @@
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div {
   margin-top: 5px;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div input {
+  width: 187px;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div input:focus {
   box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div:first-child {
-  margin-right: 16px;
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div select {
+  width: 187px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .evalute-btn {
   text-align: center;
@@ -359,6 +432,249 @@
   border: none;
   background-color: #241F1F;
   color: #ffffff;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data {
+  display: none;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .property-city-state {
+  margin-bottom: 20px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .property-city-state span {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container .api-maintenance {
+  background-color: #748EFF;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container .api-maintenance span {
+  color: #ffffff !important;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div {
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+  height: 83px;
+  width: 185px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:first-child {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  font-family: "Raleway", sans-serif;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:last-child {
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .back-btn {
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .back-btn button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
+  background-color: #ffffff;
+  border: 3px solid #241F1F;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details {
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .plan-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .plan-status span:first-child {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  font-family: "Raleway", sans-serif;
+  color: #241F1F;
+  margin-bottom: 5px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .plan-status span:last-child {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #241F1F;
+  color: #748EFF;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .clicks-info {
+  display: flex;
+  margin-bottom: 16px;
+  justify-content: space-between;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .clicks-info div {
+  display: flex;
+  flex-direction: column;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .clicks-info div span:first-child {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  font-family: "Raleway", sans-serif;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .clicks-info div span:last-child {
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 29px;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .expired-info span {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  font-family: "Raleway", sans-serif;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .expired-info span .expired-date {
+  font-weight: 900;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:first-child button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
+  border: 3px solid #9D0000;
+  background-color: white;
+  color: #9D0000;
+  text-transform: uppercase;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:last-child button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #241F1F;
+  text-transform: uppercase;
+  font-weight: 900 !important;
+  padding: 0px !important;
+  width: auto;
+  height: auto;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history-title {
+  margin-bottom: 16px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history-title span {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history {
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  justify-content: unset !important;
+  margin-bottom: 28px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-img img {
+  width: 135px;
+  height: 83px;
+  object-fit: cover;
+  border-radius: 6px 0px 0px 6px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-priceBtn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-priceBtn .property-history-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-priceBtn .property-history-price div:first-child {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-priceBtn .property-history-price div:last-child {
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-priceBtn .property-history-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-priceBtn .property-history-btn button {
+  height: 50px;
+  width: 195px;
+  border-radius: 24px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  border: none;
+  height: auto;
+  width: auto;
+  padding: 0 !important;
+  font-weight: 900 !important;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  font-family: "Raleway", sans-serif;
+  color: #241F1F;
 }
 
 /*# sourceMappingURL=popup.css.map */

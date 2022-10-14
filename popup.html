@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="logout-btn">
-                        <button class="btn" type="submit">LOGOUT</button>
+                        <button class="btn" type="button" id="logout_btn">LOGOUT</button>
                     </div>
                 </nav>
             </header>
@@ -34,17 +34,22 @@
                 <h2>Login</h2>
                 <span>Please login to your account</span>
             </div>
-            <form action="/action_page.php" class="loginForm" id="login_form">
+            <form action="" class="loginForm" id="login_form">
                 <div class="formInput">
                     <div class="form-group">
-                      <input type="email" class="form-control" id="loginEmail" placeholder="Email Address" name="loginEmail">
+                      <input type="email" class="form-control" id="loginEmail" placeholder="Email Address" name="email">
+                      <div class="error-message d-none">Please enter valid email address</div>
                     </div>
                     <div class="form-group loginPsw">
-                      <input type="password" class="form-control" id="loginPsw" placeholder="Password" name="loginPsw">
+                      <input type="password" class="form-control" id="loginPsw" placeholder="Password" name="password">
+                      <div class="error-message d-none">Please enter password</div>
                     </div>
                 </div>
+                <div class="row response_errors"></div>
                 <div class="loginBtn">
-                    <button type="submit" class="btn" id="loginBtn">Login</button>
+                    <div class="spinner-border text-dark" role="status" id="loginSpinner">
+                    </div>
+                    <button type="button" class="btn" id="loginBtn">Login</button>
                 </div>
                 <div class="registerFormLink">
                     <div class="text">New here? <a href="#" class="registerLink">Register Now</a></div>
@@ -61,27 +66,30 @@
                     <div class="fnameLname">
                         <div class="form-group firstName">
                             <input type="text" class="form-control" id="registerFname" placeholder="First Name" name="fname">
-                            <div class="error-message"></div>
+                            <div class="error-message d-none">Please enter Firstname</div>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="registerLname" placeholder="Last Name" name="lname">
-                            <div class="error-message"></div>
+                            <div class="error-message d-none">Please enter Lastname</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="email" class="form-control" id="registerEmail" placeholder="Email Address" name="email">
-                        <div class="error-message"></div>
+                        <div class="error-message d-none">Please enter valid email address</div>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="registerPsw" placeholder="Password" name="password">
-                        <div class="error-message"></div>
+                        <div class="error-message d-none">Please insert Password</div>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="registerConfirmPsw" placeholder="Confirm Password" name="confirmpassword">
-                        <div class="error-message"></div>
+                        <div class="error-message d-none">Password and confirm password should be same.</div>
                     </div>
                 </div>
+                <div class="row response_errors"></div>
                 <div class="registerBtn">
+                    <div class="spinner-border text-dark" role="status" id="registerSpinner">
+                    </div>
                     <button type="button" class="btn" id="registerBtn" data-action="register">Register</button>
                 </div>
                 <div class="loginFormLink">
@@ -95,17 +103,17 @@
                 <span>Our plugin supports below list for now.</span>
             </div>
             <div class="site-list">
-                <a href="">
+                <a href="https://www.realtor.com/">
                     <span class="site-log">
                         <img src="./assets/images/realtorLogo.png" alt="realtorLogo">
                     </span>
                 </a>
-                <a href="">
+                <a href="https://www.realtor.com/">
                     <span class="site-log">
                         <img src="./assets/images/realtorLogo.png" alt="realtorLogo">
                     </span>
                 </a>
-                <a href="">
+                <a href="https://www.realtor.com/">
                     <span class="site-log">
                         <img src="./assets/images/realtorLogo.png" alt="realtorLogo">
                     </span>
@@ -119,39 +127,46 @@
         <div class="realtor-property-details">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-property-details" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                    <button class="nav-link active" id="property_details_btn" data-bs-toggle="pill" data-bs-target="#pills-property-details" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Property Details</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-plan-details" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+                    <button class="nav-link" id="plan_details_btn" data-bs-toggle="pill" data-bs-target="#pills-plan-details" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Plan Details</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-property-history" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                    <button class="nav-link" id="property_history_btn" data-bs-toggle="pill" data-bs-target="#pills-property-history" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Property History</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-property-details" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="property-details-wrapper">
-                        <div class="property-title-img-price">
-                            <div class="property-title">
+                        <div class="property-name-img-price">
+                            <div class="property-name">
                                 <span>2130 Cyril Ave.</span>
                             </div>
                             <div class="property-img-price">
-                                <img src="./assets/images/pro-img.webp" alt="" style="height:150px;width: 100%;">
-                                <span class="property-price">$699,888</span>
+                                <img src="./assets/images/pro-img.webp" alt="propertyImg">
+                                <span id="property_price">$699,888</span>
                             </div>
                         </div>
                         <form action="#" id="property_details">
+                            
+                            <input type="hidden" name="user_id" id="user_id">
+                            <input type="hidden" name="property_type" id="property_type">
+                            <input type="hidden" name="property_image" id="property_image">
+                            <input type="hidden" name="property_price" id="plain_property_price">
+                            <input type="hidden" name="property_name" id="property_name">
+
                             <div class="details-container">
                                     <div class="downpayment">
                                         <span>Down Payment</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="downpayment_percent" id="downpayment">
                                         </div>
                                     </div>
                                     <div class="closing-cost">
                                         <span>Closing Cost</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" id="closing_cost" name="closing_cost_percent">
                                         </div>
                                     </div>
                             </div>
@@ -159,13 +174,13 @@
                                     <div class="estimate-costof-repair">
                                         <span>Estimate Cost of Repair</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="estimate_cost_of_repair" value="0">
                                         </div>
                                     </div>
                                     <div class="loan-term">
                                         <span>Loan Term</span>
                                         <div>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" id="loanterm" name="loan_term_years">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -180,13 +195,13 @@
                                     <div class="interest-rate">
                                         <span>Interest Rate</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="interest_rate" id="interest_rate">
                                         </div>
                                     </div>
                                     <div class="vacancy">
                                         <span>Vacancy</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="vacancy" id="vacancy" value="5">
                                         </div>
                                     </div>
                             </div>
@@ -194,13 +209,13 @@
                                     <div class="maintenance">
                                         <span>Maintenance</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="maintenance" id="maintenance" value="5">
                                         </div>
                                     </div>
                                     <div class="unit">
                                         <span>Unit</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="unit" id="unit" value="1">
                                         </div>
                                     </div>
                             </div>
@@ -208,13 +223,13 @@
                                     <div class="bedrooms">
                                         <span>Bedrooms</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="bedrooms" id="bedrooms">
                                         </div>
                                     </div>
                                     <div class="bathrooms">
                                         <span>Bathrooms</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="bathrooms" id="bathrooms">
                                         </div>
                                     </div>
                             </div>
@@ -222,13 +237,13 @@
                                     <div class="property-tax">
                                         <span>Property Tax</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="taxes" id="taxes">
                                         </div>
                                     </div>
                                     <div class="home-insurance">
                                         <span>Home Insurance</span>
                                         <div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" name="insurance" id="insurance">
                                         </div>
                                     </div>
                             </div>
@@ -236,13 +251,13 @@
                                     <div class="city">
                                         <span>City</span>
                                         <div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="city" id="city">
                                         </div>
                                     </div>
                                     <div class="state">
                                         <span>State</span>
                                         <div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="state" id="state">
                                         </div>
                                     </div>
                             </div>
@@ -250,10 +265,199 @@
                                 <button type="button" class="btn" id="evalute_btn">EVALUATE</button>
                             </div>
                         </form>
+                        <div id="property-api-data">
+                            <div class="property-city-state">
+                                <span id="city">Los Angeles</span>
+                                <span id="state">, CA</span>
+                            </div>
+                            <div class="api-data">
+                                <div class="data-container">
+                                    <div class="api-average-rent">
+                                        <span>Average Rent</span>
+                                        <span id="average_rent">$2,497.90</span>
+                                    </div>
+                                    <div class="api-downpayment">
+                                        <span id="downpayment_percent">Down Payment (20%)</span>
+                                        <span id="downpayment"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-mortgage">
+                                        <span>Mortgage</span>
+                                        <span id="mortgage"></span>
+                                    </div>
+                                    <div class="api-closing-cost">
+                                        <span id="closingcost_per">Closing Cost (4%)</span>
+                                        <span id="closingcost"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-estimate-costof-repair">
+                                        <span>Estimate Cost of Repair</span>
+                                        <span id="estimate_ costofrepair"></span>
+                                    </div>
+                                    <div class="api-total-capital-needed">
+                                        <span>Total Capital Needed</span>
+                                        <span id="total_capital_needed"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-loan-term">
+                                        <span>Loan Term</span>
+                                        <span id="loanterm"></span>
+                                    </div>
+                                    <div class="api-interest-rate">
+                                        <span>Interest Rate</span>
+                                        <span id="interestrate"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-principal-interest">
+                                        <span>Principal & Interest</span>
+                                        <span id="principal_and_interest"></span>
+                                    </div>
+                                    <div class="api-unit">
+                                        <span>Unit</span>
+                                        <span id="unit"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-gross-monthly-income">
+                                        <span>Gross Monthly Income</span>
+                                        <span id="gross_monthly_income"></span>
+                                    </div>
+                                    <div class="api-gross-yearly-income">
+                                        <span>Gross Yearly Income</span>
+                                        <span id="gross_yearly_income"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-taxes">
+                                        <span>Taxes</span>
+                                        <span id="taxes"></span>
+                                    </div>
+                                    <div class="api-insurance">
+                                        <span>Insurance</span>
+                                        <span id="insurance"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-vacancy">
+                                        <span id="vacancy_percent">Vacancy (5%)</span>
+                                        <span id="vacancy"></span>
+                                    </div>
+                                    <div class="api-maintenance">
+                                        <span id="maintenance_percent">Maintenance (5%)</span>
+                                        <span id="maintenance"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-total-monthly-cost">
+                                        <span>Total Monthly Cost</span>
+                                        <span id="total_monthly_cost"></span>
+                                    </div>
+                                    <div class="api-total-yearly-cost">
+                                        <span>Total Yearly Cost</span>
+                                        <span id="total_yearly_cost"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-monthly-net-operator">
+                                        <span>Monthly Net Operator</span>
+                                        <span id="monthly_net_operator"></span>
+                                    </div>
+                                    <div class="api-yearly-net-operator">
+                                        <span>Yearly Net Operator</span>
+                                        <span id="yearly_net_operator"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-cap-rate">
+                                        <span>Cap Rate</span>
+                                        <span id="cap_rate"></span>
+                                    </div>
+                                    <div class="api-cashon-cash-return">
+                                        <span>Cash on Cash Return</span>
+                                        <span id="cash_on_cash_return"></span>
+                                    </div>
+                                </div>
+                                <div class="data-container">
+                                    <div class="api-total-cash-flow-monthly">
+                                        <span>Total Cash Flow Monthly</span>
+                                        <span id="total_cash_flow_monthly"></span>
+                                    </div>
+                                    <div class="api-total-cash-flow-yearly">
+                                        <span>Total Cash Flow Yearly</span>
+                                        <span id="total_cash_flow_yearly"></span>
+                                    </div>
+                                </div>
+                                <div class="back-btn">
+                                    <button type="button" class="btn">BACK</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-plan-details" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                <div class="tab-pane fade" id="pills-property-history" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                <div class="tab-pane fade" id="pills-plan-details" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="plan-details-wrapper">
+                        <div class="spinner-border text-dark" role="status" id="planSpinner">
+                        </div>
+                        <div class="plan-details">
+                            <div class="plan-status">
+                                <span>Active Plan</span>
+                                <span class="active-plan">Standard</span>
+                            </div>
+                            <div class="clicks-status">
+                                <div class="clicks-info">
+                                    <div>
+                                        <span>Total Clicks</span>
+                                        <span>250</span>
+                                    </div>
+                                    <div>
+                                        <span>Used Clicks</span>
+                                        <span>3</span>
+                                    </div>
+                                </div>
+                                <div class="expired-info">
+                                    <span><i>Expired at</i> <span class="expired-date">15th Oct 2022</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan-btns">
+                            <div>
+                                <button type="button" class="btn">Cancel plan</button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn">Change plan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-property-history" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div class="property-history-wrapper">
+                        <div class="property-history-title">
+                            <span>Usage History</span>
+                        </div>
+                        <div class="property-history">
+                            <div class="property-history-img">
+                                <img src="./assets/images/pro-img.webp" alt="" style="height: 83px; width:135px;">
+                            </div>
+                            <div class="property-history-priceBtn">
+                                <div class="property-history-price">
+                                    <div>
+                                        <span>2130 Cyril Ave.</span>
+                                    </div>
+                                    <div>
+                                        <span>$699,888</span>
+                                    </div>
+                                </div>
+                                <div class="property-history-btn">
+                                    <button type="button" class="btn">EVALUATE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

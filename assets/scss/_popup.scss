@@ -26,14 +26,17 @@
                 .logout-btn{
                     display: none;
                     button{
+                        @include commonBtn;
                         @include logoutBtn;
+                        height: auto !important;
+                        width: auto  !important;
+                        padding: 0 !important;
                     }
                 }
             }
         }
     }
     .credifanaLogin{
-        display: none;
         .formHeader{
                     margin-bottom: 20px;
                     h2{
@@ -55,22 +58,39 @@
                 }
                 .form-group{
                     margin-bottom: 16px;
+                    &:last-child{
+                        margin-bottom: 0px;
+                    }
                     input{
                         @include commonInput;
                         &:focus{
                             box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
                         }
                     }
+                    .error-message{
+                        @include error;
+                    }
                 }
                 .loginPsw{
                     margin-bottom: 0px;
                 }
             }
+            .response_errors{
+                .response_error{
+                    @include error;
+                }
+            }
             .loginBtn{
                 display: flex;
                 justify-content: center;
+                align-items: center;
                 margin-bottom: 10px;
                 margin-top: 20px;
+                flex-direction: column;
+                #loginSpinner{
+                    display: none;
+                    margin-bottom: 10px;
+                }
                 button{
                     @include commonBtn;
                     background-color: $Black;
@@ -89,7 +109,7 @@
         }
     }
     .credifanaRegister{
-        // display: none;
+        display: none;
         .formHeader{
             margin-bottom: 20px;
             h2{
@@ -104,19 +124,29 @@
             .formInput{
                 .fnameLname{
                     display: flex;
-                    align-items: center;
                     .firstName{
                         margin-right: 16px;
                     }
                 }
                 .form-group{
                     margin-bottom: 16px;
+                    &:last-child{
+                        margin-bottom: 0px;
+                    }
                     input{
                         @include commonInput;
                         &:focus{
                             box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
                         }
                     }
+                    .error-message{
+                        @include error;
+                    }
+                }
+            }
+            .response_errors{
+                .response_error{
+                    @include error;
                 }
             }
             .registerBtn{
@@ -124,6 +154,12 @@
                 justify-content: center;
                 margin-bottom: 10px;
                 margin-top: 20px;
+                flex-direction: column;
+                align-items: center;
+                #registerSpinner{
+                    display: none;
+                    margin-bottom: 10px;
+                }
                 button{
                     @include commonBtn;
                     background-color: $Black;
@@ -173,7 +209,7 @@
     }
     .realtor-property-details{
         display: none;
-        overflow: auto;
+        overflow: auto  ;
         #pills-tab{
             display: flex;
             align-items: center;
@@ -182,6 +218,7 @@
                 margin-right: 5px;
                 .nav-link{
                     @include commonBtnTabs;
+                    padding: 5px;
                 }
                 .nav-link.active{
                     background-color: $LightSkyBlue;
@@ -208,24 +245,32 @@
         #pills-tabContent{
             #pills-property-details{
                 .property-details-wrapper{
-                    .property-title-img-price{
+                    .property-name-img-price{
                             margin-bottom: 30px;
-                            .property-title{
+                            .property-name{
                                 margin-bottom: 6px;
                                 @include propertyTitle;
                             }
                             .property-img-price{
+                                img{
+                                    object-fit: cover;
+                                    height: 150px;
+                                    width: 100%;
+                                }
                                 position: relative;
-                                .property-price{
+                                #property_price{
                                     @include propertyPrice;
                                 }
+                                
                             }
                     }
                     #property_details{
+                        display: none;
                         .details-container{
                                 display: flex;
                                 align-items: center;
                                 margin-bottom: 16px;
+                                justify-content: space-between;
                                 &:last-child{
                                     margin-bottom: 30px;
                                 }
@@ -233,15 +278,15 @@
                                     div{
                                         margin-top: 5px;
                                         input{
+                                            width: 187px;
                                             &:focus{
                                                 box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
                                             }
                                         }
+                                        select{
+                                            width: 187px;
+                                        }
                                     }
-                                    &:first-child{
-                                        margin-right: 16px;
-                                    }
-        
                                 }
                         }
                         .evalute-btn{
@@ -251,6 +296,185 @@
                                 @include commonBtn;
                                 background-color: $Black;
                                 color: $White;
+                            }
+                        }
+                    }
+                    #property-api-data{
+                        display: none;
+                        .property-city-state{
+                            margin-bottom: 20px;
+                            span{
+                                @include propertyTitle;
+                            }
+                        }
+                        .api-data{
+                            .data-container{
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-bottom: 10px;
+                                .api-maintenance{
+                                    background-color: $LightSkyBlue;
+                                    span{
+                                        color: $White !important;
+                                    }
+                                }
+                                div{
+                                    @include apiDataBlock;
+                                    span{
+                                        &:first-child{
+                                            @include apiDataBlockTitle;
+                                        }
+                                        &:last-child{
+                                            @include apiDataPrice;
+                                        }
+                                    }
+                                }
+                            }
+                            .back-btn{
+                                margin-top: 30px;
+                                text-align: center;
+                                margin-bottom: 30px;
+                                button{
+                                    @include commonBtn;
+                                    background-color: $White;
+                                    border: 3px solid $Black;
+                                    color: $Black   ;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #pills-plan-details{
+                .plan-details-wrapper{
+                    .plan-details{
+                        @include shadowBox;
+                        padding: 15px;
+                        .plan-status{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center ;
+                            flex-direction: column;
+                            span{
+                                &:first-child{
+                                    @include apiDataBlockTitle;
+                                    margin-bottom: 5px;
+                                }
+                                &:last-child{
+                                    @include propertyTitle;
+                                    color: $LightSkyBlue;
+                                }
+                            }
+                        }
+                        .clicks-status{
+                            .clicks-info{
+                                display: flex;
+                                margin-bottom: 16px;
+                                justify-content: space-between;
+                                div{
+                                    display: flex;
+                                    flex-direction: column;
+                                    span{
+                                        &:first-child{
+                                            @include apiDataBlockTitle;
+                                        }
+                                        &:last-child{
+                                            @include clicks;
+                                        }
+                                    }
+                                }
+                            }
+                            .expired-info{
+                                span{
+                                    @include apiDataBlockTitle;
+                                    .expired-date{
+                                        font-weight: 900;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .plan-btns{
+                        margin-top: 18px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        div{
+                            &:first-child{
+                                button{
+                                    @include commonBtn;
+                                    border: 3px solid $DarkRed;
+                                    background-color: white;
+                                    color: $DarkRed;
+                                    text-transform: uppercase;
+                                }
+                            }
+                            &:last-child{
+                                button{
+                                    @include commonBtn;
+                                    @include propertyTitle;
+                                    text-transform: uppercase;
+                                    font-weight: 900 !important;
+                                    padding: 0px !important;
+                                    width: auto;
+                                    height: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #pills-property-history{
+                .property-history-wrapper{
+                    .property-history-title{
+                        margin-bottom: 16px;
+                        span{
+                            @include propertyTitle;
+                        }
+                    }
+                    .property-history{
+                        @include shadowBox;
+                        justify-content: unset !important;
+                        margin-bottom: 28px;
+                        .property-history-img{
+                            img{
+                                width: 135px;
+                                height: 83px;
+                                object-fit: cover;
+                                border-radius: 6px 0px 0px 6px;
+                            }
+                        }
+                        .property-history-priceBtn{
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 16px;
+                            .property-history-price{
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                div{
+                                    &:first-child{
+                                        @include propertyTitle;
+                                    }
+                                    &:last-child{
+                                        @include apiDataPrice;
+                                    }
+                                }
+                            }
+                            .property-history-btn{
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-end;
+                                button{
+                                    @include commonBtn;
+                                    height: auto;
+                                    width: auto;
+                                    padding: 0 !important;
+                                    font-weight: 900 !important;
+                                    @include apiDataBlockTitle;
+                                }
                             }
                         }
                     }
