@@ -98,6 +98,7 @@
   line-height: 16px;
   color: #9D0000;
   margin-top: 6px;
+  margin-bottom: 10px;
 }
 .credifana .credifanaLogin .loginForm .formInput .loginPsw {
   margin-bottom: 0px;
@@ -109,6 +110,7 @@
   line-height: 16px;
   color: #9D0000;
   margin-top: 6px;
+  margin-bottom: 10px;
 }
 .credifana .credifanaLogin .loginForm .loginBtn {
   display: flex;
@@ -198,6 +200,7 @@
   line-height: 16px;
   color: #9D0000;
   margin-top: 6px;
+  margin-bottom: 10px;
 }
 .credifana .credifanaRegister .registerForm .response_errors .response_error {
   font-family: "Raleway", sans-serif;
@@ -206,6 +209,7 @@
   line-height: 16px;
   color: #9D0000;
   margin-top: 6px;
+  margin-bottom: 10px;
 }
 .credifana .credifanaRegister .registerForm .registerBtn {
   display: flex;
@@ -396,6 +400,20 @@
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details {
   display: none;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .response_errors {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #9D0000;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .evaluteSpinner {
+  display: none;
+  margin-bottom: 10px;
+  text-align: center;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container {
   display: flex;
   align-items: center;
@@ -501,6 +519,11 @@
   border: 3px solid #241F1F;
   color: #241F1F;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper #planSpinner {
+  display: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
   border-radius: 6px;
@@ -583,7 +606,7 @@
   color: #9D0000;
   text-transform: uppercase;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:last-child button {
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:last-child .change-plan {
   height: 50px;
   width: 195px;
   border-radius: 24px;
@@ -675,6 +698,24 @@
   font-weight: normal;
   font-family: "Raleway", sans-serif;
   color: #241F1F;
+}
+
+.error-message {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #9D0000;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+#property_details em {
+  color: #9D0000;
+}
+
+#property_details .error-message, .plan-cancel-status.error-message {
+  display: none;
 }
 
 /*# sourceMappingURL=popup.css.map */

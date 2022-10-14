@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', async function(){
 
 // login
 $('#loginBtn').on('click', function () {
+    $('.error-message').hide();
+
     let formData = new FormData($('#login_form')[0]);
     let isValidated = true;
     formData.forEach((value,  index) => {
@@ -64,7 +66,7 @@ $('#loginBtn').on('click', function () {
 
     })
 
-    $('.error-message').each((index, val) => {
+    $('#loginBtn .error-message').each((index, val) => {
         if(!$(val).hasClass('d-none')) {
             isValidated = false;
         };
@@ -85,6 +87,7 @@ $('#loginBtn').on('click', function () {
                     $('.response_errors').html('');
                     $('.response_errors').append(`<div class="response_error">${response.message}</div>`);
                 }else if(response.status == "success"){
+
                     let userData = response.user_data;
                     setChromeStorage("userData", JSON.stringify(userData)); 
                     $('.credifanaLogin').hide()
@@ -250,7 +253,9 @@ const getDataFromWebsite = async (msg, response)=>{
      var finaluserData = JSON.parse(userDataCollection.userData);
      var plainPropertyPrice =  msg.proPrice.replace(/\$|,/g, "");
      
-     console.log(plainPropertyPrice,msg.proPrice);
+     
+      $('#property_price').text(msg.proPrice);
+      $(".property-name span").text(msg.proTitle);
       $('#plain_property_price').val(plainPropertyPrice);
       $('#property_type').val(msg.proType);
       $('#property_image').val(msg.proImg);
@@ -267,6 +272,8 @@ const getDataFromWebsite = async (msg, response)=>{
       $('#bathrooms').val(msg.proBath)
       $('#city').val(msg.city)
       $('#state').val(msg.state)
+      $('#city').text(msg.city)
+      $('#state').text(msg.state)
     } else {
       $('.propertyTitle h3').text(msg.proTitle) 
       $('.propertyImg img').attr('src',msg.proImg)
@@ -280,24 +287,25 @@ const getDataFromWebsite = async (msg, response)=>{
 //get plan details
 
 $("#plan_details_btn").on("click", async function () {
-    // $('.cancelPlan').addClass('d-none')
     $('#planSpinner').show();
-    // $('#realtorPlanDetailContainer .realtorPlan .realtorPlanSuccess').addClass('d-none')
-    // $('#realtorPlanDetailContainer .realtorPlan .realtorPlanErrors').addClass('d-none')
     let userDataCollection = await getChromeStorage(["userData"]);
     var finaluserData = JSON.parse(userDataCollection.userData);
     var result = await fetchDetails(BASE_URL + "getsubscription-details/" + finaluserData.id);
-    // console.log(result);
     if(result.status == 'success'){
-    $('#planSpinner').hide();
-      $('.loader').addClass('d-none')
-      $('#realtorPlanDetailContainer .realtorPlan .realtorPlanSuccess').removeClass('d-none')
-      $('#realtorPlanDetailContainer table tbody tr .plan').html(result.data.plan)
-      $('#realtorPlanDetailContainer table tbody tr .totalClk').html((result.data.total_clicks == 999999) ? 'Unlimited' : result.data.total_clicks)
-      $('#realtorPlanDetailContainer table tbody tr .usedClk').html(result.data.used_clicks)
-      $('.realtorCancelPlan').removeClass('d-none')
-    }
-    else{
+        $('#planSpinner').hide();
+        $(".used-clicks").text(result.data.used_click);
+        $(".total-clicks").text(result.data.total_click);
+        $(".active-plan").text(result.data.plan);
+        $(".expired-date").text(result.data.plan_end);
+        $(".change-plan").attr('href',result.data.change_plan);
+        if(result.data.is_cancelled == 1){
+            $(".plan-cancel-status").show();
+        }
+
+        if(result.data.plan != 'basic' && result.data.is_cancelled == 0){
+            $("#cancel_btn_cntnr").removeClass('d-none');
+        }
+    }else{
       $('.loader').addClass('d-none')
       $('#realtorPlanDetailContainer .realtorPlan .realtorPlanErrors').removeClass('d-none')
       $('#realtorPlanDetailContainer .realtorPlan .realtorPlanErrors').html(result.message)
@@ -370,7 +378,20 @@ chrome.runtime.onMessage.addListener((msg,response) => {
 
 
 $('#evalute_btn').click(function(){
-    $('#loginSpinner').show();
+    $('.error-message').hide();
+    var error = 0;
+    $('.req-input').each(function() {
+        if ($(this).val() == '') {
+            $(this).siblings('.error-message').show();
+            error++;
+        }
+    });
+    
+    if (error > 0) {
+        return;
+    }
+
+    $('.evaluteSpinner').show();
     let formData = new FormData($('#property_details')[0]);
     $.ajax({
         type: "post",
@@ -380,16 +401,97 @@ $('#evalute_btn').click(function(){
         contentType: false,
         dataType: 'JSON',
         success:function (response){
-            $('#loginSpinner').hide()
+            $('.evaluteSpinner').hide();
             if(response.status == 'error') {
                 $('.response_errors').html('');
-                $('.response_errors').append(`<div class="response_error">${response.message}</div>`);
+                $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
-                let userData = response.user_data;
-                setChromeStorage("userData", JSON.stringify(userData)); 
-                $('.credifanaLogin').hide()
-                determineExtensionProcess()
+                $('#property_details').hide();
+                $('#property-api-data').show();
+                
+                $.each( response.data, function( key, value ) {
+                    $("#property-api-data span#"+key).text(value);
+                });
+                
             }
         },
     });
 });
+
+
+
+$('.back-btn .btn').click(function(){
+    $('#property-api-data').hide();
+    $('#property_details').show();
+})
+
+//get property history
+$('#property_history_btn').on('click', async function () {  
+    let storedUserData = await getChromeStorage(["userData"]);
+    let userData = JSON.parse(storedUserData.userData);
+    var result = await fetchDetails(BASE_URL + "getproperty-history/" + userData.id);
+    if(result.data.length == 0){
+        $(".property-history-wrapper").html('<h4>No property found.</h4>');
+    }else{
+        $(".property-history-wrapper").html('');
+        $.each( result.data, function( key, value ) {
+            var pro_detail = JSON.parse(value.pro_detail);
+            console.log(pro_detail.property_image);
+            console.log(pro_detail.property_name);
+            console.log(pro_detail.property_price);
+            $(".property-history-wrapper").append(`
+                <div class="property-history">
+                    <div class="property-history-img">
+                        <img src="${pro_detail.property_image}" alt="" style="height: 83px; width:135px;">
+                    </div>
+                    <div class="property-history-priceBtn">
+                        <div class="property-history-price">
+                            <div>
+                                <span>${pro_detail.property_name}</span>
+                            </div>
+                            <div>
+                                <span>$${pro_detail.property_price}</span>
+                            </div>
+                        </div>
+                        <div class="property-history-btn">
+                            <button type="button" class="btn">EVALUATE</button>
+                        </div>
+                    </div>
+                </div>
+            `);
+        });
+    }
+});
+
+//cancel subscription
+$('#cancel_btn').on('click', async function () {  
+    let storedUserData = await getChromeStorage(["userData"]);
+    let userData = JSON.parse(storedUserData.userData);
+    var result = await fetchDetails(BASE_URL + "cancel-subscription/" + userData.id);
+    if(result.status == 'success'){
+        $("#cancel_btn_cntnr").addClass('d-none');
+        $(".plan-cancel-status").show();
+    }
+});
+
+//check range between 1 to 100
+$('.req-input-range').blur(function () {
+    if (($(this).val() < 1) || ($(this).val() > 100) || isNaN($(this).val()) ) {
+        $(this).val(1);
+    }
+});
+
+
+//Required input
+$('.req-input').blur(function () {
+    if($(this).attr('type') == 'number') {
+        if (isNaN($(this).val())) {
+            $(this).val('');
+        }
+    }
+    if ($(this).val() == '') {
+        $(this).siblings('.error-message').show();
+    } else {
+        $(this).siblings('.error-message').hide();
+    }
+})

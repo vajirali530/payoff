@@ -141,11 +141,11 @@
                     <div class="property-details-wrapper">
                         <div class="property-name-img-price">
                             <div class="property-name">
-                                <span>2130 Cyril Ave.</span>
+                                <span></span>
                             </div>
                             <div class="property-img-price">
                                 <img src="./assets/images/pro-img.webp" alt="propertyImg">
-                                <span id="property_price">$699,888</span>
+                                <span id="property_price"></span>
                             </div>
                         </div>
                         <form action="#" id="property_details">
@@ -158,15 +158,17 @@
 
                             <div class="details-container">
                                     <div class="downpayment">
-                                        <span>Down Payment</span>
+                                        <span>Down Payment<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="downpayment_percent" id="downpayment">
+                                            <input type="number" class="form-control req-input req-input-range" name="downpayment_percent" id="downpayment">
+                                            <div class="error-message">Please enter down payment</div>                                                                                       
                                         </div>
                                     </div>
                                     <div class="closing-cost">
-                                        <span>Closing Cost</span>
+                                        <span>Closing Cost<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" id="closing_cost" name="closing_cost_percent">
+                                            <input type="number" class="form-control req-input req-input-range" id="closing_cost" name="closing_cost_percent">
+                                            <div class="error-message">Please enter closing cost</div>
                                         </div>
                                     </div>
                             </div>
@@ -178,7 +180,7 @@
                                         </div>
                                     </div>
                                     <div class="loan-term">
-                                        <span>Loan Term</span>
+                                        <span>Loan Term<em>*</em></span>
                                         <div>
                                             <select class="form-select" aria-label="Default select example" id="loanterm" name="loan_term_years">
                                                 <option value="5">5</option>
@@ -193,43 +195,49 @@
                             </div>
                             <div class="details-container">
                                     <div class="interest-rate">
-                                        <span>Interest Rate</span>
+                                        <span>Interest Rate<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="interest_rate" id="interest_rate">
+                                            <input type="number" class="form-control req-input req-input-range" name="interest_rate" id="interest_rate">
+                                            <div class="error-message">Please enter interest rate</div>
                                         </div>
                                     </div>
                                     <div class="vacancy">
-                                        <span>Vacancy</span>
+                                        <span>Vacancy<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="vacancy" id="vacancy" value="5">
+                                            <input type="number" class="form-control req-input req-input-range" name="vacancy" id="vacancy" value="5">
+                                            <div class="error-message">Please enter vacancy</div>
                                         </div>
                                     </div>
                             </div>
                             <div class="details-container">
                                     <div class="maintenance">
-                                        <span>Maintenance</span>
+                                        <span>Maintenance<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="maintenance" id="maintenance" value="5">
+                                            <input type="number" class="form-control req-input req-input-range" name="maintenance" id="maintenance" value="5">
+                                            <div class="error-message">Please enter maintenance</div>
                                         </div>
                                     </div>
                                     <div class="unit">
-                                        <span>Unit</span>
+                                        <span>Unit<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="unit" id="unit" value="1">
+                                            <input type="number" class="form-control req-input" name="unit" id="unit" value="1">
+                                            <div class="error-message">Please enter number of unit</div>
                                         </div>
                                     </div>
                             </div>
                             <div class="details-container">
                                     <div class="bedrooms">
-                                        <span>Bedrooms</span>
+                                        <span>Bedrooms<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="bedrooms" id="bedrooms">
+                                            <input type="number" class="form-control req-input" name="bedrooms" id="bedrooms" value="2">
+                                            <div class="error-message">Please enter number of bedrooms</div>
                                         </div>
                                     </div>
                                     <div class="bathrooms">
-                                        <span>Bathrooms</span>
+                                        <span>Bathrooms<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="bathrooms" id="bathrooms">
+                                            <input type="number" class="form-control req-input" name="bathrooms" id="bathrooms" value="2">
+                                            <div class="error-message">Please enter number of bathrooms</div>                                            
                                         </div>
                                     </div>
                             </div>
@@ -249,17 +257,25 @@
                             </div>
                             <div class="details-container">
                                     <div class="city">
-                                        <span>City</span>
+                                        <span>City<em>*</em></span>
                                         <div>
-                                            <input type="text" class="form-control" name="city" id="city">
+                                            <input type="text" class="form-control req-input" name="city" id="city">
+                                            <div class="error-message">Please enter city</div>                                           
                                         </div>
                                     </div>
                                     <div class="state">
-                                        <span>State</span>
+                                        <span>State<em>*</em></span>
                                         <div>
-                                            <input type="text" class="form-control" name="state" id="state">
+                                            <input type="text" class="form-control req-input" name="state" id="state">
+                                            <div class="error-message">Please enter state</div>                                           
                                         </div>
                                     </div>
+                            </div>
+                            <div class="response_errors">
+                            </div>
+                            <div class="evaluteSpinner">
+                                <div class="spinner-border text-dark" role="status" id="evaluteSpinner">
+                                </div>
                             </div>
                             <div class="evalute-btn">
                                 <button type="button" class="btn" id="evalute_btn">EVALUATE</button>
@@ -267,17 +283,17 @@
                         </form>
                         <div id="property-api-data">
                             <div class="property-city-state">
-                                <span id="city">Los Angeles</span>
-                                <span id="state">, CA</span>
+                                <span id="city"></span>
+                                <span id="state"></span>
                             </div>
                             <div class="api-data">
                                 <div class="data-container">
                                     <div class="api-average-rent">
                                         <span>Average Rent</span>
-                                        <span id="average_rent">$2,497.90</span>
+                                        <span id="average_rent"></span>
                                     </div>
                                     <div class="api-downpayment">
-                                        <span id="downpayment_percent">Down Payment (20%)</span>
+                                        <span>Down Payment (<span id="downpayment_percent"></span>%)</span>
                                         <span id="downpayment"></span>
                                     </div>
                                 </div>
@@ -287,14 +303,14 @@
                                         <span id="mortgage"></span>
                                     </div>
                                     <div class="api-closing-cost">
-                                        <span id="closingcost_per">Closing Cost (4%)</span>
+                                        <span>Closing Cost (<span id="closingcost_per"></span>%)</span>
                                         <span id="closingcost"></span>
                                     </div>
                                 </div>
                                 <div class="data-container">
                                     <div class="api-estimate-costof-repair">
                                         <span>Estimate Cost of Repair</span>
-                                        <span id="estimate_ costofrepair"></span>
+                                        <span id="estimate_costofrepair"></span>
                                     </div>
                                     <div class="api-total-capital-needed">
                                         <span>Total Capital Needed</span>
@@ -343,11 +359,11 @@
                                 </div>
                                 <div class="data-container">
                                     <div class="api-vacancy">
-                                        <span id="vacancy_percent">Vacancy (5%)</span>
+                                        <span>Vacancy (<span id="vacancy_percent"></span>%)</span>
                                         <span id="vacancy"></span>
                                     </div>
                                     <div class="api-maintenance">
-                                        <span id="maintenance_percent">Maintenance (5%)</span>
+                                        <span>Maintenance (<span id="maintenance_percent"></span>%)</span>
                                         <span id="maintenance"></span>
                                     </div>
                                 </div>
@@ -400,7 +416,9 @@
                 </div>
                 <div class="tab-pane fade" id="pills-plan-details" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="plan-details-wrapper">
-                        <div class="spinner-border text-dark" role="status" id="planSpinner">
+                        <div id="planSpinner">
+                            <div class="spinner-border text-dark" role="status">
+                            </div>
                         </div>
                         <div class="plan-details">
                             <div class="plan-status">
@@ -411,11 +429,11 @@
                                 <div class="clicks-info">
                                     <div>
                                         <span>Total Clicks</span>
-                                        <span>250</span>
+                                        <span class="total-clicks">250</span>
                                     </div>
                                     <div>
                                         <span>Used Clicks</span>
-                                        <span>3</span>
+                                        <span class="used-clicks">3</span>
                                     </div>
                                 </div>
                                 <div class="expired-info">
@@ -423,12 +441,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="plan-cancel-status mt-2 error-message">
+                            Your plan has been cancelled.
+                        </div>
                         <div class="plan-btns">
-                            <div>
-                                <button type="button" class="btn">Cancel plan</button>
+                            <div id="cancel_btn_cntnr" class="d-none">
+                                <button type="button" class="btn" id="cancel_btn">Cancel plan</button>
                             </div>
                             <div>
-                                <button type="button" class="btn">Change plan</button>
+                                <a href="" target="_blank" class="btn change-plan">Change plan</a>
                             </div>
                         </div>
                     </div>
@@ -438,23 +459,8 @@
                         <div class="property-history-title">
                             <span>Usage History</span>
                         </div>
-                        <div class="property-history">
-                            <div class="property-history-img">
-                                <img src="./assets/images/pro-img.webp" alt="" style="height: 83px; width:135px;">
-                            </div>
-                            <div class="property-history-priceBtn">
-                                <div class="property-history-price">
-                                    <div>
-                                        <span>2130 Cyril Ave.</span>
-                                    </div>
-                                    <div>
-                                        <span>$699,888</span>
-                                    </div>
-                                </div>
-                                <div class="property-history-btn">
-                                    <button type="button" class="btn">EVALUATE</button>
-                                </div>
-                            </div>
+                        <div class="property-history-wrapper">
+                            
                         </div>
                     </div>
                 </div>

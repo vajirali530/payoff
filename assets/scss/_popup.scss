@@ -266,6 +266,14 @@
                     }
                     #property_details{
                         display: none;
+                        .response_errors{
+                            @include error;
+                        }
+                        .evaluteSpinner{
+                            display: none;
+                            margin-bottom: 10px;
+                            text-align: center;
+                        }
                         .details-container{
                                 display: flex;
                                 align-items: center;
@@ -348,6 +356,11 @@
             }
             #pills-plan-details{
                 .plan-details-wrapper{
+                    #planSpinner{
+                        display: none;
+                        text-align: center;
+                        margin-bottom: 10px;
+                    }
                     .plan-details{
                         @include shadowBox;
                         padding: 15px;
@@ -411,7 +424,7 @@
                                 }
                             }
                             &:last-child{
-                                button{
+                                .change-plan{
                                     @include commonBtn;
                                     @include propertyTitle;
                                     text-transform: uppercase;
@@ -483,3 +496,14 @@
         }
     }
 }
+
+.error-message{
+    @include error;
+}
+
+#property_details em {
+    color: $DarkRed;
+  }
+  #property_details .error-message, .plan-cancel-status.error-message {
+    display: none;
+  }
