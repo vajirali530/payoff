@@ -3,6 +3,7 @@
     width: 450px;
     max-height: 600px;
     padding: 30px;
+    overflow: auto;
 }
 @mixin primaryLogo {
     height: 30px;
@@ -94,7 +95,7 @@
 }
 @mixin commonBtnTabs {
     height: 50px;
-    width: 130px;
+    width: 125px;
     background-color: $Whitesmoke;
     font-family: 'Raleway', sans-serif;
     font-size: 14px;

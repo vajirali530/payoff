@@ -5,6 +5,7 @@
   width: 450px;
   max-height: 600px;
   padding: 30px;
+  overflow: auto;
 }
 .credifana .credifanaHeader {
   margin-bottom: 30px;
@@ -336,7 +337,7 @@
 }
 .credifana .realtor-property-details #pills-tab .nav-item .nav-link {
   height: 50px;
-  width: 130px;
+  width: 125px;
   background-color: #F5F5F5;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
@@ -428,13 +429,13 @@
   margin-top: 5px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div input {
-  width: 187px;
+  width: 177px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div input:focus {
   box-shadow: 0 0 0 0.2rem rgba(116, 142, 255, 0.25);
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div select {
-  width: 187px;
+  width: 177px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .evalute-btn {
   text-align: center;
@@ -600,7 +601,10 @@
   justify-content: space-between;
   align-items: center;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:first-child button {
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns .plan-cancel-status {
+  margin: 0px !important;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns #cancel_btn_cntnr .btn {
   height: 50px;
   width: 195px;
   border-radius: 24px;
@@ -614,7 +618,7 @@
   color: #9D0000;
   text-transform: uppercase;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:last-child .change-plan {
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:last-child a {
   font-family: "Raleway", sans-serif;
   font-weight: bold;
   font-size: 16px;

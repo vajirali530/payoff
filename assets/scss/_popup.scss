@@ -287,13 +287,13 @@
                                     div{
                                         margin-top: 5px;
                                         input{
-                                            width: 187px;
+                                            width: 177px;
                                             &:focus{
                                                 box-shadow: 0 0 0 0.2rem rgb(116 142 255 / 25%);
                                             }
                                         }
                                         select{
-                                            width: 187px;
+                                            width: 177px;
                                         }
                                     }
                                 }
@@ -417,18 +417,21 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        div{
-                            &:first-child{
-                                button{
-                                    @include commonBtn;
-                                    border: 3px solid $DarkRed;
-                                    background-color: white;
-                                    color: $DarkRed;
-                                    text-transform: uppercase;
-                                }
+                        .plan-cancel-status{
+                            margin: 0px !important;
+                        }
+                        #cancel_btn_cntnr{
+                            .btn{
+                                @include commonBtn;
+                                border: 3px solid $DarkRed;
+                                background-color: white;
+                                color: $DarkRed;
+                                text-transform: uppercase;
                             }
+                        }
+                        div{
                             &:last-child{
-                                .change-plan{
+                                a{
                                     @include propertyTitle;
                                     border: none;
                                 }
