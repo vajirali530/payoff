@@ -332,6 +332,9 @@
                                     span{
                                         &:first-child{
                                             @include apiDataBlockTitle;
+                                            span{
+                                                @include apiDataBlockTitle;
+                                            }
                                         }
                                         &:last-child{
                                             @include apiDataPrice;
@@ -425,13 +428,8 @@
                             }
                             &:last-child{
                                 .change-plan{
-                                    @include commonBtn;
                                     @include propertyTitle;
-                                    text-transform: uppercase;
-                                    font-weight: 900 !important;
-                                    padding: 0px !important;
-                                    width: auto;
-                                    height: auto;
+                                    border: none;
                                 }
                             }
                         }
