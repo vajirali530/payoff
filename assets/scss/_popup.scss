@@ -506,3 +506,22 @@
   #property_details .error-message, .plan-cancel-status.error-message {
     display: none;
   }
+
+
+
+  /* / scrollbar style start here / */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+      background-color: #ccc;
+      border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #748EFF;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-button{
+      height: 50px;
+  }
+  /* / scrollbar style end here / */

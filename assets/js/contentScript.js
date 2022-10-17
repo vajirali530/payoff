@@ -216,30 +216,30 @@
         var text='false'
 
         // title
-        var proTitle = ''
-        if(document.querySelector(".ldp-learn-more-title")){
-          const proTitleArr=document.querySelector(".ldp-learn-more-title").textContent.split(' ')
-          const proTitleAboutIndex=proTitleArr.indexOf('about')
-          const title=proTitleArr.splice(proTitleAboutIndex+1,proTitleArr.length).join(' ')
-          if(!(title == 'this property'))
-          {
-            proTitle = title
-          }
-          if((proTitle.startsWith('.'))){
-            proTitle = ''
-          }
-        }
+        // var proTitle = ''
+        // if(document.querySelector(".ldp-learn-more-title")){
+        //   const proTitleArr=document.querySelector(".ldp-learn-more-title").textContent.split(' ')
+        //   const proTitleAboutIndex=proTitleArr.indexOf('about')
+        //   const title=proTitleArr.splice(proTitleAboutIndex+1,proTitleArr.length).join(' ')
+        //   if(!(title == 'this property'))
+        //   {
+        //     proTitle = title
+        //   }
+        //   if((proTitle.startsWith('.'))){
+        //     proTitle = ''
+        //   }
+        // }
 
         // img
-        var proImg = '';
-        if(document.querySelector('.slick-slider .slick-list .slick-track .slick-active div div picture img')){
-          proImg = document.querySelector('.slick-slider .slick-list .slick-track .slick-active div div picture img').getAttribute("src");
-        }
+        // var proImg = '';
+        // if(document.querySelector('.slick-slider .slick-list .slick-track .slick-active div div picture img')){
+        //   proImg = document.querySelector('.slick-slider .slick-list .slick-track .slick-active div div picture img').getAttribute("src");
+        // }
 
         const proDetailsObj = {
-          text:text,
-          proTitle: proTitle,
-          proImg: proImg
+          text:text
+          // proTitle: proTitle,
+          // proImg: proImg
         };
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);

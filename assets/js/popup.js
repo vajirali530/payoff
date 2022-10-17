@@ -273,11 +273,8 @@ const getDataFromWebsite = async (msg, response)=>{
       $('#city').text(msg.city)
       $('#state').text(msg.state)
     } else {
-      $('.propertyTitle h3').text(msg.proTitle) 
-      $('.propertyImg img').attr('src',msg.proImg)
-      $('#realtorPropForm table, .evaluate-btn').hide();
-      $(".realtorSubscriptionErrors").removeClass("d-none");
-      $(".realtorSubscriptionErrors").html("This is Rental property. Extension only works with Sale property.");
+        $('#pills-tabContent').hide();
+      $(".rent-property").html("This is Rental property. Extension only works with Sale property.");
     }
 }
 
