@@ -426,8 +426,14 @@
                         align-items: center;
                         .plan-cancel-status{
                             margin: 0px !important;
+                            display: none;
+                        }
+                        #cancel_btn{
+                            margin-right: 10px;
                         }
                         #cancel_btn_cntnr{
+                            display: flex;
+                            align-items: center;
                             .btn{
                                 @include commonBtn;
                                 border: 3px solid $DarkRed;
@@ -449,6 +455,9 @@
             }
             #pills-property-history{
                 .property-history-wrapper{
+                    h4{
+                        @include commonSubHeader;
+                    }
                     .property-history-title{
                         margin-bottom: 16px;
                         span{

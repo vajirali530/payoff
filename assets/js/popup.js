@@ -104,56 +104,56 @@ $('#loginBtn').on('click', function () {
 
 // register
 $('#registerBtn').on('click', function () { 
+    console.log(true);
     let formData = new FormData($('#register_form')[0]);
 
     let password = '';
-    let isValidated = true;
+    let error = 0;
     formData.forEach((value,  index) => {
         if (index == 'email' && value != '') {
             let pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
             if (!(pattern.test(value))) {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').removeClass('d-none');
+                $(`input[name=${index}]`).parents('#register_form .form-group').find('.error-message').removeClass('d-none');
+                error++;
             } else {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').addClass('d-none');
+                $(`input[name=${index}]`).parents('#register_form .form-group').find('.error-message').addClass('d-none');
             }
             return;
         } 
 
         if (index == 'password' && value != '') {
             if (value.length <= 5) {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').html('Password should be min 6 characters long');
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').removeClass('d-none');
+                $(`input[name=${index}]`).parents('#register_form .form-group').find('.error-message').html('Password should be min 6 characters long');
+                $(`input[name=${index}]`).parents('#register_form .form-group').find('.error-message').removeClass('d-none');
+                error++;
             } else {
                 password = value;   
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').addClass('d-none');
+                $(`input[name=${index}]`).parents('#register_form .form-group').find('.error-message').addClass('d-none');
             }
             return;
         }
 
         if (index == 'confirmpassword' && value != '' && password!= '') {
             if (value != password) {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').removeClass('d-none');
+                $(`input[name=${index}]`).parents('#register_form .form-group').find('.error-message').removeClass('d-none');
+                error++;
             } else {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').addClass('d-none');
+                $(`input[name=${index}]`).parents('#register_form .form-group').find('.error-message').addClass('d-none');
             }
             return;
         }
 
         if($.trim(value) == '') {
-            $(`input[name=${index}]`).siblings('.error-message').removeClass('d-none');
+            $(`input[name=${index}]`).siblings('#register_form .error-message').removeClass('d-none');
+            error++;
         } else {
-            $(`input[name=${index}]`).siblings('.error-message').addClass('d-none');
+            $(`input[name=${index}]`).siblings('#register_form .error-message').addClass('d-none');
         }
 
     })
 
-    $('.error-message').each((index, val) => {
-        if(!$(val).hasClass('d-none')) {
-            isValidated = false;
-        };
-    })
-
-    if (isValidated) {
+    if (error == 0) {
+        console.log('valid sucess');
         $('#registerSpinner').show();
         $.ajax({
             type: "post",
@@ -498,6 +498,7 @@ $('#property_history_btn').on('click', async function () {
 
 //cancel subscription
 $('#cancel_btn').on('click', async function () {  
+    $('#cancel_spinner').removeClass('d-none')
     let storedUserData = await getChromeStorage(["userData"]);
     let userData = JSON.parse(storedUserData.userData);
     $.ajax({
@@ -506,6 +507,7 @@ $('#cancel_btn').on('click', async function () {
         data: {'id':userData.id},
         dataType: "JSON",
         success: function (response) {
+            $('#cancel_spinner').addClass('d-none')
             $(".evaluteSpinner").hide();
             if (response.status == "success") {
                 $("#cancel_btn_cntnr").addClass('d-none');
@@ -536,5 +538,7 @@ $('.req-input').blur(function () {
         $(this).siblings('.error-message').hide();
     }
 })
+
+
 
 
