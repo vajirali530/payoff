@@ -246,6 +246,7 @@ const determineExtensionProcess = async (userData) => {
 
   // get datafromwebsite
 const getDataFromWebsite = async (msg, response)=>{
+    // console.log(msg);
     if(msg.text=='true'){
       $('.property-name span').text(msg.proTitle) 
       $('.property-img-price img').attr('src',msg.proImg)
@@ -278,7 +279,7 @@ const getDataFromWebsite = async (msg, response)=>{
       $('#state').text(msg.state)
     } else {
         $('#pills-tabContent').hide();
-      $(".rent-property").html("This is Rental property. Extension only works with Sale property.");
+        $(".rent-property").removeClass("d-none");
     }
 }
 
@@ -422,9 +423,20 @@ $('#evalute_btn').click(function(){
 
 
 
-$('.back-btn .btn').click(function(){
+$('.back-btn .btn').click(async function(){
     $('#property-api-data').hide();
     $('#property_details').show();
+
+    let propertyDataCollection = await getChromeStorage(["propertyDetails"]);
+    
+    let finalpropertyData =  JSON.parse(propertyDataCollection.propertyDetails);
+    console.log(finalpropertyData);
+    $(".property-img-price img").attr("src", finalpropertyData.proImg);
+    $("#property_price").html(finalpropertyData.proPrice);
+    $(".property-name span").text(finalpropertyData.proTitle);
+    // $(".property-city-state #city").text(finalpropertyData.city);
+    // $(".property-city-state #state").text(finalpropertyData.state);
+
 })
 
 //get property history

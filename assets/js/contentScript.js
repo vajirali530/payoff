@@ -35,7 +35,7 @@
 
   // dom load
   window.addEventListener("load", async function (e) {
-   
+    getRealtorPropDetails();
   });
 
   // get property details from website
