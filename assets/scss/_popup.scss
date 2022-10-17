@@ -317,6 +317,10 @@
                                 @include propertyTitle;
                             }
                         }
+                        .formula-container{
+                            margin-bottom: 10px;
+                            @include apiDataBlockTitle;
+                        }
                         .api-data{
                             .data-container{
                                 display: flex;
