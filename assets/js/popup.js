@@ -33,25 +33,27 @@ document.addEventListener('DOMContentLoaded', async function(){
 
 // login
 $('#loginBtn').on('click', function () {
-    $('.error-message').hide();
+    $(".error-message").addClass("d-none");
 
     let formData = new FormData($('#login_form')[0]);
-    let isValidated = true;
+    let error = 0;
     formData.forEach((value,  index) => {
         if (index == 'email' && value != '') {
             let pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
             if (!(pattern.test(value))) {
                 $(`input[name=${index}]`).parents('.form-group').find('.error-message').removeClass('d-none');
+                error++;
             } else {
                 $(`input[name=${index}]`).parents('.form-group').find('.error-message').addClass('d-none');
             }
             return;
-        } 
+        }
 
         if (index == 'password' && value != '') {
             if (value.length <= 5) {
                 $(`input[name=${index}]`).parents('.form-group').find('.error-message').html('Password should be min 6 characters long');
                 $(`input[name=${index}]`).parents('.form-group').find('.error-message').removeClass('d-none');
+                error++;
             } else {
                 $(`input[name=${index}]`).parents('.form-group').find('.error-message').addClass('d-none');
             }
@@ -60,19 +62,21 @@ $('#loginBtn').on('click', function () {
 
         if($.trim(value) == '') {
             $(`input[name=${index}]`).siblings('.error-message').removeClass('d-none');
+            error++;
         } else {
             $(`input[name=${index}]`).siblings('.error-message').addClass('d-none');
         }
 
     })
 
-    $('#loginBtn .error-message').each((index, val) => {
-        if(!$(val).hasClass('d-none')) {
-            isValidated = false;
-        };
-    })
+    // $('#loginBtn .error-message').each((index, val) => {
+    //     if(!$(val).hasClass('d-none')) {
+    //         isValidated = false;
+    //     };
+    // })
 
-    if (isValidated) {
+
+    if (error == 0) {
         $('#loginSpinner').show()
         $.ajax({
             type: "post",
