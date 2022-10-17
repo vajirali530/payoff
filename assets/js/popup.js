@@ -483,11 +483,19 @@ $('#property_history_btn').on('click', async function () {
 $('#cancel_btn').on('click', async function () {  
     let storedUserData = await getChromeStorage(["userData"]);
     let userData = JSON.parse(storedUserData.userData);
-    var result = await fetchDetails(BASE_URL + "cancel-subscription/" + userData.id);
-    if(result.status == 'success'){
-        $("#cancel_btn_cntnr").addClass('d-none');
-        $(".plan-cancel-status").show();
-    }
+    $.ajax({
+        type: "post",
+        url: BASE_URL + "cancel-subscription",
+        data: {'id':userData.id},
+        dataType: "JSON",
+        success: function (response) {
+            $(".evaluteSpinner").hide();
+            if (response.status == "success") {
+                $("#cancel_btn_cntnr").addClass('d-none');
+                $(".plan-cancel-status").show();
+                }
+        }
+    });
 });
 
 //check range between 1 to 100
