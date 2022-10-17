@@ -369,7 +369,7 @@
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper .property-name-img-price .property-name {
   margin-bottom: 6px;
   font-family: "Raleway", sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 16px;
   line-height: 19px;
   color: #241F1F;
@@ -418,12 +418,14 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container {
   display: flex;
-  align-items: center;
   margin-bottom: 16px;
   justify-content: space-between;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container:last-child {
   margin-bottom: 30px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div:first-child {
+  margin-right: 16px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div {
   margin-top: 5px;
@@ -439,7 +441,6 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .evalute-btn {
   text-align: center;
-  margin-bottom: 38px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .evalute-btn button {
   height: 50px;
@@ -461,7 +462,7 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .property-city-state span {
   font-family: "Raleway", sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 16px;
   line-height: 19px;
   color: #241F1F;
@@ -483,7 +484,7 @@
   border-radius: 6px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
   height: 83px;
-  width: 185px;
+  width: 175px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -513,7 +514,6 @@
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .back-btn {
   margin-top: 30px;
   text-align: center;
-  margin-bottom: 30px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .back-btn button {
   height: 50px;
@@ -556,7 +556,7 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .plan-status span:last-child {
   font-family: "Raleway", sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 16px;
   line-height: 19px;
   color: #241F1F;
@@ -620,7 +620,7 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns div:last-child a {
   font-family: "Raleway", sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 16px;
   line-height: 19px;
   color: #241F1F;
@@ -631,7 +631,7 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history-title span {
   font-family: "Raleway", sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 16px;
   line-height: 19px;
   color: #241F1F;
@@ -663,7 +663,7 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history .property-history-priceBtn .property-history-price div:first-child {
   font-family: "Raleway", sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 16px;
   line-height: 19px;
   color: #241F1F;

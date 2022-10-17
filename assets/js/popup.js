@@ -41,30 +41,30 @@ $('#loginBtn').on('click', function () {
         if (index == 'email' && value != '') {
             let pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
             if (!(pattern.test(value))) {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').removeClass('d-none');
+                $(`input[name=${index}]`).parents('#login_form .form-group').find('.error-message').removeClass('d-none');
                 error++;
             } else {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').addClass('d-none');
+                $(`input[name=${index}]`).parents('#login_form .form-group').find('.error-message').addClass('d-none');
             }
             return;
         }
 
         if (index == 'password' && value != '') {
             if (value.length <= 5) {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').html('Password should be min 6 characters long');
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').removeClass('d-none');
+                $(`input[name=${index}]`).parents('#login_form .form-group').find('.error-message').html('Password should be min 6 characters long');
+                $(`input[name=${index}]`).parents('#login_form .form-group').find('.error-message').removeClass('d-none');
                 error++;
             } else {
-                $(`input[name=${index}]`).parents('.form-group').find('.error-message').addClass('d-none');
+                $(`input[name=${index}]`).parents('#login_form .form-group').find('.error-message').addClass('d-none');
             }
             return;
         }
 
         if($.trim(value) == '') {
-            $(`input[name=${index}]`).siblings('.error-message').removeClass('d-none');
+            $(`input[name=${index}]`).siblings('#login_form .error-message').removeClass('d-none');
             error++;
         } else {
-            $(`input[name=${index}]`).siblings('.error-message').addClass('d-none');
+            $(`input[name=${index}]`).siblings('#login_form .error-message').addClass('d-none');
         }
 
     })
@@ -88,8 +88,8 @@ $('#loginBtn').on('click', function () {
             success:function (response){
                 $('#loginSpinner').hide()
                 if(response.status == 'error') {
-                    $('.response_errors').html('');
-                    $('.response_errors').append(`<div class="response_error">${response.message}</div>`);
+                    $('#login_form .response_errors').html('');
+                    $('#login_form .response_errors').append(`<div class="response_error">${response.message}</div>`);
                 }else if(response.status == "success"){
 
                     let userData = response.user_data;
@@ -378,6 +378,7 @@ chrome.runtime.onMessage.addListener((msg,response) => {
 
 
 $('#evalute_btn').click(function(){
+    console.log(true);
     $('.prop-data').each(function(idx,val){
         $(val).text('')
     })

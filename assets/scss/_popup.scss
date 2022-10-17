@@ -277,13 +277,15 @@
                         }
                         .details-container{
                                 display: flex;
-                                align-items: center;
                                 margin-bottom: 16px;
                                 justify-content: space-between;
                                 &:last-child{
                                     margin-bottom: 30px;
                                 }
                                 div{
+                                    &:first-child{
+                                        margin-right: 16px;
+                                    }
                                     div{
                                         margin-top: 5px;
                                         input{
@@ -300,7 +302,6 @@
                         }
                         .evalute-btn{
                             text-align: center;
-                            margin-bottom: 38px;
                             button{
                                 @include commonBtn;
                                 background-color: $Black;
@@ -346,7 +347,6 @@
                             .back-btn{
                                 margin-top: 30px;
                                 text-align: center;
-                                margin-bottom: 30px;
                                 button{
                                     @include commonBtn;
                                     background-color: $White;
