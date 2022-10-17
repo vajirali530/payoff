@@ -324,6 +324,7 @@
 .credifana .realtor-property-details {
   display: none;
   overflow: auto;
+  padding: 5px;
 }
 .credifana .realtor-property-details #pills-tab {
   display: flex;
@@ -335,7 +336,7 @@
 }
 .credifana .realtor-property-details #pills-tab .nav-item .nav-link {
   height: 50px;
-  width: 135px;
+  width: 130px;
   background-color: #F5F5F5;
   font-family: "Raleway", sans-serif;
   font-size: 14px;

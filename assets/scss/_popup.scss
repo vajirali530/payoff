@@ -209,7 +209,8 @@
     }
     .realtor-property-details{
         display: none;
-        overflow: auto  ;
+        overflow: auto;
+        padding: 5px;
         #pills-tab{
             display: flex;
             align-items: center;
