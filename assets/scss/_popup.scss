@@ -319,7 +319,10 @@
                         }
                         .formula-container{
                             margin-bottom: 10px;
-                            @include apiDataBlockTitle;
+                            background-color: #748EFF;
+                            color: white;
+                            padding: 5px;
+                            border-radius: 6px;
                         }
                         .api-data{
                             .data-container{

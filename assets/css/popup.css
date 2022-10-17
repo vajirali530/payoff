@@ -469,11 +469,10 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .formula-container {
   margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: normal;
-  font-family: "Raleway", sans-serif;
-  color: #241F1F;
+  background-color: #748EFF;
+  color: white;
+  padding: 5px;
+  border-radius: 6px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container {
   display: flex;
