@@ -1,6 +1,6 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "http://192.168.1.18:8000/api/";   
+const BASE_URL = "http://192.168.1.6:8000/api/";   
 
 // event listner
 $('.registerLink').add('.loginLink').on('click',loginRegister);
@@ -242,9 +242,7 @@ const determineExtensionProcess = async (userData) => {
 
   // get datafromwebsite
 const getDataFromWebsite = async (msg, response)=>{
-    console.log(msg);
     if(msg.text=='true'){
-        console.log('inner');
       $('.property-name span').text(msg.proTitle) 
       $('.property-img-price img').attr('src',msg.proImg)
 
@@ -378,6 +376,9 @@ chrome.runtime.onMessage.addListener((msg,response) => {
 
 
 $('#evalute_btn').click(function(){
+    $('.prop-data').each(function(idx,val){
+        $(val).text('')
+    })
     $('.error-message').hide();
     var error = 0;
     $('.req-input').each(function() {
@@ -436,9 +437,6 @@ $('#property_history_btn').on('click', async function () {
         $(".property-history-wrapper").html('');
         $.each( result.data, function( key, value ) {
             var pro_detail = JSON.parse(value.pro_detail);
-            console.log(pro_detail.property_image);
-            console.log(pro_detail.property_name);
-            console.log(pro_detail.property_price);
             $(".property-history-wrapper").append(`
                 <div class="property-history">
                     <div class="property-history-img">
@@ -461,6 +459,13 @@ $('#property_history_btn').on('click', async function () {
             `);
         });
     }
+
+    $('.property-history-btn .btn').click(function(){
+        $("#property_details_btn").trigger('click');
+        $('#property_details').hide();
+        $('#property-api-data').show();
+    })
+
 });
 
 //cancel subscription
@@ -495,3 +500,5 @@ $('.req-input').blur(function () {
         $(this).siblings('.error-message').hide();
     }
 })
+
+
