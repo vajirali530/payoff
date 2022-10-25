@@ -56,7 +56,8 @@
 
       if (arr.length > 0) {
         window.scroll({top:1100,behavior:"smooth"}); 
-        var text='true' 
+        setTimeout(()=>{
+          var text='true' 
         
         // title
         var proTitle = '';
@@ -160,7 +161,7 @@
         // tax
         var proTax = '';
         if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)')){
-          proTax = document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)').textContent.replace(/[^0-9\s]/gi,'');
+          proTax = Number(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)').textContent.replace(/[^0-9\s]/gi,''));
         }
 
         // home insurance
@@ -211,9 +212,11 @@
 
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
+        },1000)
       } 
       else {
-        var text='false'
+        setTimeout(()=>{
+          var text='false'
 
         // title
         // var proTitle = ''
@@ -243,6 +246,7 @@
         };
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
+        },1000)
       }
     }
   };

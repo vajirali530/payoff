@@ -1,6 +1,6 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "http://192.168.1.6:8000/api/";   
+const BASE_URL = "https://credifana.com/api/";   
 
 // event listner
 $('.registerLink').add('.loginLink').on('click',loginRegister);
@@ -195,8 +195,9 @@ const determineExtensionProcess = async (userData) => {
             $('.logout-btn').show()
             isRealtor = true;
         } else if ( currentSiteName === "realtor" && currentSiteUrl.includes("realestateandhomes-detail")) {
-            $('.realtor-property-details').show()
-            $('#property_details').show()
+            // $('.realtor-property-details').show()
+            // $('#property_details').show()
+            $('.prop-details-spinner').removeClass('d-none')
             $('.logout-btn').show()
             isRealtor = true;
         } else {
@@ -246,7 +247,11 @@ const determineExtensionProcess = async (userData) => {
 
   // get datafromwebsite
 const getDataFromWebsite = async (msg, response)=>{
-    // console.log(msg);
+    $('.prop-details-spinner').addClass('d-none')
+     $('.realtor-property-details').show()
+    $('#property_details').show()
+    console.log(msg);
+    $('')
     if(msg.text=='true'){
       $('.property-name span').text(msg.proTitle) 
       $('.property-img-price img').attr('src',msg.proImg)
