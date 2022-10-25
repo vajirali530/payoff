@@ -377,7 +377,7 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  * Getting the message from popup.js
  */
 chrome.runtime.onMessage.addListener((msg,response) => {
-    // console.log(msg, response);
+    console.log(msg, response);
     getDataFromWebsite(msg,response);
 })
 

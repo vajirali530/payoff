@@ -212,7 +212,7 @@
 
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
-        },1000)
+        },2000)
       } 
       else {
         setTimeout(()=>{
@@ -246,7 +246,7 @@
         };
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
-        },1000)
+        },2000)
       }
     }
   };
