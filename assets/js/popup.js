@@ -561,6 +561,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 $('.recall-api').click(async function(){
     $('.recall-api').prop('disabled', true);
+    $(".rate-error").html("");
     const userInfo = await getChromeStorage(["userData"]);
     const userInfoObj = JSON.parse(userInfo.userData);
     let proid = $('#property_id').val()
@@ -574,14 +575,9 @@ $('.recall-api').click(async function(){
             console.log(response);
             $('.recall-api').prop('disabled', false);
             if(response.status == 'success'){
-                $('.rate-error').html(' ')
-                $('.rate-error').show();
-                $('.rate-error').html(response.message)
-            }
-            else if(response.status == 'error'){
-                $('.rate-error').html(' ')
-                $('.rate-error').show();
-                $('.rate-error').html(response.message)
+                
+            }else{
+               $('.rate-error').show().html(response.message);
             }
         },
     });
