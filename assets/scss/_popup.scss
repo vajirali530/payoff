@@ -1,4 +1,6 @@
 // nested css
+
+
 .credifana{
     @include extensionStyle;
     .credifanaHeader{
@@ -324,6 +326,15 @@
                             padding: 5px;
                             border-radius: 6px;
                         }
+                        .increase-rate-container{
+                            margin-bottom: 10px;
+                            div{
+                                button{
+                                    background-color: #748EFF;
+                                    color: white;
+                                }
+                            }
+                        }
                         .api-data{
                             .data-container{
                                 display: flex;
@@ -331,6 +342,13 @@
                                 justify-content: space-between;
                                 margin-bottom: 10px;
                                 .api-maintenance{
+                                    background-color: $LightSkyBlue;
+                                    span{
+                                        color: $White !important;
+                                    }
+                                }
+                                .api-highest-rent{
+                                    cursor: pointer;
                                     background-color: $LightSkyBlue;
                                     span{
                                         color: $White !important;
@@ -544,3 +562,6 @@
       height: 50px;
   }
   /* / scrollbar style end here / */
+
+
+

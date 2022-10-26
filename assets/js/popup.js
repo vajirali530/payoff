@@ -1,6 +1,6 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "https://credifana.com/api/";   
+const BASE_URL = "http://192.168.1.6:8000/api/";   
 
 // event listner
 $('.registerLink').add('.loginLink').on('click',loginRegister);
@@ -255,13 +255,12 @@ const getDataFromWebsite = async (msg, response)=>{
         currentSiteUrl = tabs[0].url.split("/").join();
     
         if ( currentSiteName === "realtor" && currentSiteUrl.includes("realestateandhomes-detail")){
-            $('.prop-details-spinner').addClass('d-none')
-            $('.realtor-property-details').show()
-            $('#property_details').show()
+            $('.prop-details-spinner').addClass('d-none');
+            $('.realtor-property-details').show();
+            $('#property_details').show();
+            let data = await getChromeStorage(["propertyDetails"]);
         }
     })
-    console.log(msg);
-    $('')
     if(msg.text=='true'){
       $('.property-name span').text(msg.proTitle) 
       $('.property-img-price img').attr('src',msg.proImg)
@@ -387,13 +386,11 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  * Getting the message from popup.js
  */
 chrome.runtime.onMessage.addListener((msg,response) => {
-    console.log(msg, response);
     getDataFromWebsite(msg,response);
 })
 
 
 $('#evalute_btn').click(function(){
-    console.log(true);
     $('.prop-data').each(function(idx,val){
         $(val).text('')
     })
@@ -427,11 +424,10 @@ $('#evalute_btn').click(function(){
             }else if(response.status == "success"){
                 $('#property_details').hide();
                 $('#property-api-data').show();
-                
                 $.each( response.data, function( key, value ) {
                     $("#property-api-data span#"+key).text(value);
                 });
-                
+                $('#property_id').val(response.data.last_id)
             }
         },
     });
@@ -556,4 +552,37 @@ $('.req-input').blur(function () {
 
 
 
+// bootstrap tooltip for unit
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 
+
+$('.recall-api').click(async function(){
+    $('.recall-api').prop('disabled', true);
+    const userInfo = await getChromeStorage(["userData"]);
+    const userInfoObj = JSON.parse(userInfo.userData);
+    let proid = $('#property_id').val()
+    let clicktype = $(this).data('rentoption');
+    let rentValue = $(this).data('rentvalue');
+    $.ajax({
+        url: BASE_URL + "property-regenerate-details",
+        method: "POST",
+        data: {user_id : userInfoObj.id, property_id : proid, clicktype : clicktype, rentValue : rentValue},
+        success:function (response){
+            console.log(response);
+            $('.recall-api').prop('disabled', false);
+            if(response.status == 'success'){
+                $('.rate-error').html(' ')
+                $('.rate-error').show();
+                $('.rate-error').html(response.message)
+            }
+            else if(response.status == 'error'){
+                $('.rate-error').html(' ')
+                $('.rate-error').show();
+                $('.rate-error').html(response.message)
+            }
+        },
+    });
+})

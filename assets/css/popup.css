@@ -474,6 +474,13 @@
   padding: 5px;
   border-radius: 6px;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container {
+  margin-bottom: 10px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container div button {
+  background-color: #748EFF;
+  color: white;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container {
   display: flex;
   align-items: center;
@@ -484,6 +491,13 @@
   background-color: #748EFF;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container .api-maintenance span {
+  color: #ffffff !important;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container .api-highest-rent {
+  cursor: pointer;
+  background-color: #748EFF;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container .api-highest-rent span {
   color: #ffffff !important;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div {
