@@ -247,9 +247,19 @@ const determineExtensionProcess = async (userData) => {
 
   // get datafromwebsite
 const getDataFromWebsite = async (msg, response)=>{
-    $('.prop-details-spinner').addClass('d-none')
-     $('.realtor-property-details').show()
-    $('#property_details').show()
+    let currentSiteName = '';
+    let currentSiteUrl=''
+
+    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+        currentSiteName = tabs[0].url.split("/")[2].split(".")[1];
+        currentSiteUrl = tabs[0].url.split("/").join();
+    
+        if ( currentSiteName === "realtor" && currentSiteUrl.includes("realestateandhomes-detail")){
+            $('.prop-details-spinner').addClass('d-none')
+            $('.realtor-property-details').show()
+            $('#property_details').show()
+        }
+    })
     console.log(msg);
     $('')
     if(msg.text=='true'){

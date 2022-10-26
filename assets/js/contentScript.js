@@ -173,6 +173,7 @@
         // city/state
         var state = city = '';
         if(document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input')){
+          console.log('hello i am in');
           let cityState = document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input').getAttribute('value');
           if(cityState != ''){
             cityState = cityState.split(', ');
@@ -266,7 +267,9 @@
    */
   chrome.runtime.onMessage.addListener((msg, sender, response) => {
     console.log(msg, sender, response);
-    getRealtorPropDetails();
+    if(document.readyState == 'complete'){
+      getRealtorPropDetails();
+    }
   });
 
 })();
