@@ -56,7 +56,8 @@
 
       if (arr.length > 0) {
         window.scroll({top:1100,behavior:"smooth"}); 
-        var text='true' 
+        setTimeout(()=>{
+          var text='true' 
         
         // title
         var proTitle = '';
@@ -160,7 +161,7 @@
         // tax
         var proTax = '';
         if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)')){
-          proTax = document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)').textContent.replace(/[^0-9\s]/gi,'');
+          proTax = Number(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)').textContent.replace(/[^0-9\s]/gi,''));
         }
 
         // home insurance
@@ -172,6 +173,7 @@
         // city/state
         var state = city = '';
         if(document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input')){
+          console.log('hello i am in');
           let cityState = document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input').getAttribute('value');
           if(cityState != ''){
             cityState = cityState.split(', ');
@@ -211,9 +213,11 @@
 
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
+        },2000)
       } 
       else {
-        var text='false'
+        setTimeout(()=>{
+          var text='false'
 
         // title
         // var proTitle = ''
@@ -243,6 +247,7 @@
         };
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
+        },2000)
       }
     }
   };
@@ -262,7 +267,9 @@
    */
   chrome.runtime.onMessage.addListener((msg, sender, response) => {
     console.log(msg, sender, response);
-    getRealtorPropDetails();
+    if(document.readyState == 'complete'){
+      getRealtorPropDetails();
+    }
   });
 
 })();

@@ -610,6 +610,14 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns .plan-cancel-status {
   margin: 0px !important;
+  display: none;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns #cancel_btn {
+  margin-right: 10px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns #cancel_btn_cntnr {
+  display: flex;
+  align-items: center;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-btns #cancel_btn_cntnr .btn {
   height: 50px;
@@ -632,6 +640,13 @@
   line-height: 19px;
   color: #241F1F;
   border: none;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper h4 {
+  color: #748EFF;
+  font-weight: 900;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history-title {
   margin-bottom: 16px;

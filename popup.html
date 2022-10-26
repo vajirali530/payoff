@@ -124,6 +124,10 @@
                 <span>Please select any property to Evaluate</span>
             </div>
         </div>
+        <div class="prop-details-spinner text-center d-none">
+            <div class="spinner-border text-dark" role="status" id="prop_details_spinner">
+            </div>
+        </div>
         <div class="realtor-property-details">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -450,6 +454,8 @@
                             </div>
                             <div id="cancel_btn_cntnr" class="d-none">
                                 <button type="button" class="btn" id="cancel_btn">Cancel plan</button>
+                                <div class="spinner-border text-dark d-none" role="status" id="cancel_spinner">
+                                </div>
                             </div>
                             <div>
                                 <a href="" target="_blank" class="btn change-plan">Change plan</a>
