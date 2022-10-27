@@ -391,8 +391,13 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  * Add message listener from chrome extension
  * Getting the message from popup.js
  */
-chrome.runtime.onMessage.addListener((msg,response) => {
-    getDataFromWebsite(msg,response);
+chrome.runtime.onMessage.addListener(async (msg,response) => {
+    const loginInfo = await getChromeStorage(["userData"]);
+    const loginInfoObj = JSON.parse(loginInfo.userData)
+    console.log(loginInfoObj);
+    if(loginInfoObj.email.length>0){
+        getDataFromWebsite(msg,response);
+    }
 })
 
 
