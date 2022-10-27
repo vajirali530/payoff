@@ -262,16 +262,11 @@ const getDataFromWebsite = async (msg, response)=>{
     })
     if(msg.text=='true'){
         if(msg.proType !== 'Multi-Family'){
-            $('.unit').removeAttr('data-bs-toggle data-bs-html title data-bs-original-title');
-            $('#unit').prop('disabled', true);
+            $('#unit_info').hide()
+            $('#unit').prop('readonly', true);
         }
         else if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
-            document.querySelector('.unit').setAttribute({
-                'data-bs-toggle':'tooltip',
-                'data-bs-html':'true',
-                'title':'<b>1/2 = 2 units</b><br><b>1/3 = 3 units</b><br><b>1/4 = 4 units</b><br><br><b>2 units</b><br><b>5 Bedrooms</b><br><b>2.5 Bathrooms</b>'
-            });
-            $('#unit').prop('disabled', false);
+            $('#unit_info').show()
         }
       $('.property-name span').text(msg.proTitle) 
       $('.property-img-price img').attr('src',msg.proImg)
