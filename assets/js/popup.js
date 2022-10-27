@@ -488,7 +488,8 @@ $('#property_history_btn').on('click', async function () {
                             </div>
                         </div>
                         <div class="property-history-btn">
-                            <input type="hidden" value='${value.pro_detail}' />
+                            <input class="pro-id" type="hidden" value='${value.id}' />
+                            <input class="pro-json-data" type="hidden" value='${value.pro_detail}' />
                             <button type="button" class="btn">EVALUATE</button>
                         </div>
                     </div>
@@ -502,7 +503,8 @@ $('#property_history_btn').on('click', async function () {
         $('#property_details').hide();
         $('#property-api-data').show();
         $(".prop-data").text('');
-        var jsonData = $(this).siblings("input").val();
+        var jsonData = $(this).siblings(".pro-json-data").val();
+        var property_id = $(this).siblings(".pro-id").val();
         var pro_detail = JSON.parse(jsonData);
         // console.log(pro_detail);
         $(".property-img-price img").attr("src", pro_detail["property_image"]);
@@ -510,6 +512,7 @@ $('#property_history_btn').on('click', async function () {
         $(".property-name span").text(pro_detail["property_name"]);
         $(".property-city-state #city").text(pro_detail["city"]);
         $(".property-city-state #state").text(pro_detail["state"]);
+        $("#property_id").val(property_id);
 
         $.each(pro_detail, function (key, value) {
           $("#property-api-data span#" + key).text(value);
@@ -585,6 +588,7 @@ $('.recall-api').click(async function(){
         success:function (response){
             console.log(response);
             $('.recall-api').prop('disabled', false);
+            $(".prop-data").text("");
             if(response.status == 'success'){
                 $.each(response.data, function (key, value) {
                   $("#property-api-data span#" + key).text(value);
