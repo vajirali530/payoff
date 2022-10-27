@@ -433,7 +433,7 @@ $('#evalute_btn').click(function(){
                 $.each( response.data, function( key, value ) {
                     $("#property-api-data span#"+key).text(value);
                 });
-                $('#property_id').val(response.data.last_id)
+                $('#property_id').val(response.data.last_id);
             }
         },
     });
@@ -581,7 +581,10 @@ $('.recall-api').click(async function(){
             console.log(response);
             $('.recall-api').prop('disabled', false);
             if(response.status == 'success'){
-                
+                $.each(response.data, function (key, value) {
+                  $("#property-api-data span#" + key).text(value);
+                });
+                $("#property_id").val(response.data.last_id);
             }else{
                $('.rate-error').show().html(response.message);
             }
