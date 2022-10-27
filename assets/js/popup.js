@@ -574,6 +574,8 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 
 $('.recall-api').click(async function(){
+    $('.recall-api').css('backgroundColor','#748EFF')
+    $(this).css('backgroundColor','#374eb4')
     $('.recall-api').prop('disabled', true);
     $(".rate-error").html("");
     const userInfo = await getChromeStorage(["userData"]);
