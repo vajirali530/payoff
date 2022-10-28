@@ -261,13 +261,6 @@ const getDataFromWebsite = async (msg, response)=>{
         }
     })
     if(msg.text=='true'){
-        if(msg.proType !== 'Multi-Family'){
-            $('#unit_info').hide()
-            $('#unit').prop('readonly', true).css('cursor','not-allowed');            
-        }
-        else if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
-            $('#unit_info').show()
-        }
       $('.property-name span').text(msg.proTitle) 
       $('.property-img-price img').attr('src',msg.proImg)
 
@@ -297,6 +290,11 @@ const getDataFromWebsite = async (msg, response)=>{
       $('#state').val(msg.state)
       $('#city').text(msg.city)
       $('#state').text(msg.state)
+      if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
+           $('#bedrooms, #bathrooms, #unit').val('');
+        }else{
+            $('#unit').prop('readonly', true).css('cursor','not-allowed');
+      }
     } else {
         $('#pills-tabContent').hide();
         $(".rent-property").removeClass("d-none");
@@ -417,6 +415,7 @@ $('#evalute_btn').click(function(){
     });
     
     if (error > 0) {
+        $(this).css('pointer-events','auto');
         return;
     }
 
@@ -577,10 +576,10 @@ $('.req-input').blur(function () {
 
 
 // bootstrap tooltip for unit
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//   return new bootstrap.Tooltip(tooltipTriggerEl)
+// })
 
 
 $('.recall-api').click(async function(){
