@@ -302,6 +302,11 @@
                                     }
                                 }
                                 .unit{
+                                    div{
+                                        &:last-child{
+                                            margin: 0px;
+                                        }
+                                    }
                                     .unit-info{
                                         img{
                                             cursor: pointer;
