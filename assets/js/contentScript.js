@@ -139,7 +139,7 @@
         if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child')){
           if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child').getAttribute('data-testid').includes('beds')){
             var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span')
-            var beds = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span').textContent
+            var beds = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span').textContent)
             if(span && beds != "" && Number.isInteger(beds)){
             proBedrooms = beds
             } 
@@ -150,7 +150,7 @@
         if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)')){
           if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)').getAttribute('data-testid').includes('baths')){
             var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span')
-            var bath = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span').textContent
+            var bath = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span').textContent)
             if(span && bath != "" && Number.isInteger(bath)){
             proBath = bath
             } 
