@@ -437,6 +437,9 @@ $('#evalute_btn').click(function(){
                 $('.response_errors').html('');
                 $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
+                console.log(response.data);
+                $('#rate_container_city').text(response.data.city)
+                $('#rate_container_state').text(response.data.state)
                 $('#property_details').hide();
                 $('#property-api-data').show();
                 $.each( response.data, function( key, value ) {
@@ -517,6 +520,8 @@ $('#property_history_btn').on('click', async function () {
         $(".property-name span").text(pro_detail["property_name"]);
         $(".property-city-state #city").text(pro_detail["city"]);
         $(".property-city-state #state").text(pro_detail["state"]);
+        $("#rate_container_city").text(pro_detail["city"]);
+        $("#rate_container_state").text(pro_detail["state"]);
         $("#property_id").val(property_id);
 
         $.each(pro_detail, function (key, value) {
