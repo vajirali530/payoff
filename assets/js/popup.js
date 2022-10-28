@@ -402,6 +402,8 @@ chrome.runtime.onMessage.addListener(async (msg,response) => {
 
 
 $('#evalute_btn').click(function(){
+    $(this).css('pointer-events','none');
+    // $(this).attr('disabled', true);
     $('.prop-data').each(function(idx,val){
         $(val).text('')
     })
@@ -428,6 +430,8 @@ $('#evalute_btn').click(function(){
         contentType: false,
         dataType: 'JSON',
         success:function (response){
+            $('#evalute_btn').css('pointer-events','auto');
+            // $('#evalute_btn').attr('disabled',false);
             $('.evaluteSpinner').hide();
             if(response.status == 'error') {
                 $('.response_errors').html('');
@@ -499,6 +503,7 @@ $('#property_history_btn').on('click', async function () {
     }
 
     $('.property-history-btn .btn').click(function(){
+        $('.recall-api').css('backgroundColor','#748EFF');
         $("#property_details_btn").trigger('click');
         $('#property_details').hide();
         $('#property-api-data').show();
