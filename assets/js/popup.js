@@ -263,7 +263,7 @@ const getDataFromWebsite = async (msg, response)=>{
     if(msg.text=='true'){
         if(msg.proType !== 'Multi-Family'){
             $('#unit_info').hide()
-            $('#unit').prop('readonly', true);
+            $('#unit').prop('readonly', true).css('cursor','not-allowed');            
         }
         else if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
             $('#unit_info').show()
