@@ -439,7 +439,7 @@
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div select {
   width: 177px;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .unit div:last-child {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .unit div:first-child {
   margin: 0px;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .unit .unit-info img {

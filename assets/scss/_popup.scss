@@ -303,9 +303,10 @@
                                 }
                                 .unit{
                                     div{
-                                        &:last-child{
+                                        &:first-child{
                                             margin: 0px;
                                         }
+
                                     }
                                     .unit-info{
                                         img{
