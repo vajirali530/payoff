@@ -1,6 +1,6 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "http://192.168.1.6:8000/api/";   
+const BASE_URL = "http://192.168.1.13:8000/api/";   
 
 // event listner
 $('.registerLink').add('.loginLink').on('click',loginRegister);
