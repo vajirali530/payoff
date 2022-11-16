@@ -482,13 +482,6 @@
   font-family: "Raleway", sans-serif;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container {
-  margin-bottom: 10px;
-}
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container div button {
-  background-color: #748EFF;
-  color: white;
-}
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container-heading {
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
@@ -498,6 +491,27 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: auto;
+  width: auto;
+  padding: 5px;
+  margin-bottom: 5px;
+  align-items: flex-start;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container .rate-container-heading {
+  height: auto;
+  width: auto;
+  display: block;
+  padding: 5px;
+  font-style: italic;
+  font-size: 14px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container div button {
+  background-color: #748EFF;
+  color: white;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .increase-rate-container-heading {
   height: auto;
   width: auto;
   display: block;
@@ -521,10 +535,6 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container .api-highest-rent {
   cursor: pointer;
-  background-color: #748EFF;
-}
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container .api-highest-rent span {
-  color: #ffffff !important;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div {
   background-color: #ffffff;
