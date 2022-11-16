@@ -1,6 +1,6 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "http://192.168.1.6:8000/api/";   
+const BASE_URL = "http://192.168.1.13:8000/api/";   
 
 // event listner
 $('.registerLink').add('.loginLink').on('click',loginRegister);
@@ -392,7 +392,6 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
 chrome.runtime.onMessage.addListener(async (msg,response) => {
     const loginInfo = await getChromeStorage(["userData"]);
     const loginInfoObj = JSON.parse(loginInfo.userData)
-    console.log(loginInfoObj);
     if(loginInfoObj.email.length>0){
         getDataFromWebsite(msg,response);
     }
@@ -429,6 +428,7 @@ $('#evalute_btn').click(function(){
         contentType: false,
         dataType: 'JSON',
         success:function (response){
+        
             $('#evalute_btn').css('pointer-events','auto');
             // $('#evalute_btn').attr('disabled',false);
             $('.evaluteSpinner').hide();
@@ -436,7 +436,10 @@ $('#evalute_btn').click(function(){
                 $('.response_errors').html('');
                 $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
-                console.log(response.data);
+                console.log(response.data.user_current_plan_name);
+                if(!(response.data.user_current_plan_name == 'basic')){
+                    $('.recall-api-disabled').removeAttr('disabled');
+                }
                 $('#rate_container_city').text(response.data.city)
                 $('#rate_container_state').text(response.data.state)
                 $('#property_details').hide();
@@ -584,6 +587,11 @@ $('.req-input').blur(function () {
 
 $('.recall-api').click(async function(){
     $('.recall-api').css('backgroundColor','#748EFF')
+    $('.recall-api span').css('color','#241F1F')
+    $('.api-highest-rent').css('backgroundColor','white');
+    if($(this).attr("class").includes('api-highest-rent')){
+        $(this).find('span').css('color','white');
+    }
     $(this).css('backgroundColor','#374eb4')
     $('.recall-api').prop('disabled', true);
     $(".rate-error").html("");

@@ -341,7 +341,22 @@
                             font-family: "Raleway", sans-serif;
                         }
                         .increase-rate-container{
-                            margin-bottom: 10px;
+                            .rate-container-heading{
+                                height: auto;
+                                width: auto;
+                                display: block;
+                                padding: 5px;
+                                font-style: italic;
+                                font-size: 14px;
+                                font-family: "Raleway", sans-serif;
+                                font-weight: bold;
+                            }
+                            @include apiDataBlock;
+                            height: auto;
+                            width: auto;
+                            padding: 5px;
+                            margin-bottom: 5px;
+                            align-items: flex-start;
                             div{
                                 button{
                                     background-color: #748EFF;
@@ -350,7 +365,6 @@
                             }
                         }
                         .increase-rate-container-heading{
-                            @include apiDataBlock;
                             height: auto;
                             width: auto;
                             display: block;
@@ -374,10 +388,6 @@
                                 }
                                 .api-highest-rent{
                                     cursor: pointer;
-                                    background-color: $LightSkyBlue;
-                                    span{
-                                        color: $White !important;
-                                    }
                                 }
                                 div{
                                     @include apiDataBlock;
