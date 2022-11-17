@@ -523,8 +523,9 @@ $('#property_history_btn').on('click', async function () {
 
 });
 $(document).on('click','.property-history-btn .btn',function(){
-    $('.recall-api').css('backgroundColor','#748EFF');
     $("#property_details_btn").trigger('click');
+    // $('.recall-api').css('backgroundColor','#748EFF');
+    $('.recall-api-disabled').removeAttr('disabled');
     $('#property_details').hide();
     $('#property-api-data').show();
     $(".prop-data").text('');
