@@ -578,6 +578,7 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:last-child a {
   color: #241F1F;
+  text-decoration: none;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .back-btn {
   margin-top: 30px;
@@ -594,9 +595,10 @@
   font-weight: normal;
   font-family: "Raleway", sans-serif;
   color: #241F1F;
-  color: #9D0000;
+  color: #748EFF;
   font-weight: bold;
   margin-bottom: 5px;
+  text-decoration: none;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .back-btn button {
   height: 50px;
@@ -723,7 +725,8 @@
   font-family: "Raleway", sans-serif;
   font-size: 20px;
   line-height: 24px;
-  color: #9D0000;
+  color: #748EFF;
+  text-decoration: none;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-history .property-history-wrapper .property-history-title {
   margin-bottom: 16px;

@@ -413,6 +413,7 @@
                                             @include apiDataPrice;
                                             a{
                                                 color: $Black;
+                                                text-decoration: none;
                                             }
                                         }
                                     }
@@ -422,9 +423,10 @@
                                 .full-access{
                                     display: none;
                                     @include apiDataBlockTitle;
-                                    color: $DarkRed;
+                                    color: $LightSkyBlue;
                                     font-weight: bold;
                                     margin-bottom: 5px;
+                                    text-decoration: none;
                                 }
                                 margin-top: 30px;
                                 text-align: center;
@@ -536,7 +538,8 @@
                     span{
                         a{
                             @include commonSubHeader;
-                            color: $DarkRed;
+                            color: $LightSkyBlue;
+                            text-decoration: none;
                         }
                     }
                     .property-history-title{

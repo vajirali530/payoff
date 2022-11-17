@@ -486,7 +486,7 @@ $('#property_history_btn').on('click', async function () {
     $(".property-history-wrapper").html('');
 
     if (result.data.user_plan_name == 'basic') {
-        $('.property-history-wrapper').html('<span><a href="'+BILLING_URL+'" target="blank">Please subscribe on credifana</a></span>');  
+        $('.property-history-wrapper').html('<span><a href="'+BILLING_URL+'" target="blank">Subscribe To Access Property History</a></span>');  
     } else {
         if(result.data.proHistoryData.length == 0){
             $(".property-history-wrapper").html('<h4>No property found.</h4>');
@@ -522,7 +522,7 @@ $('#property_history_btn').on('click', async function () {
 
 
 });
-$('.property-history-btn .btn').click(function(){
+$(document).on('click','.property-history-btn .btn',function(){
     $('.recall-api').css('backgroundColor','#748EFF');
     $("#property_details_btn").trigger('click');
     $('#property_details').hide();
@@ -545,6 +545,7 @@ $('.property-history-btn .btn').click(function(){
       $("#property-api-data span#" + key).text(value);
     });
 })
+
 
 //cancel subscription
 $('#cancel_btn').on('click', async function () {  
