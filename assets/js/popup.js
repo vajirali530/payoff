@@ -1,6 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
 const BASE_URL = "http://192.168.1.13:8000/api/";   
+const BILLING_URL = "http://192.168.1.13:8000/billing/";   
 
 // event listner
 $('.registerLink').add('.loginLink').on('click',loginRegister);
@@ -436,16 +437,21 @@ $('#evalute_btn').click(function(){
                 $('.response_errors').html('');
                 $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
-                console.log(response.data.user_current_plan_name);
                 if(!(response.data.user_current_plan_name == 'basic')){
                     $('.recall-api-disabled').removeAttr('disabled');
+                }else{
+                    $('.full-access').show();
                 }
                 $('#rate_container_city').text(response.data.city)
                 $('#rate_container_state').text(response.data.state)
                 $('#property_details').hide();
                 $('#property-api-data').show();
                 $.each( response.data, function( key, value ) {
-                    $("#property-api-data span#"+key).text(value);
+                    if(value == '' && response.data.user_current_plan_name == 'basic'){
+                        $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                    }else{
+                        $("#property-api-data span#"+key).html(value);
+                    }
                 });
                 $('#property_id').val(response.data.last_id);
             }
@@ -476,62 +482,69 @@ $('#property_history_btn').on('click', async function () {
     let storedUserData = await getChromeStorage(["userData"]);
     let userData = JSON.parse(storedUserData.userData);
     var result = await fetchDetails(BASE_URL + "getproperty-history/" + userData.id);
-    if(result.data.length == 0){
-        $(".property-history-wrapper").html('<h4>No property found.</h4>');
-    }else{
-        $(".property-history-wrapper").html('');
-        $.each( result.data, function( key, value ) {
-            var pro_detail = JSON.parse(value.pro_detail);
-            $(".property-history-wrapper").append(`
-                <div class="property-history">
-                    <div class="property-history-img">
-                        <img src="${pro_detail.property_image}" alt="" style="height: 83px; width:135px;">
-                    </div>
-                    <div class="property-history-priceBtn">
-                        <div class="property-history-price">
-                            <div>
-                                <span>${pro_detail.property_name}</span>
+    console.log(result.data.user_plan_name);
+    $(".property-history-wrapper").html('');
+
+    if (result.data.user_plan_name == 'basic') {
+        $('.property-history-wrapper').html('<span><a href="'+BILLING_URL+'" target="blank">Please subscribe on credifana</a></span>');  
+    } else {
+        if(result.data.proHistoryData.length == 0){
+            $(".property-history-wrapper").html('<h4>No property found.</h4>');
+        }else{
+            $.each( result.data.proHistoryData, function( key, value ) {
+                var pro_detail = JSON.parse(value.pro_detail);
+                $(".property-history-wrapper").append(`
+                    <div class="property-history">
+                        <div class="property-history-img">
+                            <img src="${pro_detail.property_image}" alt="" style="height: 83px; width:135px;">
+                        </div>
+                        <div class="property-history-priceBtn">
+                            <div class="property-history-price">
+                                <div>
+                                    <span>${pro_detail.property_name}</span>
+                                </div>
+                                <div>
+                                    <span>$${pro_detail.property_price}</span>
+                                </div>
                             </div>
-                            <div>
-                                <span>$${pro_detail.property_price}</span>
+                            <div class="property-history-btn">
+                                <input class="pro-id" type="hidden" value='${value.id}' />
+                                <input class="pro-json-data" type="hidden" value='${value.pro_detail}' />
+                                <button type="button" class="btn">EVALUATE</button>
                             </div>
                         </div>
-                        <div class="property-history-btn">
-                            <input class="pro-id" type="hidden" value='${value.id}' />
-                            <input class="pro-json-data" type="hidden" value='${value.pro_detail}' />
-                            <button type="button" class="btn">EVALUATE</button>
-                        </div>
                     </div>
-                </div>
-            `);
-        });
+                `);
+            });
+        }
     }
 
-    $('.property-history-btn .btn').click(function(){
-        $('.recall-api').css('backgroundColor','#748EFF');
-        $("#property_details_btn").trigger('click');
-        $('#property_details').hide();
-        $('#property-api-data').show();
-        $(".prop-data").text('');
-        var jsonData = $(this).siblings(".pro-json-data").val();
-        var property_id = $(this).siblings(".pro-id").val();
-        var pro_detail = JSON.parse(jsonData);
-        // console.log(pro_detail);
-        $(".property-img-price img").attr("src", pro_detail["property_image"]);
-        $("#property_price").html("$" + pro_detail["property_price"]);
-        $(".property-name span").text(pro_detail["property_name"]);
-        $(".property-city-state #city").text(pro_detail["city"]);
-        $(".property-city-state #state").text(pro_detail["state"]);
-        $("#rate_container_city").text(pro_detail["city"]);
-        $("#rate_container_state").text(pro_detail["state"]);
-        $("#property_id").val(property_id);
 
-        $.each(pro_detail, function (key, value) {
-          $("#property-api-data span#" + key).text(value);
-        });
-    })
 
 });
+$('.property-history-btn .btn').click(function(){
+    $('.recall-api').css('backgroundColor','#748EFF');
+    $("#property_details_btn").trigger('click');
+    $('#property_details').hide();
+    $('#property-api-data').show();
+    $(".prop-data").text('');
+    var jsonData = $(this).siblings(".pro-json-data").val();
+    var property_id = $(this).siblings(".pro-id").val();
+    var pro_detail = JSON.parse(jsonData);
+    // console.log(pro_detail);
+    $(".property-img-price img").attr("src", pro_detail["property_image"]);
+    $("#property_price").html("$" + pro_detail["property_price"]);
+    $(".property-name span").text(pro_detail["property_name"]);
+    $(".property-city-state #city").text(pro_detail["city"]);
+    $(".property-city-state #state").text(pro_detail["state"]);
+    $("#rate_container_city").text(pro_detail["city"]);
+    $("#rate_container_state").text(pro_detail["state"]);
+    $("#property_id").val(property_id);
+
+    $.each(pro_detail, function (key, value) {
+      $("#property-api-data span#" + key).text(value);
+    });
+})
 
 //cancel subscription
 $('#cancel_btn').on('click', async function () {  
@@ -587,30 +600,41 @@ $('.req-input').blur(function () {
 
 $('.recall-api').click(async function(){
     $('.recall-api').css('backgroundColor','#748EFF')
-    $('.recall-api span').css('color','#241F1F')
-    $('.api-highest-rent').css('backgroundColor','white');
-    if($(this).attr("class").includes('api-highest-rent')){
+    $('.api-data .recall-api').css('backgroundColor','white')
+    $('.api-data .recall-api span').css('color','#241F1F')
+    if($(this).attr("class").includes('api-highest-rent') || $(this).parents('div').hasClass("api-average-rent")){
         $(this).find('span').css('color','white');
     }
     $(this).css('backgroundColor','#374eb4')
     $('.recall-api').prop('disabled', true);
     $(".rate-error").html("");
+
     const userInfo = await getChromeStorage(["userData"]);
     const userInfoObj = JSON.parse(userInfo.userData);
     let proid = $('#property_id').val()
     let clicktype = $(this).data('rentoption');
     let rentValue = $(this).data('rentvalue');
+
     $.ajax({
         url: BASE_URL + "property-regenerate-details",
         method: "POST",
         data: {user_id : userInfoObj.id, property_id : proid, clicktype : clicktype, rentValue : rentValue},
         success:function (response){
-            console.log(response);
-            $('.recall-api').prop('disabled', false);
+
+            if(!(response.data.user_current_plan_name == 'basic')){
+                $('.recall-api-disabled').removeAttr('disabled');
+            }
+            $('.recall-api-default').removeAttr('disabled');
+
             $(".prop-data").text("");
+            
             if(response.status == 'success'){
                 $.each(response.data, function (key, value) {
-                  $("#property-api-data span#" + key).text(value);
+                    if(value == '' && response.data.user_current_plan_name == 'basic'){
+                        $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                    } else {
+                        $("#property-api-data span#" + key).text(value);
+                    }
                 });
                 $("#property_id").val(response.data.last_id);
             }else{

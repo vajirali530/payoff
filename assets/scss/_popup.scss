@@ -380,16 +380,27 @@
                                 align-items: center;
                                 justify-content: space-between;
                                 margin-bottom: 10px;
+                                .api-average-rent{
+                                    button{
+                                        border:1px solid #748EFF;
+                                        border-radius: 6px;
+                                    }
+                                }
                                 .api-maintenance{
                                     background-color: $LightSkyBlue;
                                     span{
                                         color: $White !important;
                                     }
                                 }
-                                .api-highest-rent{
-                                    cursor: pointer;
-                                }
+                               
                                 div{
+                                    button{
+                                        display: block;
+                                        background-color: transparent;
+                                        border: none;
+                                        height: 100%;
+                                        width: 100%;
+                                    }
                                     @include apiDataBlock;
                                     span{
                                         &:first-child{
@@ -400,13 +411,27 @@
                                         }
                                         &:last-child{
                                             @include apiDataPrice;
+                                            a{
+                                                color: $Black;
+                                            }
                                         }
                                     }
                                 }
                             }
                             .back-btn{
+                                .full-access{
+                                    display: none;
+                                    @include apiDataBlockTitle;
+                                    color: $DarkRed;
+                                    font-weight: bold;
+                                    margin-bottom: 5px;
+                                }
                                 margin-top: 30px;
                                 text-align: center;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
                                 button{
                                     @include commonBtn;
                                     background-color: $White;
@@ -508,8 +533,11 @@
             }
             #pills-property-history{
                 .property-history-wrapper{
-                    h4{
-                        @include commonSubHeader;
+                    span{
+                        a{
+                            @include commonSubHeader;
+                            color: $DarkRed;
+                        }
                     }
                     .property-history-title{
                         margin-bottom: 16px;

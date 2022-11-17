@@ -302,7 +302,7 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="me-2">
-                                        <button type="button" class="btn recall-api" data-rentoption="options_btn" data-rentvalue="5">5%</button>
+                                        <button type="button" class="btn recall-api recall-api-default" data-rentoption="options_btn" data-rentvalue="5">5%</button>
                                     </div>
                                     <div class="me-2">
                                         <button type="button" class="btn recall-api recall-api-disabled" data-rentoption="options_btn" data-rentvalue="10" disabled>10%</button>
@@ -327,12 +327,16 @@
                             <div class="api-data">
                                 <div class="data-container">
                                     <div class="api-average-rent">
-                                        <span>Average Rent</span>
-                                        <span id="average_rent" class="prop-data"></span>
+                                        <button class="recall-api recall-api-default" data-rentoption="average_rent" data-rentvalue="0">
+                                            <span>Average Rent</span>
+                                            <span id="average_rent" class="prop-data"></span>
+                                        </button>
                                     </div>
-                                    <div class="api-highest-rent recall-api" data-rentoption="highest_rent" data-rentvalue="0">
-                                        <span>Highest Rent</span>
-                                        <span id="highest_rent" class="highest-rent"></span>
+                                    <div class="api-highest-rent">
+                                        <button class="recall-api" data-rentoption="highest_rent" data-rentvalue="0" disabled>
+                                            <span>Highest Rent</span>
+                                            <span id="highest_rent" class="highest-rent"></span>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="data-container">
@@ -452,6 +456,7 @@
                                     </div>
                                 </div>
                                 <div class="back-btn">
+                                    <a href="http://192.168.1.13:8000/billing/" target="_blank" class="full-access">subscribe for full access</a>
                                     <button type="button" class="btn">BACK</button>
                                 </div>
                             </div>
@@ -502,12 +507,6 @@
                 </div>
                 <div class="tab-pane fade" id="pills-property-history" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <div class="property-history-wrapper">
-                        <div class="property-history-title">
-                            <span>Usage History</span>
-                        </div>
-                        <div class="property-history-wrapper">
-                            
-                        </div>
                     </div>
                 </div>
             </div>
