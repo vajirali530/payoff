@@ -604,7 +604,7 @@ $('.recall-api').click(async function(){
     $('.recall-api').css('backgroundColor','#748EFF')
     $('.api-data .recall-api').css('backgroundColor','white')
     $('.api-data .recall-api span').css('color','#241F1F')
-    if($(this).attr("class").includes('api-highest-rent') || $(this).parents('div').hasClass("api-average-rent")){
+    if($(this).parents('div').hasClass("api-highest-rent") || $(this).parents('div').hasClass("api-average-rent")){
         $(this).find('span').css('color','white');
     }
     $(this).css('backgroundColor','#374eb4')
