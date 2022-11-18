@@ -61,16 +61,14 @@
         
         // title
         var proTitle = '';
-        if(document.querySelector('#__next div .ldp-root .cashback-banner-container .cashback-desktop .mainTitle')){
-          const proTitleArr=document.querySelector('#__next div .ldp-root .cashback-banner-container .cashback-desktop .mainTitle').textContent.split(' ')
-          const proTitleBuyIndex=proTitleArr.indexOf('buy')
-          proTitle=proTitleArr.splice(proTitleBuyIndex+1,proTitleArr.length).join(' ')
-          if((proTitle.startsWith('.'))){
-            proTitle = ''
+        if(document.querySelector('.listing-summary-info .listing-info .address .address-value')){
+          const proTitleArr=document.querySelector('.listing-summary-info .listing-info .address .address-value').textContent.split(',');
+          if(proTitleArr.length == 3){
+            proTitle = proTitleArr[0];
           }
         }
         else{
-          if(document.querySelector('#bottom-lead-form section .leadform-section .jsx-1975176684.hidden-xs.hidden-xxs')){
+          if(document.querySelector('#bottom-lead-form section .leadform-section .hidden-xxs')){
             const proTitleArr=document.querySelector('#bottom-lead-form section .leadform-section h2').textContent.split(' ')
             const proTitleAboutIndex=proTitleArr.indexOf('about')
             proTitle=proTitleArr.splice(proTitleAboutIndex+1,proTitleArr.length).join(' ')
@@ -209,11 +207,13 @@
           proType:proType
         };
 
+        // console.log(proDetailsObj);
+
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
         },2000)
-      } 
-      else {
+      }else {
+        console.log('aliali');
         setTimeout(()=>{
           var text='false'
 

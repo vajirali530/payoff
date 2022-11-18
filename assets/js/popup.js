@@ -437,7 +437,7 @@ $('#evalute_btn').click(function(){
                 $('.response_errors').html('');
                 $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
-                if(!(response.data.user_current_plan_name == 'basic')){
+                if(response.data.user_current_plan_name != 'basic'){
                     $('.recall-api-disabled').removeAttr('disabled');
                 }else{
                     $('.full-access').show();
@@ -623,7 +623,7 @@ $('.recall-api').click(async function(){
         data: {user_id : userInfoObj.id, property_id : proid, clicktype : clicktype, rentValue : rentValue},
         success:function (response){
 
-            if(!(response.data.user_current_plan_name == 'basic')){
+            if(response.data.user_current_plan_name != 'basic'){
                 $('.recall-api-disabled').removeAttr('disabled');
             }
             $('.recall-api-default').removeAttr('disabled');
