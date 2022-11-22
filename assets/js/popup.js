@@ -452,9 +452,7 @@ $('#evalute_btn').click(function(){
                 if(response.data.user_current_plan_name != 'basic'){
                     $('.recall-api-disabled').removeAttr('disabled');
                     if ((response.data.extra_bedrooms && response.data.extra_bathrooms) && (response.data.extra_bedrooms != '' && response.data.extra_bathrooms != '')) {
-                        for (let i = 0; i < response.data.extra_bedrooms.length; i++) {
-                            console.log(response.data.extra_bedrooms[i]);         
-                            console.log(response.data.extra_bathrooms[i]);        
+                        for (let i = 0; i < response.data.extra_bedrooms.length; i++) {   
                             $('.bed_bath_container').append(
                                 `
                                 <div class="extra_bedroom_bathroom">
@@ -569,6 +567,23 @@ $(document).on('click','.property-history-btn .btn',function(){
     $("#rate_container_city").text(pro_detail["city"]);
     $("#rate_container_state").text(pro_detail["state"]);
     $("#property_id").val(property_id);
+    $('.bed_bath_container').html('');
+
+    if (pro_detail.user_current_plan_name != 'basic') {
+        if ((pro_detail.extra_bedrooms && pro_detail.extra_bathrooms) && (pro_detail.extra_bedrooms != '' && pro_detail.extra_bathrooms != '')) {
+            for (let i = 0; i < pro_detail.extra_bedrooms.length; i++) {   
+                $('.bed_bath_container').append(
+                    `
+                    <div class="extra_bedroom_bathroom">
+                        <span>Bedroom : ${pro_detail.extra_bedrooms[i]} </span>
+                        <span>Bathroom : ${pro_detail.extra_bathrooms[i]} </span>
+                    </div>
+                    `                                
+                ); 
+            }
+            $('.bed_bath_container').show();
+        }
+    }
 
     $.each(pro_detail, function (key, value) {
       $("#property-api-data span#" + key).text(value);

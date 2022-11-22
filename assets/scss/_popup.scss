@@ -331,13 +331,19 @@
                             align-items: center;
                             justify-content: space-between;
                             margin-bottom: 10px;
+                            overflow-x: scroll;
                             
+                            &::-webkit-scrollbar {
+                                height: 10px;
+                            }
+
                             .extra_bedroom_bathroom {
+                                margin: 10px;
                                 background-color: #ffffff;
                                 border-radius: 6px;
                                 box-shadow: 0px 0px 6px rgb(0 0 0 / 16%);
                                 height: 83px;
-                                width: 175px;
+                                min-width: 175px;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
