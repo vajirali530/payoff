@@ -264,7 +264,7 @@
    * Getting the message from popup.js
    */
   chrome.runtime.onMessage.addListener((msg, sender, response) => {
-    console.log(msg, sender, response);
+    // console.log(msg, sender, response);
     if(document.readyState == 'complete'){
       getRealtorPropDetails();
     }

@@ -1,7 +1,8 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
 const BASE_URL = "http://192.168.1.13:8000/api/";   
-const BILLING_URL = "http://192.168.1.13:8000/billing/";   
+const BILLING_URL = "http://192.168.1.13:8000/billing/";
+var userCurrentPlan = '';
 
 // event listner
 $('.registerLink').add('.loginLink').on('click',loginRegister);
@@ -20,11 +21,12 @@ function loginRegister(e){
 
 // dom load
 document.addEventListener('DOMContentLoaded', async function(){
+    
     const storedData = await getChromeStorage(["userData"]);
     
     if (storedData.userData && storedData.userData.length > 0) {
         $('.credifanaLogin').hide()
-        determineExtensionProcess(storedData.userData)
+        determineExtensionProcess(storedData.userData);
     }
     // chrome.storage.sync.get("userData", function (obj) {
     //     if(obj.userData.length>0){
@@ -260,7 +262,17 @@ const getDataFromWebsite = async (msg, response)=>{
             $('.realtor-property-details').show();
             $('#property_details').show();
         }
-    })
+    });
+
+    const storedData = await getChromeStorage(["userData"]);
+    var userInfo = JSON.parse(storedData.userData);
+    $.get(BASE_URL+'user-detail/'+userInfo.id,function(response){
+       if(response.status == 'success'){
+            userCurrentPlan = response.data.plan_name;
+       }
+    });
+    
+
     if(msg.text=='true'){
       $('.property-name span').text(msg.proTitle) 
       $('.property-img-price img').attr('src',msg.proImg)
@@ -478,7 +490,7 @@ $('.back-btn .btn').click(async function(){
 })
 
 //get property history
-$('#property_history_btn').on('click', async function () {  
+$('#property_history_btn').on('click', async function () {
     let storedUserData = await getChromeStorage(["userData"]);
     let userData = JSON.parse(storedUserData.userData);
     var result = await fetchDetails(BASE_URL + "getproperty-history/" + userData.id);
@@ -522,6 +534,7 @@ $('#property_history_btn').on('click', async function () {
 
 
 });
+
 $(document).on('click','.property-history-btn .btn',function(){
     $("#property_details_btn").trigger('click');
     // $('.recall-api').css('backgroundColor','#748EFF');
@@ -644,4 +657,44 @@ $('.recall-api').click(async function(){
             }
         },
     });
-})
+});
+
+$("#unit").change(function() {
+    if(userCurrentPlan != '' && userCurrentPlan != 'basic'){
+        var totalUnit = parseInt($(this).val());
+        $("#extra_bed_bath").html('');
+        $("#bedrooms, #bathrooms").val('');
+        if(totalUnit > 1){
+             var append_bed_bath = '';
+             for(var i = 2; i <= totalUnit; i++){
+                 append_bed_bath += `<div class="details-container">
+                                         <div class="bedrooms">
+                                             <span>Bedrooms<em>*</em></span>
+                                             <div>
+                                                 <input type="number" class="form-control req-input extra-bedrooms" name="extra_bedrooms[]" readonly style="cursor:not-allowed;">
+                                                 <div class="error-message">Please enter number of bedrooms</div>
+                                             </div>
+                                         </div>
+                                         <div class="bathrooms">
+                                             <span>Bathrooms<em>*</em></span>
+                                             <div>
+                                                 <input type="number" class="form-control req-input extra-bathrooms" name="extra_bathrooms[]" readonly style="cursor:not-allowed;">
+                                                 <div class="error-message">Please enter number of bathrooms</div>                                            
+                                             </div>
+                                         </div>
+                                     </div>`;
+             }
+             $("#extra_bed_bath").append(append_bed_bath);
+        }
+    }
+});
+
+$("#bedrooms, #bathrooms").change(function (){
+    if($(this).attr('name') == 'bedrooms'){
+        $("#extra_bed_bath .extra-bedrooms").val($(this).val());
+    }
+
+    if($(this).attr('name') == 'bathrooms'){
+        $("#extra_bed_bath .extra-bathrooms").val($(this).val());
+    }
+});

@@ -164,14 +164,14 @@
                                     <div class="downpayment">
                                         <span>Down Payment<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control req-input req-input-range" name="downpayment_percent" id="downpayment">
+                                            <input type="number" class="form-control req-input req-input-range" name="downpayment_percent" id="downpayment" min="1" max="100">
                                             <div class="error-message">Please enter down payment</div>                                                                                       
                                         </div>
                                     </div>
                                     <div class="closing-cost">
                                         <span>Closing Cost<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control req-input req-input-range" id="closing_cost" name="closing_cost_percent">
+                                            <input type="number" class="form-control req-input req-input-range" id="closing_cost" name="closing_cost_percent" min="1" max="100">
                                             <div class="error-message">Please enter closing cost</div>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@
                                     <div class="estimate-costof-repair">
                                         <span>Estimate Cost of Repair</span>
                                         <div>
-                                            <input type="number" class="form-control" name="estimate_cost_of_repair" value="0">
+                                            <input type="number" class="form-control" name="estimate_cost_of_repair" value="0" min="0">
                                         </div>
                                     </div>
                                     <div class="loan-term">
@@ -201,14 +201,14 @@
                                     <div class="interest-rate">
                                         <span>Interest Rate<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control req-input req-input-range" name="interest_rate" id="interest_rate">
+                                            <input type="number" class="form-control req-input req-input-range" name="interest_rate" id="interest_rate" min="1" max="100">
                                             <div class="error-message">Please enter interest rate</div>
                                         </div>
                                     </div>
                                     <div class="vacancy">
                                         <span>Vacancy<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control req-input req-input-range" name="vacancy" id="vacancy" value="5">
+                                            <input type="number" class="form-control req-input" min="0" max="100" name="vacancy" id="vacancy" value="0">
                                             <div class="error-message">Please enter vacancy</div>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                     <div class="maintenance">
                                         <span>Maintenance<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control req-input req-input-range" name="maintenance" id="maintenance" value="5">
+                                            <input type="number" class="form-control req-input" min="0" max="100" name="maintenance" id="maintenance" value="0">
                                             <div class="error-message">Please enter maintenance</div>
                                         </div>
                                     </div>
@@ -226,59 +226,68 @@
                                             <span class="me-2">Unit<em>*</em></span>
                                         </div>
                                         <div>
-                                            <input type="number" class="form-control req-input" name="unit" id="unit" value="1">
+                                            <input type="number" class="form-control req-input" name="unit" id="unit" min="1" max="100" value="1">
                                             <div class="error-message">Please enter number of unit</div>
                                         </div>
                                     </div>
                             </div>
                             <div class="details-container">
-                                    <div class="bedrooms">
-                                        <span>Bedrooms<em>*</em></span>
-                                        <div>
-                                            <input type="number" class="form-control req-input" name="bedrooms" id="bedrooms" value="2">
-                                            <div class="error-message">Please enter number of bedrooms</div>
-                                        </div>
+                                <div class="bedrooms">
+                                    <span>Bedrooms<em>*</em></span>
+                                    <div>
+                                        <input type="number" class="form-control req-input" name="bedrooms" min="1" max="100" id="bedrooms" value="2">
+                                        <div class="error-message">Please enter number of bedrooms</div>
                                     </div>
-                                    <div class="bathrooms">
-                                        <span>Bathrooms<em>*</em></span>
-                                        <div>
-                                            <input type="number" class="form-control req-input" name="bathrooms" id="bathrooms" value="2">
-                                            <div class="error-message">Please enter number of bathrooms</div>                                            
-                                        </div>
+                                </div>
+                                <div class="bathrooms">
+                                    <span>Bathrooms<em>*</em></span>
+                                    <div>
+                                        <input type="number" class="form-control req-input" name="bathrooms" min="1" max="100" id="bathrooms" value="2">
+                                        <div class="error-message">Please enter number of bathrooms</div>                                            
                                     </div>
+                                </div>
                             </div>
+                            <div id="extra_bed_bath"></div>
                             <div class="details-container">
                                     <div class="property-tax">
                                         <span>Property Tax</span>
                                         <div>
-                                            <input type="number" class="form-control" name="taxes" id="taxes">
+                                            <input type="number" class="form-control" name="taxes" id="taxes" min="0">
                                         </div>
                                     </div>
-                                    <div class="home-insurance">
-                                        <span>Home Insurance</span>
+                                    <div class="management">
+                                        <span>Management<em>*</em></span>
                                         <div>
-                                            <input type="number" class="form-control" name="insurance" id="insurance">
+                                            <input type="number" class="form-control req-input" min="0" max="100" name="management" id="management" value="0">
+                                            <div class="error-message">Please enter management</div>
                                         </div>
                                     </div>
                             </div>
                             <div class="details-container">
-                                    <div class="city">
-                                        <span>City<em>*</em></span>
-                                        <div>
-                                            <input type="text" class="form-control req-input" name="city" id="city">
-                                            <div class="error-message">Please enter city</div>                                           
-                                        </div>
+                                <div class="home-insurance">
+                                    <span>Home Insurance</span>
+                                    <div>
+                                        <input type="number" class="form-control" name="insurance" id="insurance" min="0">
                                     </div>
-                                    <div class="state">
-                                        <span>State<em>*</em></span>
-                                        <div>
-                                            <input type="text" class="form-control req-input" name="state" id="state">
-                                            <div class="error-message">Please enter state</div>                                           
-                                        </div>
+                                </div>
+                                <div class="city">
+                                    <span>City<em>*</em></span>
+                                    <div>
+                                        <input type="text" class="form-control req-input" name="city" id="city">
+                                        <div class="error-message">Please enter city</div>                                           
                                     </div>
+                                </div>
                             </div>
-                            <div class="response_errors">
+                            <div class="details-container">
+                                <div class="state">
+                                    <span>State<em>*</em></span>
+                                    <div>
+                                        <input type="text" class="form-control req-input" name="state" id="state">
+                                        <div class="error-message">Please enter state</div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="response_errors"></div>
                             <div class="evaluteSpinner">
                                 <div class="spinner-border text-dark" role="status" id="evaluteSpinner">
                                 </div>
