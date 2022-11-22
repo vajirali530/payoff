@@ -451,6 +451,21 @@ $('#evalute_btn').click(function(){
             }else if(response.status == "success"){
                 if(response.data.user_current_plan_name != 'basic'){
                     $('.recall-api-disabled').removeAttr('disabled');
+                    if ((response.data.extra_bedrooms && response.data.extra_bathrooms) && (response.data.extra_bedrooms != '' && response.data.extra_bathrooms != '')) {
+                        for (let i = 0; i < response.data.extra_bedrooms.length; i++) {
+                            console.log(response.data.extra_bedrooms[i]);         
+                            console.log(response.data.extra_bathrooms[i]);        
+                            $('.bed_bath_container').append(
+                                `
+                                <div class="extra_bedroom_bathroom">
+                                    <span>Bedroom : ${response.data.extra_bedrooms[i]} </span>
+                                    <span>Bathroom : ${response.data.extra_bathrooms[i]} </span>
+                                </div>
+                                `                                
+                            ); 
+                        }
+                        $('.bed_bath_container').show();
+                    }
                 }else{
                     $('.full-access').show();
                 }

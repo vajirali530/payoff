@@ -1,6 +1,5 @@
 // nested css
 
-
 .credifana{
     @include extensionStyle;
     .credifanaHeader{
@@ -326,6 +325,26 @@
                     }
                     #property-api-data{
                         display: none;
+                        
+                        .bed_bath_container {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin-bottom: 10px;
+                            
+                            .extra_bedroom_bathroom {
+                                background-color: #ffffff;
+                                border-radius: 6px;
+                                box-shadow: 0px 0px 6px rgb(0 0 0 / 16%);
+                                height: 83px;
+                                width: 175px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                flex-direction: column;
+                            }
+                        }
+                        
                         .property-city-state{
                             margin-bottom: 20px;
                             span{
