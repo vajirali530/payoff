@@ -450,6 +450,7 @@ $('#evalute_btn').click(function(){
                 $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
                 if(response.data.user_current_plan_name != 'basic'){
+                    $('.bed_bath_container').html('');
                     $('.recall-api-disabled').removeAttr('disabled');
                     if ((response.data.extra_bedrooms && response.data.extra_bathrooms) && (response.data.extra_bedrooms != '' && response.data.extra_bathrooms != '')) {
                         for (let i = 0; i < response.data.extra_bedrooms.length; i++) {   
