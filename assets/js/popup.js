@@ -2,6 +2,10 @@ import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
 const BASE_URL = "http://192.168.1.13:8000/api/";   
 const BILLING_URL = "http://192.168.1.13:8000/billing/";
+
+// const BASE_URL = "https://credifana.com/api/";   
+// const BILLING_URL = "http://credifana.com/billing/";
+
 var userCurrentPlan = '';
 
 // event listner
@@ -93,8 +97,7 @@ $('#loginBtn').on('click', function () {
                 if(response.status == 'error') {
                     $('#login_form .response_errors').html('');
                     $('#login_form .response_errors').append(`<div class="response_error">${response.message}</div>`);
-                }else if(response.status == "success"){
-
+                } else if(response.status == "success"){
                     let userData = response.user_data;
                     setChromeStorage("userData", JSON.stringify(userData)); 
                     $('.credifanaLogin').hide()
@@ -274,40 +277,39 @@ const getDataFromWebsite = async (msg, response)=>{
     
 
     if(msg.text=='true'){
-      $('.property-name span').text(msg.proTitle) 
-      $('.property-img-price img').attr('src',msg.proImg)
+        $('.property-name span').text(msg.proTitle) 
+        $('.property-img-price img').attr('src',msg.proImg)
 
-     let userDataCollection = await getChromeStorage(["userData"]);
-     
-     var finaluserData = JSON.parse(userDataCollection.userData);
-     var plainPropertyPrice =  msg.proPrice.replace(/\$|,/g, "");
-     
-     
-      $('#property_price').text(msg.proPrice);
-      $(".property-name span").text(msg.proTitle);
-      $('#plain_property_price').val(plainPropertyPrice);
-      $('#property_type').val(msg.proType);
-      $('#property_image').val(msg.proImg);
-      $('#property_name').val(msg.proTitle);
-      $('#user_id').val(finaluserData.id);
+        let userDataCollection = await getChromeStorage(["userData"]);
+        
+        var finaluserData = JSON.parse(userDataCollection.userData);
+        var plainPropertyPrice =  msg.proPrice.replace(/\$|,/g, "");
+        
+        $('#property_price').text(msg.proPrice);
+        $(".property-name span").text(msg.proTitle);
+        $('#plain_property_price').val(plainPropertyPrice);
+        $('#property_type').val(msg.proType);
+        $('#property_image').val(msg.proImg);
+        $('#property_name').val(msg.proTitle);
+        $('#user_id').val(finaluserData.id);
 
-      $('#downpayment').val(msg.proDownpayment)
-      $('#closing_cost').val(msg.proEstClosingCost)
-      $('#interest_rate').val(msg.proInterestRate)
-      $('#loanterm').val(msg.proLoanTerm)
-      $('#taxes').val(msg.proTax)
-      $('#insurance').val(msg.proHomeIns)
-      $('#bedrooms').val(msg.proBedrooms)
-      $('#bathrooms').val(msg.proBath)
-      $('#city').val(msg.city)
-      $('#state').val(msg.state)
-      $('#city').text(msg.city)
-      $('#state').text(msg.state)
-      if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
-           $('#bedrooms, #bathrooms, #unit').val('');
+        $('#downpayment').val(msg.proDownpayment)
+        $('#closing_cost').val(msg.proEstClosingCost)
+        $('#interest_rate').val(msg.proInterestRate)
+        $('#loanterm').val(msg.proLoanTerm)
+        $('#taxes').val(msg.proTax)
+        $('#insurance').val(msg.proHomeIns)
+        $('#bedrooms').val(msg.proBedrooms)
+        $('#bathrooms').val(msg.proBath)
+        $('#city').val(msg.city)
+        $('#state').val(msg.state)
+        $('#city').text(msg.city)
+        $('#state').text(msg.state)
+        if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
+            $('#bedrooms, #bathrooms, #unit').val('');
         }else{
             $('#unit').prop('readonly', true).css('cursor','not-allowed');
-      }
+        }
     } else {
         $('#pills-tabContent').hide();
         $(".rent-property").removeClass("d-none");
@@ -403,6 +405,7 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  * Getting the message from popup.js
  */
 chrome.runtime.onMessage.addListener(async (msg,response) => {
+    console.log('Content Script recieve data', msg, response);
     const loginInfo = await getChromeStorage(["userData"]);
     const loginInfoObj = JSON.parse(loginInfo.userData)
     if(loginInfoObj.email.length>0){
@@ -449,7 +452,7 @@ $('#evalute_btn').click(function(){
                 $('.response_errors').html('');
                 $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
-                if(response.data.user_current_plan_name != 'basic'){
+                // if(response.data.user_current_plan_name != 'basic'){
                     $('.bed_bath_container').html('');
                     $('.recall-api-disabled').removeAttr('disabled');
                     if ((response.data.extra_bedrooms && response.data.extra_bathrooms) && (response.data.extra_bedrooms != '' && response.data.extra_bathrooms != '')) {
@@ -465,9 +468,9 @@ $('#evalute_btn').click(function(){
                         }
                         $('.bed_bath_container').show();
                     }
-                }else{
+                // }else{
                     $('.full-access').show();
-                }
+                // }
                 $('#rate_container_city').text(response.data.city)
                 $('#rate_container_state').text(response.data.state)
                 $('#property_details').hide();
@@ -691,33 +694,40 @@ $('.recall-api').click(async function(){
 });
 
 $("#unit").change(function() {
-    if(userCurrentPlan != '' && userCurrentPlan != 'basic'){
+    // if(userCurrentPlan != '' && userCurrentPlan != 'basic'){
         var totalUnit = parseInt($(this).val());
         $("#extra_bed_bath").html('');
         $("#bedrooms, #bathrooms").val('');
-        if(totalUnit > 1){
+        if(totalUnit > 1) {
+            $('.up_arrow').show();
+            $('.down_arrow').hide();
+            
              var append_bed_bath = '';
+             console.log(userCurrentPlan);
              for(var i = 2; i <= totalUnit; i++){
                  append_bed_bath += `<div class="details-container">
                                          <div class="bedrooms">
                                              <span>Bedrooms<em>*</em></span>
                                              <div>
-                                                 <input type="number" class="form-control req-input extra-bedrooms" name="extra_bedrooms[]" readonly style="cursor:not-allowed;">
+                                                 <input type="number" class="form-control req-input extra-bedrooms" name="extra_bedrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                                  <div class="error-message">Please enter number of bedrooms</div>
                                              </div>
                                          </div>
                                          <div class="bathrooms">
                                              <span>Bathrooms<em>*</em></span>
                                              <div>
-                                                 <input type="number" class="form-control req-input extra-bathrooms" name="extra_bathrooms[]" readonly style="cursor:not-allowed;">
+                                                 <input type="number" class="form-control req-input extra-bathrooms" name="extra_bathrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                                  <div class="error-message">Please enter number of bathrooms</div>                                            
                                              </div>
                                          </div>
                                      </div>`;
              }
-             $("#extra_bed_bath").append(append_bed_bath);
+             $("#extra_bed_bath").append(append_bed_bath).show();
+        } else {
+            $('.up_arrow').hide();
+            $('.down_arrow').hide();
         }
-    }
+    // }
 });
 
 $("#bedrooms, #bathrooms").change(function (){
@@ -728,4 +738,16 @@ $("#bedrooms, #bathrooms").change(function (){
     if($(this).attr('name') == 'bathrooms'){
         $("#extra_bed_bath .extra-bathrooms").val($(this).val());
     }
+});
+
+$('.up_arrow').on('click', function () {  
+    $('#extra_bed_bath').css('transition', '0.6s').hide();
+    $(this).hide();
+    $('.down_arrow').show()
+});
+
+$('.down_arrow').on('click', function () {  
+    $('#extra_bed_bath').css('transition', '0.6s').show();
+    $(this).hide();
+    $('.up_arrow').show()
 });

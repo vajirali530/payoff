@@ -231,7 +231,7 @@
                                         </div>
                                     </div>
                             </div>
-                            <div class="details-container">
+                            <div class="details-container" id="details_container_with_arrow">
                                 <div class="bedrooms">
                                     <span>Bedrooms<em>*</em></span>
                                     <div>
@@ -240,7 +240,17 @@
                                     </div>
                                 </div>
                                 <div class="bathrooms">
-                                    <span>Bathrooms<em>*</em></span>
+                                    <div class="d-flex justify-content-between align-items-end" id="bed_button_container">
+                                        <span>Bathrooms<em>*</em></span>
+                                        <div class="arrow_container">
+                                            <div class="down_arrow" style="display: none;">
+                                                <svg data-testid="icon-chevron-down" viewBox="0 0 512 512" aria-hidden="true" focusable="false" style="display: inline-block; width: 1em; height: 1em; font-size: 15px; color: inherit; fill: currentcolor;"><path d="M70 128l-27 32 215 224 211-224-27-32-184 196z"></path></svg>
+                                            </div>
+                                            <div class="up_arrow" style="display: none;">
+                                                <svg data-testid="chevron-up" viewBox="0 0 512 512" aria-hidden="true" focusable="false" style="display: inline-block; width: 1em; height: 1em; font-size: 15px; color: inherit; fill: currentcolor;"><path d="M70 384l-27-32 215-224 211 224-27 32-184-196z"></path></svg>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div>
                                         <input type="number" class="form-control req-input" name="bathrooms" min="1" max="100" id="bathrooms" value="2">
                                         <div class="error-message">Please enter number of bathrooms</div>                                            

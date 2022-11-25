@@ -6,6 +6,7 @@
    * @param {value} value 
    * @returns boolen
    */
+
   function setChromeStorage(key, value) {
     let storingData = {};
     storingData[key] = value;
@@ -207,8 +208,6 @@
           proType:proType
         };
 
-        // console.log(proDetailsObj);
-
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
         },2000)
@@ -252,19 +251,19 @@
 
   
   function sendDataWebtoExt(myObj){
+    console.log('Sending object to popup js', myObj);
     chrome.runtime.sendMessage(myObj, (response) => {
       console.log('this is a response', response);
       return response;
     });
   }
-
   
   /**
    * Add message listener from chrome extension
    * Getting the message from popup.js
    */
   chrome.runtime.onMessage.addListener((msg, sender, response) => {
-    // console.log(msg, sender, response);
+    console.log('Recieved message from popupjs', msg, sender, response);
     if(document.readyState == 'complete'){
       getRealtorPropDetails();
     }
