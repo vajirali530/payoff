@@ -1,10 +1,18 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
+<<<<<<< HEAD
 const BASE_URL = "http://192.168.1.13:8000/api/";   
 const BILLING_URL = "http://192.168.1.13:8000/billing/";
 const FORGOTPASSWORD_URL = "http://192.168.1.13:8000/forgot_password/";
+=======
+const BASE_URL = "http://192.168.1.13:8000/";   
+const API_URL = BASE_URL+"api/";   
+const BILLING_URL = BASE_URL+"billing/";
+const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
+const TERMS_AND_CONDITION_URL = BASE_URL+"terms-of-use/";
+>>>>>>> 3dc320c84765f2b3980ecb730a55942100727dfe
 
-// const BASE_URL = "https://credifana.com/api/";   
+// const API_URL = "https://credifana.com/api/";   
 // const BILLING_URL = "http://credifana.com/billing/";
 
 var userCurrentPlan = '';
@@ -88,7 +96,7 @@ $('#loginBtn').on('click', function () {
         $('#loginSpinner').show()
         $.ajax({
             type: "post",
-            url: BASE_URL+"login",
+            url: API_URL+"login",
             data: formData,
             processData: false,
             contentType: false,
@@ -164,7 +172,7 @@ $('#registerBtn').on('click', function () {
         $('#registerSpinner').show();
         $.ajax({
             type: "post",
-            url: BASE_URL+"register",
+            url: API_URL+"register",
             data: formData,
             processData: false,
             contentType: false,
@@ -270,7 +278,7 @@ const getDataFromWebsite = async (msg, response)=>{
 
     const storedData = await getChromeStorage(["userData"]);
     var userInfo = JSON.parse(storedData.userData);
-    $.get(BASE_URL+'user-detail/'+userInfo.id,function(response){
+    $.get(API_URL+'user-detail/'+userInfo.id,function(response){
        if(response.status == 'success'){
             userCurrentPlan = response.data.plan_name;
        }
@@ -324,7 +332,7 @@ $("#plan_details_btn").on("click", async function () {
     $('#planSpinner').show();
     let userDataCollection = await getChromeStorage(["userData"]);
     var finaluserData = JSON.parse(userDataCollection.userData);
-    var result = await fetchDetails(BASE_URL + "getsubscription-details/" + finaluserData.id);
+    var result = await fetchDetails(API_URL + "getsubscription-details/" + finaluserData.id);
     if(result.status == 'success'){
         $('#planSpinner').hide();
         $(".used-clicks").text(result.data.used_click);
@@ -441,7 +449,7 @@ $('#evalute_btn').click(function(){
     let formData = new FormData($('#property_details')[0]);
     $.ajax({
         type: "post",
-        url: BASE_URL+"getproperty-details",
+        url: API_URL+"getproperty-details",
         data: formData,
         processData: false,
         contentType: false,
@@ -513,7 +521,7 @@ $('.back-btn .btn').click(async function(){
 $('#property_history_btn').on('click', async function () {
     let storedUserData = await getChromeStorage(["userData"]);
     let userData = JSON.parse(storedUserData.userData);
-    var result = await fetchDetails(BASE_URL + "getproperty-history/" + userData.id);
+    var result = await fetchDetails(API_URL + "getproperty-history/" + userData.id);
     console.log(result.data.user_plan_name);
     $(".property-history-wrapper").html('');
 
@@ -605,7 +613,7 @@ $('#cancel_btn').on('click', async function () {
     let userData = JSON.parse(storedUserData.userData);
     $.ajax({
         type: "post",
-        url: BASE_URL + "cancel-subscription",
+        url: API_URL + "cancel-subscription",
         data: {'id':userData.id},
         dataType: "JSON",
         success: function (response) {
@@ -668,7 +676,7 @@ $('.recall-api').click(async function(){
     let rentValue = $(this).data('rentvalue');
 
     $.ajax({
-        url: BASE_URL + "property-regenerate-details",
+        url: API_URL + "property-regenerate-details",
         method: "POST",
         data: {user_id : userInfoObj.id, property_id : proid, clicktype : clicktype, rentValue : rentValue},
         success:function (response){
