@@ -2,6 +2,7 @@ import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
 const BASE_URL = "http://192.168.1.13:8000/api/";   
 const BILLING_URL = "http://192.168.1.13:8000/billing/";
+const FORGOTPASSWORD_URL = "http://192.168.1.13:8000/forgot_password/";
 
 // const BASE_URL = "https://credifana.com/api/";   
 // const BILLING_URL = "http://credifana.com/billing/";
@@ -407,9 +408,11 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
 chrome.runtime.onMessage.addListener(async (msg,response) => {
     console.log('Content Script recieve data', msg, response);
     const loginInfo = await getChromeStorage(["userData"]);
-    const loginInfoObj = JSON.parse(loginInfo.userData)
-    if(loginInfoObj.email.length>0){
-        getDataFromWebsite(msg,response);
+    if (loginInfo.userData && typeof loginInfo.userData != 'undefined' ) {
+        const loginInfoObj = JSON.parse(loginInfo.userData)
+        if(loginInfoObj.email.length>0){
+            getDataFromWebsite(msg,response);
+        }
     }
 })
 
@@ -420,7 +423,7 @@ $('#evalute_btn').click(function(){
     $('.prop-data').each(function(idx,val){
         $(val).text('')
     })
-    $('.error-message').hide();
+    $('.error-message').removeClass('d-none').hide();
     var error = 0;
     $('.req-input').each(function() {
         if ($(this).val() == '') {
@@ -428,7 +431,7 @@ $('#evalute_btn').click(function(){
             error++;
         }
     });
-    
+
     if (error > 0) {
         $(this).css('pointer-events','auto');
         return;
@@ -750,4 +753,18 @@ $('.down_arrow').on('click', function () {
     $('#extra_bed_bath').css('transition', '0.6s').show();
     $(this).hide();
     $('.up_arrow').show()
+});
+
+$(document).on('keyup', async function (e) {
+    if (e.key == 'Enter') {
+        let userData = await getChromeStorage(['userData']);
+        if (userData.userData && typeof userData.userData != 'undefined') {
+            userData = JSON.parse(userData.userData);
+            if (typeof userData == 'object' && Object.keys(userData).length > 0) {
+                $('#evalute_btn').trigger('click');            
+            }
+        } else {
+            $('#loginBtn').trigger('click');            
+        }
+    }
 });
