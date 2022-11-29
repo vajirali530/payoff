@@ -98,11 +98,11 @@
                     color: $White;
                 }
             }
-            .registerFormLink{
+            .registerFormLink, .ForgotPasswordLink{
                 text-align: center;
                 .text{
                     @include loginRegisterLinkText;
-                    .registerLink{
+                    .registerLink, .forgotLink{
                         @include loginRegisterActiveLink;
                     }
                 }                        

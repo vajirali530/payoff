@@ -137,17 +137,17 @@
   background-color: #241F1F;
   color: #ffffff;
 }
-.credifana .credifanaLogin .loginForm .registerFormLink {
+.credifana .credifanaLogin .loginForm .registerFormLink, .credifana .credifanaLogin .loginForm .ForgotPasswordLink {
   text-align: center;
 }
-.credifana .credifanaLogin .loginForm .registerFormLink .text {
+.credifana .credifanaLogin .loginForm .registerFormLink .text, .credifana .credifanaLogin .loginForm .ForgotPasswordLink .text {
   font-family: "Raleway", sans-serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 19px;
   color: #241F1F;
 }
-.credifana .credifanaLogin .loginForm .registerFormLink .text .registerLink {
+.credifana .credifanaLogin .loginForm .registerFormLink .text .registerLink, .credifana .credifanaLogin .loginForm .registerFormLink .text .forgotLink, .credifana .credifanaLogin .loginForm .ForgotPasswordLink .text .registerLink, .credifana .credifanaLogin .loginForm .ForgotPasswordLink .text .forgotLink {
   font-family: "Raleway", sans-serif;
   font-size: 15px;
   font-weight: 900;

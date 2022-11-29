@@ -5,9 +5,8 @@ const API_URL = BASE_URL+"api/";
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
 const TERMS_AND_CONDITION_URL = BASE_URL+"terms-of-use/";
+const FORGOTPASSWORD_URL = BASE_URL+"forgot-password/";
 
-// const API_URL = "https://credifana.com/api/";   
-// const BILLING_URL = "http://credifana.com/billing/";
 
 var userCurrentPlan = '';
 
@@ -410,9 +409,11 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
 chrome.runtime.onMessage.addListener(async (msg,response) => {
     console.log('Content Script recieve data', msg, response);
     const loginInfo = await getChromeStorage(["userData"]);
-    const loginInfoObj = JSON.parse(loginInfo.userData)
-    if(loginInfoObj.email.length>0){
-        getDataFromWebsite(msg,response);
+    if (loginInfo.userData && typeof loginInfo.userData != 'undefined' ) {
+        const loginInfoObj = JSON.parse(loginInfo.userData)
+        if(loginInfoObj.email.length>0){
+            getDataFromWebsite(msg,response);
+        }
     }
 })
 
@@ -423,7 +424,7 @@ $('#evalute_btn').click(function(){
     $('.prop-data').each(function(idx,val){
         $(val).text('')
     })
-    $('.error-message').hide();
+    $('.error-message').removeClass('d-none').hide();
     var error = 0;
     $('.req-input').each(function() {
         if ($(this).val() == '') {
@@ -431,7 +432,7 @@ $('#evalute_btn').click(function(){
             error++;
         }
     });
-    
+
     if (error > 0) {
         $(this).css('pointer-events','auto');
         return;
