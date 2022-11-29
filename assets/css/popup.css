@@ -428,6 +428,25 @@
   margin-bottom: 16px;
   justify-content: space-between;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .bathrooms #bed_button_container {
+  margin: 0px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .bathrooms #bed_button_container .arrow_container {
+  position: relative;
+  margin: 0px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .bathrooms #bed_button_container .arrow_container div {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0px;
+  box-shadow: 0px 0px 10px 0px #748EFF;
+  position: absolute;
+  right: 0;
+  top: -20px;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container:last-child {
   margin-bottom: 30px;
 }
@@ -475,7 +494,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .bed_bath_container::-webkit-scrollbar {
   height: 10px;
