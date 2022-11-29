@@ -177,6 +177,11 @@
                 }                        
             }
         }
+        .terms-of-service-and-privacy-policy{
+            a{
+                @include loginRegisterActiveLink
+            }
+        }
     }
     .realtor-site-screen{
         display: none;

@@ -754,3 +754,29 @@ $('.down_arrow').on('click', function () {
     $(this).hide();
     $('.up_arrow').show()
 });
+
+// privacy_policy / terms_of_service
+$('#privacy_policy').click(function(){
+    $(this).attr('href',PRIVACY_POLICY_URL);
+});
+
+$('#terms_of_service').click(function(){
+    $(this).attr('href',TERMS_AND_CONDITION_URL);
+});
+
+$(document).on('keyup', async function (e) {
+    if (e.key == 'Enter') {
+        let userData = await getChromeStorage(['userData']);
+        console.log(userData);
+        if (userData.userData && typeof userData.userData != 'undefined') {
+            userData = JSON.parse(userData.userData);
+            if (typeof userData == 'object' && Object.keys(userData).length > 0 && $("#pills-property-details").hasClass("active")) {
+                $('#evalute_btn').trigger('click');         
+            }
+        } else {
+            if(typeof $(".credifanaLogin").attr('style') == 'undefined' || $(".credifanaLogin").attr('style') == ''){
+                $('#loginBtn').trigger('click');            
+            }
+        }
+    }
+});

@@ -253,6 +253,13 @@
   line-height: 18px;
   color: #748EFF;
 }
+.credifana .credifanaRegister .terms-of-service-and-privacy-policy a {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 18px;
+  color: #748EFF;
+}
 .credifana .realtor-site-screen {
   display: none;
 }
@@ -861,29 +868,6 @@
   height: 50px;
 }
 
-.up_arrow, .down_arrow {
-  cursor: pointer;
-  box-shadow: 0px 0px 10px 0px #748eff;
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.up_arrow, .down_arrow, .arrow_container, #bed_button_container {
-  margin: 0!important;
-} 
-/* #details_container_with_arrow {
-  position: relative;
-}
-
-.arrow_container {
-  position: absolute;
-  top: 50%;
-  right: 0;
-} */
 /* / scrollbar style end here / */
 
 /*# sourceMappingURL=popup.css.map */
