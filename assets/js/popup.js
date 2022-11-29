@@ -765,6 +765,10 @@ $('#terms_of_service').click(function(){
     $(this).attr('href',TERMS_AND_CONDITION_URL);
 });
 
+$('.forgotLink').click(function(){
+    $(this).attr('href',FORGOTPASSWORD_URL);
+});
+
 $(document).on('keyup', async function (e) {
     if (e.key == 'Enter') {
         let userData = await getChromeStorage(['userData']);
