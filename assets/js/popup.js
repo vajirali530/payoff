@@ -29,11 +29,17 @@ function loginRegister(e){
 document.addEventListener('DOMContentLoaded', async function(){
     
     const storedData = await getChromeStorage(["userData"]);
-    
+    const currentURL = await getChromeStorage(["currentURL"]);
+    const evaluatedData = await getChromeStorage(["evaluatedData"]);
+
     if (storedData.userData && storedData.userData.length > 0) {
         $('.credifanaLogin').hide()
         determineExtensionProcess(storedData.userData);
     }
+        
+    console.log(currentURL);
+    console.log(evaluatedData);
+    return;
     // chrome.storage.sync.get("userData", function (obj) {
     //     if(obj.userData.length>0){
     //     }
@@ -203,8 +209,6 @@ const determineExtensionProcess = async (userData) => {
             $('.logout-btn').show()
             isRealtor = true;
         } else if ( currentSiteName === "realtor" && currentSiteUrl.includes("realestateandhomes-detail")) {
-            // $('.realtor-property-details').show()
-            // $('#property_details').show()
             $('.prop-details-spinner').removeClass('d-none')
             $('.logout-btn').show()
             isRealtor = true;
@@ -257,7 +261,10 @@ const determineExtensionProcess = async (userData) => {
 const getDataFromWebsite = async (msg, response)=>{
     let currentSiteName = '';
     let currentSiteUrl=''
-
+    let cachedURL = await getChromeStorage(["currentURL"]);
+    let chachedData = await getChromeStorage(["evaluatedData"]);
+    cachedURL = cachedURL.currentURL;
+    chachedData = chachedData.evaluatedData;
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         currentSiteName = tabs[0].url.split("/")[2].split(".")[1];
         currentSiteUrl = tabs[0].url.split("/").join();
@@ -295,23 +302,56 @@ const getDataFromWebsite = async (msg, response)=>{
         $('#property_name').val(msg.proTitle);
         $('#user_id').val(finaluserData.id);
 
-        $('#downpayment').val(msg.proDownpayment)
-        $('#closing_cost').val(msg.proEstClosingCost)
-        $('#interest_rate').val(msg.proInterestRate)
-        $('#loanterm').val(msg.proLoanTerm)
-        $('#taxes').val(msg.proTax)
-        $('#insurance').val(msg.proHomeIns)
-        $('#bedrooms').val(msg.proBedrooms)
-        $('#bathrooms').val(msg.proBath)
-        $('#city').val(msg.city)
-        $('#state').val(msg.state)
-        $('#city').text(msg.city)
-        $('#state').text(msg.state)
-        if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
-            $('#bedrooms, #bathrooms, #unit').val('');
-        }else{
-            $('#unit').prop('readonly', true).css('cursor','not-allowed');
+        currentSiteUrl = currentSiteUrl.split(',').join('/');
+        if(cachedURL == currentSiteUrl && Object.keys(chachedData).length > 0) {
+            $('.bed_bath_container').html('');
+            $('.recall-api-disabled').removeAttr('disabled');
+            if ((chachedData.extra_bedrooms && chachedData.extra_bathrooms) && (chachedData.extra_bedrooms != '' && chachedData.extra_bathrooms != '')) {
+                for (let i = 0; i < chachedData.extra_bedrooms.length; i++) {   
+                    $('.bed_bath_container').append(
+                        `
+                        <div class="extra_bedroom_bathroom">
+                            <span>Bedroom : ${chachedData.extra_bedrooms[i]} </span>
+                            <span>Bathroom : ${chachedData.extra_bathrooms[i]} </span>
+                        </div>
+                        `                                
+                    ); 
+                }
+                $('.bed_bath_container').show();
+            }
+            $('.full-access').show();
+            $('#rate_container_city').text(chachedData.city)
+            $('#rate_container_state').text(chachedData.state)
+            $('#property_details').hide();
+            $('#property-api-data').show();
+            $.each( chachedData, function( key, value ) {
+                if(value == '' && chachedData.user_current_plan_name == 'basic'){
+                    $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                }else{
+                    $("#property-api-data span#"+key).html(value);
+                }
+            });
+            $('#property_id').val(chachedData.last_id);
+        } else {
+            $('#downpayment').val(msg.proDownpayment)
+            $('#closing_cost').val(msg.proEstClosingCost)
+            $('#interest_rate').val(msg.proInterestRate)
+            $('#loanterm').val(msg.proLoanTerm)
+            $('#taxes').val(msg.proTax)
+            $('#insurance').val(msg.proHomeIns)
+            $('#bedrooms').val(msg.proBedrooms)
+            $('#bathrooms').val(msg.proBath)
+            $('#city').val(msg.city)
+            $('#state').val(msg.state)
+            $('#city').text(msg.city)
+            $('#state').text(msg.state)
+            if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
+                $('#bedrooms, #bathrooms, #unit').val('');
+            }else{
+                $('#unit').prop('readonly', true).css('cursor','not-allowed');
+            }
         }
+
     } else {
         $('#pills-tabContent').hide();
         $(".rent-property").removeClass("d-none");
@@ -418,9 +458,10 @@ chrome.runtime.onMessage.addListener(async (msg,response) => {
 })
 
 
-$('#evalute_btn').click(function(){
+$('#evalute_btn').click(async function(){
+
     $(this).css('pointer-events','none');
-    // $(this).attr('disabled', true);
+
     $('.prop-data').each(function(idx,val){
         $(val).text('')
     })
@@ -456,6 +497,11 @@ $('#evalute_btn').click(function(){
                 $('.response_errors').html('');
                 $('.response_errors').html(`${response.message}`);
             }else if(response.status == "success"){
+                
+                chrome.tabs.query({active: true, currentWindow: true}, async (tabs) => {
+                    setChromeStorage('currentURL', tabs[0].url);
+                    setChromeStorage('evaluatedData', response.data);
+                });
                 // if(response.data.user_current_plan_name != 'basic'){
                     $('.bed_bath_container').html('');
                     $('.recall-api-disabled').removeAttr('disabled');
@@ -515,7 +561,6 @@ $('#property_history_btn').on('click', async function () {
     let storedUserData = await getChromeStorage(["userData"]);
     let userData = JSON.parse(storedUserData.userData);
     var result = await fetchDetails(API_URL + "getproperty-history/" + userData.id);
-    console.log(result.data.user_plan_name);
     $(".property-history-wrapper").html('');
 
     if (result.data.user_plan_name == 'basic') {
@@ -707,20 +752,20 @@ $("#unit").change(function() {
             $('.down_arrow').hide();
             
              var append_bed_bath = '';
-             console.log(userCurrentPlan);
+             
              for(var i = 2; i <= totalUnit; i++){
                  append_bed_bath += `<div class="details-container">
                                          <div class="bedrooms">
                                              <span>Bedrooms<em>*</em></span>
                                              <div>
-                                                 <input type="number" class="form-control req-input extra-bedrooms" name="extra_bedrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
+                                                 <input type="number" class="form-control req-input extra-bedrooms" placeholder="Number of Bedroom" name="extra_bedrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                                  <div class="error-message">Please enter number of bedrooms</div>
                                              </div>
                                          </div>
                                          <div class="bathrooms">
                                              <span>Bathrooms<em>*</em></span>
                                              <div>
-                                                 <input type="number" class="form-control req-input extra-bathrooms" name="extra_bathrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
+                                                 <input type="number" class="form-control req-input extra-bathrooms" placeholder="Number of Bathroom" name="extra_bathrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                                  <div class="error-message">Please enter number of bathrooms</div>                                            
                                              </div>
                                          </div>
@@ -735,12 +780,14 @@ $("#unit").change(function() {
 });
 
 $("#bedrooms, #bathrooms").change(function (){
-    if($(this).attr('name') == 'bedrooms'){
-        $("#extra_bed_bath .extra-bedrooms").val($(this).val());
-    }
-
-    if($(this).attr('name') == 'bathrooms'){
-        $("#extra_bed_bath .extra-bathrooms").val($(this).val());
+    if (userCurrentPlan == 'basic') {
+        if($(this).attr('name') == 'bedrooms'){
+            $("#extra_bed_bath .extra-bedrooms").val($(this).val());
+        }
+    
+        if($(this).attr('name') == 'bathrooms'){
+            $("#extra_bed_bath .extra-bathrooms").val($(this).val());
+        }
     }
 });
 
