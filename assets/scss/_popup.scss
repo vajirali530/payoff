@@ -361,19 +361,21 @@
                             
                             &::-webkit-scrollbar {
                                 height: 10px;
+                                width: 100%;
                             }
 
                             .extra_bedroom_bathroom {
                                 margin: 10px;
+                                padding: 5px;
                                 background-color: #ffffff;
                                 border-radius: 6px;
                                 box-shadow: 0px 0px 6px rgb(0 0 0 / 16%);
                                 height: 83px;
-                                min-width: 175px;
+                                min-width: 200px;
                                 display: flex;
-                                align-items: center;
                                 justify-content: center;
                                 flex-direction: column;
+                                cursor: pointer;
                             }
                         }
                         
@@ -652,6 +654,11 @@
 
 .error-message{
     @include error;
+}
+
+.active_box {
+    background-color: rgb(55, 78, 180)!important;
+    color: white
 }
 
 #property_details em {
