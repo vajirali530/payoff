@@ -649,6 +649,9 @@ $(document).on('click','.property-history-btn .btn',function(){
             $('.bed_bath_container').show();
         }
     }
+    
+    $('.api-data .recall-api').css('backgroundColor','white')
+    $('.api-data .recall-api span').css('color','#241F1F')
 
     $.each(pro_detail, function (key, value) {
       $("#property-api-data span#" + key).text(value);
@@ -728,7 +731,7 @@ $('.recall-api').click(async function(){
         method: "POST",
         data: {user_id : userInfoObj.id, property_id : proid, clicktype : clicktype, rentValue : rentValue, active_unit: active_unit},
         success:function (response){
-
+            
             if(response.data.user_current_plan_name != 'basic'){
                 $('.recall-api-disabled').removeAttr('disabled');
             }
