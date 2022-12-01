@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-// const BASE_URL = "https://credifana.com/";   
-const BASE_URL = "http://192.168.1.13:8000/";   
+const BASE_URL = "https://credifana.com/";   
+// const BASE_URL = "http://192.168.1.13:8000/";   
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -854,9 +854,9 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
         $('.extra_bedroom_bathroom').removeClass('active_box');
         $('.recall-api').attr('disabled', true);
         $('.extra_bedroom_bathroom').attr('disabled', true);
+        $('.recall-api').css('backgroundColor','#748EFF');
         $('.api-data .recall-api').css('backgroundColor','white');
         $('.api-data .recall-api span').css('color','#241F1F');
-        $('.recall-api').css('backgroundColor','#748EFF');
         $(this).addClass('active_box');
 
         const userInfo = await getChromeStorage(["userData"]);
