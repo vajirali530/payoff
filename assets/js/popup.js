@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "https://credifana.com/";   
-// const BASE_URL = "http://192.168.1.13:8000/";   
+// const BASE_URL = "https://credifana.com/";   
+const BASE_URL = "http://192.168.1.13:8000/";   
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -325,7 +325,7 @@ const getDataFromWebsite = async (msg, response)=>{
             $('#property-api-data').show();
             $.each( defaultData, function( key, value ) {
                 if(value == '' && defaultData.user_current_plan_name == 'basic'){
-                    $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                    $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+finaluserData.token+'" target="blank">subscribe</a>');
                 }else{
                     $("#property-api-data span#"+key).html(value);
                 }
@@ -571,7 +571,7 @@ $('#property_history_btn').on('click', async function () {
     $(".property-history-wrapper").html('');
 
     if (result.data.user_plan_name == 'basic') {
-        $('.property-history-wrapper').html('<span><a href="'+BILLING_URL+'" target="blank">Subscribe To Access Property History</a></span>');  
+        $('.property-history-wrapper').html('<span><a href="'+BILLING_URL+'?token='+userData.token+'" target="blank">Subscribe To Access Property History</a></span>');  
     } else {
         if(result.data.proHistoryData.length == 0){
             $(".property-history-wrapper").html('<h4>No property found.</h4>');
