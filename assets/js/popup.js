@@ -319,6 +319,7 @@ const getDataFromWebsite = async (msg, response)=>{
                 $('.bed_bath_container').show();
             }
             defaultData.user_current_plan_name == 'basic' ? $('.full-access').show() : $('.full-access').hide();
+
             $('#rate_container_city').text(defaultData.city)
             $('#rate_container_state').text(defaultData.state)
             $('#property_details').hide();
@@ -481,6 +482,9 @@ $('#evalute_btn').click(async function(){
 
     $('.evaluteSpinner').show();
     let formData = new FormData($('#property_details')[0]);
+    let user_info = await getChromeStorage(['userData']);
+    user_info = JSON.parse(user_info.userData);
+
     $.ajax({
         type: "post",
         url: API_URL+"getproperty-details",
@@ -535,7 +539,7 @@ $('#evalute_btn').click(async function(){
                 $('#property-api-data').show();
                 $.each( default_data, function( key, value ) {
                     if(value == '' && default_data.user_current_plan_name == 'basic'){
-                        $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                        $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+user_info.token+'" target="blank">subscribe</a>');
                     }else{
                         $("#property-api-data span#"+key).html(value);
                     }
@@ -883,7 +887,7 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
                 if(response.status == 'success'){
                     $.each(response.data, function (key, value) {
                         if(value == '' && response.data.user_current_plan_name == 'basic'){
-                            $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                            $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+userInfoObj.token+'" target="blank">subscribe</a>');
                         } else {
                             $("#property-api-data span#" + key).text(value);
                         }
