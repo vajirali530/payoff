@@ -7,7 +7,7 @@ const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
 const TERMS_AND_CONDITION_URL = BASE_URL+"terms-of-use/";
 const FORGOTPASSWORD_URL = BASE_URL+"forgot-password/";
-
+var site_data, property_data = '';
 
 var userCurrentPlan = '';
 
@@ -318,7 +318,7 @@ const getDataFromWebsite = async (msg, response)=>{
                 }
                 $('.bed_bath_container').show();
             }
-            $('.full-access').show();
+            defaultData.user_current_plan_name == 'basic' ? $('.full-access').show() : $('.full-access').hide();
             $('#rate_container_city').text(defaultData.city)
             $('#rate_container_state').text(defaultData.state)
             $('#property_details').hide();
@@ -331,24 +331,24 @@ const getDataFromWebsite = async (msg, response)=>{
                 }
             });
             $('#property_id').val(chachedData.last_id);
-        } else {
-            $('#downpayment').val(msg.proDownpayment)
-            $('#closing_cost').val(msg.proEstClosingCost)
-            $('#interest_rate').val(msg.proInterestRate)
-            $('#loanterm').val(msg.proLoanTerm)
-            $('#taxes').val(msg.proTax)
-            $('#insurance').val(msg.proHomeIns)
-            $('#bedrooms').val(msg.proBedrooms)
-            $('#bathrooms').val(msg.proBath)
-            $('#city').val(msg.city)
-            $('#state').val(msg.state)
-            $('#city').text(msg.city)
-            $('#state').text(msg.state)
-            if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
-                $('#bedrooms, #bathrooms, #unit').val('');
-            }else{
-                $('#unit').prop('readonly', true).css('cursor','not-allowed');
-            }
+        }
+
+        $('#downpayment').val(msg.proDownpayment)
+        $('#closing_cost').val(msg.proEstClosingCost)
+        $('#interest_rate').val(msg.proInterestRate)
+        $('#loanterm').val(msg.proLoanTerm)
+        $('#taxes').val(msg.proTax)
+        $('#insurance').val(msg.proHomeIns)
+        $('#bedrooms').val(msg.proBedrooms)
+        $('#bathrooms').val(msg.proBath)
+        $('#city').val(msg.city)
+        $('#state').val(msg.state)
+        $('#city').text(msg.city)
+        $('#state').text(msg.state)
+        if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
+            $('#bedrooms, #bathrooms, #unit').val('');
+        }else{
+            $('#unit').prop('readonly', true).css('cursor','not-allowed');
         }
 
     } else {
@@ -446,6 +446,8 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  */
 chrome.runtime.onMessage.addListener(async (msg,response) => {
     console.log('Content Script recieve data', msg, response);
+    property_data = msg;
+    site_data = response;
     const loginInfo = await getChromeStorage(["userData"]);
     if (loginInfo.userData && typeof loginInfo.userData != 'undefined' ) {
         const loginInfoObj = JSON.parse(loginInfo.userData)
@@ -508,8 +510,8 @@ $('#evalute_btn').click(async function(){
                     if ((default_data.extra_bed_bath) && (default_data.extra_bed_bath.length > 1)) {
                         for (let i = 0; i < default_data.extra_bed_bath.length; i++) { 
                             let currBed = default_data.extra_bed_bath[i].split('_')[0];  
-                            let currBath = default_data.extra_bed_bath[i].split('_')[1];  
-                            let avgPrice = response.data[Object.keys(response.data)[i]].average_rent;
+                            let currBath = default_data.extra_bed_bath[i].split('_')[1];
+                            let avgPrice = response.data[currBed+'_'+currBath].average_rent;
 
                             $('.bed_bath_container').append(
                                 `
@@ -525,7 +527,7 @@ $('#evalute_btn').click(async function(){
                         $('.bed_bath_container').show();
                     }
                 // }else{
-                    $('.full-access').show();
+                    default_data.user_current_plan_name == 'basic' ? $('.full-access').show() : $('.full-access').hide();
                 // }
                 $('#rate_container_city').text(default_data.city)
                 $('#rate_container_state').text(default_data.state)
@@ -557,8 +559,7 @@ $('.back-btn .btn').click(async function(){
     $(".property-img-price img").attr("src", finalpropertyData.proImg);
     $("#property_price").html(finalpropertyData.proPrice);
     $(".property-name span").text(finalpropertyData.proTitle);
-    // $(".property-city-state #city").text(finalpropertyData.city);
-    // $(".property-city-state #state").text(finalpropertyData.state);
+    // getDataFromWebsite(property_data, site_data);
 
 })
 
