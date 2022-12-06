@@ -2,12 +2,12 @@ import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
 // const BASE_URL = "https://credifana.com/";   
 const BASE_URL = "http://192.168.1.13:8000/";   
-const API_URL = BASE_URL+"api/";   
+const API_URL = BASE_URL+"api/";
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
 const TERMS_AND_CONDITION_URL = BASE_URL+"terms-of-use/";
 const FORGOTPASSWORD_URL = BASE_URL+"forgot-password/";
-
+var site_data, property_data = '';
 
 var userCurrentPlan = '';
 
@@ -248,8 +248,7 @@ const determineExtensionProcess = async (userData) => {
     $('.credifanaLogin').show()
 });
 
-
-  // get datafromwebsite
+// get datafromwebsite
 const getDataFromWebsite = async (msg, response)=>{
     let currentSiteName = '';
     let currentSiteUrl=''
@@ -300,7 +299,13 @@ const getDataFromWebsite = async (msg, response)=>{
         if(cachedURL == currentSiteUrl && Object.keys(chachedData).length > 0) {
             let defaultData = chachedData[Object.keys(chachedData)[0]];
             $('.bed_bath_container').html('');
-            $('.recall-api-disabled').removeAttr('disabled');
+            if(defaultData.user_current_plan_name != 'basic'){
+                $('.recall-api-disabled').removeAttr('disabled').attr('title', 'Subscribe To Access Full features');
+            } else {
+                $('.recall-api-disabled').parents('.me-2').attr('title', 'Subscribe To Access Full features');
+            }
+            $('.recall-api-default').removeAttr('disabled');
+            
             if ((defaultData.extra_bed_bath) && (defaultData.extra_bed_bath.length > 1)) {
                 for (let i = 0; i < defaultData.extra_bed_bath.length; i++) { 
                     let currBed = defaultData.extra_bed_bath[i].split('_')[0];
@@ -312,43 +317,45 @@ const getDataFromWebsite = async (msg, response)=>{
                             <span>Average Rent : ${avgPrice} </span>
                             <span>Bedroom : ${currBed} </span>
                             <span>Bathroom : ${currBath} </span>
+                            <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
                         </div>
                         `                                
                     ); 
                 }
                 $('.bed_bath_container').show();
             }
-            $('.full-access').show();
+            defaultData.user_current_plan_name == 'basic' ? $('.full-access').show() : $('.full-access').hide();
+
             $('#rate_container_city').text(defaultData.city)
             $('#rate_container_state').text(defaultData.state)
             $('#property_details').hide();
             $('#property-api-data').show();
             $.each( defaultData, function( key, value ) {
                 if(value == '' && defaultData.user_current_plan_name == 'basic'){
-                    $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                    $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+finaluserData.token+'" target="blank">subscribe</a>');
                 }else{
-                    $("#property-api-data span#"+key).html(value);
+                    $("#property-api-data span#"+key).html(value != '' ? value : '-');
                 }
             });
             $('#property_id').val(chachedData.last_id);
-        } else {
-            $('#downpayment').val(msg.proDownpayment)
-            $('#closing_cost').val(msg.proEstClosingCost)
-            $('#interest_rate').val(msg.proInterestRate)
-            $('#loanterm').val(msg.proLoanTerm)
-            $('#taxes').val(msg.proTax)
-            $('#insurance').val(msg.proHomeIns)
-            $('#bedrooms').val(msg.proBedrooms)
-            $('#bathrooms').val(msg.proBath)
-            $('#city').val(msg.city)
-            $('#state').val(msg.state)
-            $('#city').text(msg.city)
-            $('#state').text(msg.state)
-            if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
-                $('#bedrooms, #bathrooms, #unit').val('');
-            }else{
-                $('#unit').prop('readonly', true).css('cursor','not-allowed');
-            }
+        }
+
+        $('#downpayment').val(msg.proDownpayment)
+        $('#closing_cost').val(msg.proEstClosingCost)
+        $('#interest_rate').val(msg.proInterestRate)
+        $('#loanterm').val(msg.proLoanTerm)
+        $('#taxes').val(msg.proTax)
+        $('#insurance').val(msg.proHomeIns)
+        $('#bedrooms').val(msg.proBedrooms)
+        $('#bathrooms').val(msg.proBath)
+        $('#city').val(msg.city)
+        $('#state').val(msg.state)
+        $('#city').text(msg.city)
+        $('#state').text(msg.state)
+        if(msg.proType == 'multi family' || msg.proType == 'Multi-Family'){
+            $('#bedrooms, #bathrooms, #unit').val('');
+        }else{
+            $('#unit').prop('readonly', true).css('cursor','not-allowed');
         }
 
     } else {
@@ -357,9 +364,7 @@ const getDataFromWebsite = async (msg, response)=>{
     }
 }
 
-
 //get plan details
-
 $("#plan_details_btn").on("click", async function () {
     $('#planSpinner').show();
     let userDataCollection = await getChromeStorage(["userData"]);
@@ -385,10 +390,9 @@ $("#plan_details_btn").on("click", async function () {
       $('#realtorPlanDetailContainer .realtorPlan .realtorPlanErrors').html(result.message)
       $('.cancelPlan').addClass('d-none')  
     }
-  });
+});
 
-
-  /**
+/**
  * Getting credit card detials from database
  * And setting user email to the database
  * @param {string} url
@@ -415,7 +419,6 @@ const fetchDetails = async (url, postData=false) => {
       return false;
     }
 };
-
 
 /**
  * Send message to contentScript.js
@@ -446,6 +449,8 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  */
 chrome.runtime.onMessage.addListener(async (msg,response) => {
     console.log('Content Script recieve data', msg, response);
+    property_data = msg;
+    site_data = response;
     const loginInfo = await getChromeStorage(["userData"]);
     if (loginInfo.userData && typeof loginInfo.userData != 'undefined' ) {
         const loginInfoObj = JSON.parse(loginInfo.userData)
@@ -454,7 +459,6 @@ chrome.runtime.onMessage.addListener(async (msg,response) => {
         }
     }
 })
-
 
 $('#evalute_btn').click(async function(){
 
@@ -479,6 +483,9 @@ $('#evalute_btn').click(async function(){
 
     $('.evaluteSpinner').show();
     let formData = new FormData($('#property_details')[0]);
+    let user_info = await getChromeStorage(['userData']);
+    user_info = JSON.parse(user_info.userData);
+
     $.ajax({
         type: "post",
         url: API_URL+"getproperty-details",
@@ -508,16 +515,16 @@ $('#evalute_btn').click(async function(){
                     if ((default_data.extra_bed_bath) && (default_data.extra_bed_bath.length > 1)) {
                         for (let i = 0; i < default_data.extra_bed_bath.length; i++) { 
                             let currBed = default_data.extra_bed_bath[i].split('_')[0];  
-                            let currBath = default_data.extra_bed_bath[i].split('_')[1];  
-                            let avgPrice = response.data[Object.keys(response.data)[i]].average_rent;
+                            let currBath = default_data.extra_bed_bath[i].split('_')[1];
+                            let avgPrice = response.data[currBed+'_'+currBath].average_rent;
 
                             $('.bed_bath_container').append(
                                 `
                                 <div class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
-
                                     <span>Average Price : ${avgPrice} </span>
                                     <span>Bedroom : ${currBed} </span>
                                     <span>Bathroom : ${currBath} </span>
+                                    <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
                                 </div>
                                 `                                
                             ); 
@@ -525,7 +532,7 @@ $('#evalute_btn').click(async function(){
                         $('.bed_bath_container').show();
                     }
                 // }else{
-                    $('.full-access').show();
+                    default_data.user_current_plan_name == 'basic' ? $('.full-access').show() : $('.full-access').hide();
                 // }
                 $('#rate_container_city').text(default_data.city)
                 $('#rate_container_state').text(default_data.state)
@@ -533,9 +540,9 @@ $('#evalute_btn').click(async function(){
                 $('#property-api-data').show();
                 $.each( default_data, function( key, value ) {
                     if(value == '' && default_data.user_current_plan_name == 'basic'){
-                        $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                        $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+user_info.token+'" target="blank">subscribe</a>');
                     }else{
-                        $("#property-api-data span#"+key).html(value);
+                        $("#property-api-data span#"+key).html(value != '' ? value : '-');
                     }
                 });
                 $('#property_id').val(response.data.last_id);
@@ -543,8 +550,6 @@ $('#evalute_btn').click(async function(){
         },
     });
 });
-
-
 
 $('.back-btn .btn').click(async function(){
     $('#property-api-data').hide();
@@ -557,8 +562,7 @@ $('.back-btn .btn').click(async function(){
     $(".property-img-price img").attr("src", finalpropertyData.proImg);
     $("#property_price").html(finalpropertyData.proPrice);
     $(".property-name span").text(finalpropertyData.proTitle);
-    // $(".property-city-state #city").text(finalpropertyData.city);
-    // $(".property-city-state #state").text(finalpropertyData.state);
+    // getDataFromWebsite(property_data, site_data);
 
 })
 
@@ -570,7 +574,7 @@ $('#property_history_btn').on('click', async function () {
     $(".property-history-wrapper").html('');
 
     if (result.data.user_plan_name == 'basic') {
-        $('.property-history-wrapper').html('<span><a href="'+BILLING_URL+'" target="blank">Subscribe To Access Property History</a></span>');  
+        $('.property-history-wrapper').html('<span><a href="'+BILLING_URL+'?token='+userData.token+'" target="blank">Subscribe To Access Property History</a></span>');  
     } else {
         if(result.data.proHistoryData.length == 0){
             $(".property-history-wrapper").html('<h4>No property found.</h4>');
@@ -629,6 +633,9 @@ $(document).on('click','.property-history-btn .btn',function(){
     $("#rate_container_state").text(pro_detail["state"]);
     $("#property_id").val(property_id);
     $('.bed_bath_container').html('');
+    $('#rent_increase_rate').text('');
+    $('#unit_count_average, #unit_count_highest').text(1);
+    $("#property-api-data span#average_rent").siblings('#average_rent_text').css('text-decoration', 'none').siblings('#increase_rent_text').hide();
 
     if (pro_detail.user_current_plan_name != 'basic') {
         if (pro_detail.extra_bed_bath && (pro_detail.extra_bed_bath.length > 1)) {
@@ -643,6 +650,7 @@ $(document).on('click','.property-history-btn .btn',function(){
                         <span>Average Rent : ${avgPrice} </span>
                         <span>Bedroom : ${currBed} </span>
                         <span>Bathroom : ${currBath} </span>
+                        <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
                     </div>
                     `                                
                 ); 
@@ -709,15 +717,17 @@ $('.req-input').blur(function () {
 //   return new bootstrap.Tooltip(tooltipTriggerEl)
 // })
 
-
 $('.recall-api').click(async function(){
     $('.recall-api').css('backgroundColor','#748EFF')
     $('.api-data .recall-api').css('backgroundColor','white')
-    $('.api-data .recall-api span').css('color','#241F1F')
+    $('.api-data .recall-api span').css('color','#241F1F');
+    $('#rent_increase_rate').css('color','green');
+
     if($(this).parents('div').hasClass("api-highest-rent") || $(this).parents('div').hasClass("api-average-rent")){
         $(this).find('span').css('color','white');
     }
-    $(this).css('backgroundColor','#374eb4')
+    $(this).css('backgroundColor','#374eb4');
+
     $('.recall-api').prop('disabled', true);
     $(".rate-error").html("");
 
@@ -733,7 +743,6 @@ $('.recall-api').click(async function(){
         method: "POST",
         data: {user_id : userInfoObj.id, property_id : proid, clicktype : clicktype, rentValue : rentValue, active_unit: active_unit},
         success:function (response){
-            
             if(response.data.user_current_plan_name != 'basic'){
                 $('.recall-api-disabled').removeAttr('disabled');
             }
@@ -746,10 +755,27 @@ $('.recall-api').click(async function(){
                     if(value == '' && response.data.user_current_plan_name == 'basic'){
                         $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
                     } else {
+                        if (clicktype == 'options_btn') {
+                            if (key == 'average_rent') {
+                                $("#property-api-data span#" + key).siblings('#average_rent_text').css('text-decoration', 'line-through').siblings('#increase_rent_text').css('display', 'inline-block');
+                            }
+                        } else {
+                            if (key == 'average_rent') {
+                                $("#property-api-data span#" + key).siblings('#average_rent_text').css('text-decoration', 'none').siblings('#increase_rent_text').hide();
+                            }
+                        }
+
                         $("#property-api-data span#" + key).text(value);
                     }
                 });
                 $("#property_id").val(response.data.last_id);
+                if (clicktype == 'options_btn')  {
+                    $('#select_average_highest span').show();
+                    $('#rent_increase_rate').text(rentValue + '%+');
+                } else {
+                    $('#rent_increase_rate').text('');
+                    $('#select_average_highest span').hide();
+                }
             }else{
                $('.rate-error').show().html(response.message);
             }
@@ -771,14 +797,14 @@ $("#unit").change(function() {
              for(var i = 2; i <= totalUnit; i++){
                  append_bed_bath += `<div class="details-container">
                                          <div class="bedrooms">
-                                             <span>Bedrooms<em>*</em></span>
+                                             <span>Unit ${i} Bedrooms<em>*</em></span>
                                              <div>
                                                  <input type="number" class="form-control req-input extra-bedrooms" placeholder="Number of Bedroom" name="extra_bedrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                                  <div class="error-message">Please enter number of bedrooms</div>
                                              </div>
                                          </div>
                                          <div class="bathrooms">
-                                             <span>Bathrooms<em>*</em></span>
+                                             <span>Unit ${i} Bathrooms<em>*</em></span>
                                              <div>
                                                  <input type="number" class="form-control req-input extra-bathrooms" placeholder="Number of Bathroom" name="extra_bathrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                                  <div class="error-message">Please enter number of bathrooms</div>                                            
@@ -786,6 +812,8 @@ $("#unit").change(function() {
                                          </div>
                                      </div>`;
              }
+             
+             userCurrentPlan == '' || userCurrentPlan == 'basic' ?  $('#subscribe_link .full-access').show() : $('#subscribe_link .full-access').hide() ;
              $("#extra_bed_bath").append(append_bed_bath).show();
         } else {
             $('.up_arrow').hide();
@@ -847,7 +875,6 @@ $(document).on('keyup', async function (e) {
     }
 });
 
-
 $(document).on('click', '.extra_bedroom_bathroom', async function () {  
     if (!$(this).hasClass('active_box')) {
         
@@ -858,6 +885,8 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
         $('.api-data .recall-api').css('backgroundColor','white');
         $('.api-data .recall-api span').css('color','#241F1F');
         $(this).addClass('active_box');
+        $('#select_average_highest span').hide();
+        let unitValue = $(this).find('.unit_value').text();
 
         const userInfo = await getChromeStorage(["userData"]);
         const userInfoObj = JSON.parse(userInfo.userData);
@@ -880,19 +909,22 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
                 $(".prop-data").text("");
                 
                 if(response.status == 'success'){
+                    $("#property-api-data span#average_rent").siblings('#average_rent_text').css('text-decoration', 'none').siblings('#increase_rent_text').hide();
+
                     $.each(response.data, function (key, value) {
                         if(value == '' && response.data.user_current_plan_name == 'basic'){
-                            $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
+                            $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+userInfoObj.token+'" target="blank">subscribe</a>');
                         } else {
-                            $("#property-api-data span#" + key).text(value);
+                            $("#property-api-data span#"+key).html(value != '' ? value : '-');
                         }
                     });
                     $("#property_id").val(response.data.last_id);
-                    
+                    $('#rent_increase_rate').text('');
                     $('.recall-api').attr('disabled', false);
+                    $('#unit_count_average, #unit_count_highest').text(unitValue);
                     $('.extra_bedroom_bathroom').attr('disabled', false);
                 }else{
-                $('.rate-error').show().html(response.message);
+                    $('.rate-error').show().html(response.message);
                 }
             },
         });        

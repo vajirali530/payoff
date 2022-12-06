@@ -370,7 +370,7 @@
                                 background-color: #ffffff;
                                 border-radius: 6px;
                                 box-shadow: 0px 0px 6px rgb(0 0 0 / 16%);
-                                height: 83px;
+                                height: 110px;
                                 min-width: 200px;
                                 display: flex;
                                 justify-content: center;
@@ -455,7 +455,7 @@
                                         width: 100%;
                                     }
                                     @include apiDataBlock;
-                                    span{
+                                    span, span#unit_count_highest, span#unit_count_average{
                                         &:first-child{
                                             @include apiDataBlockTitle;
                                             span{
@@ -651,6 +651,22 @@
         }
     }
 }
+#subscribe_link, #select_average_highest {
+    text-align: center;
+    margin-bottom: 16px;
+
+    .full-access, span {
+        display: none;
+        @include apiDataBlockTitle;
+        color: $LightSkyBlue;
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+}
+#details_container_with_arrow {
+    margin-bottom: 0!important;
+} 
 
 .error-message{
     @include error;

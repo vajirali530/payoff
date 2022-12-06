@@ -506,7 +506,7 @@
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
-  height: 83px;
+  height: 110px;
   min-width: 200px;
   display: flex;
   justify-content: center;
@@ -535,7 +535,7 @@
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
-  height: 83px;
+  height: 110px;
   width: 175px;
   display: flex;
   align-items: center;
@@ -591,7 +591,7 @@
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
-  height: 83px;
+  height: 110px;
   width: 175px;
   display: flex;
   align-items: center;
@@ -605,28 +605,28 @@
   height: 100%;
   width: 100%;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:first-child {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_highest:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_average:first-child {
   font-size: 14px;
   line-height: 16px;
   font-weight: normal;
   font-family: "Raleway", sans-serif;
   color: #241F1F;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:first-child span {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_highest:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_average:first-child span {
   font-size: 14px;
   line-height: 16px;
   font-weight: normal;
   font-family: "Raleway", sans-serif;
   color: #241F1F;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:last-child {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_highest:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_average:last-child {
   font-family: "Raleway", sans-serif;
   font-size: 22px;
   font-weight: 700;
   line-height: 29px;
   color: #241F1F;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:last-child a {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_highest:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .data-container div span#unit_count_average:last-child a {
   color: #241F1F;
   text-decoration: none;
 }
@@ -850,6 +850,27 @@
   font-weight: normal;
   font-family: "Raleway", sans-serif;
   color: #241F1F;
+}
+
+#subscribe_link, #select_average_highest {
+  text-align: center;
+  margin-bottom: 16px;
+}
+#subscribe_link .full-access, #subscribe_link span, #select_average_highest .full-access, #select_average_highest span {
+  display: none;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  font-family: "Raleway", sans-serif;
+  color: #241F1F;
+  color: #748EFF;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+#details_container_with_arrow {
+  margin-bottom: 0 !important;
 }
 
 .error-message {
