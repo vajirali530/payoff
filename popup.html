@@ -245,7 +245,7 @@
                             </div>
                             <div class="details-container" id="details_container_with_arrow">
                                 <div class="bedrooms">
-                                    <span>Bedrooms<em>*</em></span>
+                                    <span>Unit 1 Bedrooms<em>*</em></span>
                                     <div>
                                         <input type="number" class="form-control req-input" name="bedrooms" min="1" max="100" id="bedrooms" value="2">
                                         <div class="error-message">Please enter number of bedrooms</div>
@@ -253,7 +253,7 @@
                                 </div>
                                 <div class="bathrooms">
                                     <div class="d-flex justify-content-between align-items-center" id="bed_button_container">
-                                        <span>Bathrooms<em>*</em></span>
+                                        <span>Unit 1 Bathrooms<em>*</em></span>
                                         <div class="arrow_container">
                                             <div class="down_arrow" style="display: none;">
                                                 <svg data-testid="icon-chevron-down" viewBox="0 0 512 512" aria-hidden="true" focusable="false" style="display: inline-block; width: 1em; height: 1em; font-size: 15px; color: inherit; fill: currentcolor;"><path d="M70 128l-27 32 215 224 211-224-27-32-184 196z"></path></svg>
@@ -268,6 +268,9 @@
                                         <div class="error-message">Please enter number of bathrooms</div>                                            
                                     </div>
                                 </div>
+                            </div>
+                            <div id="subscribe_link">
+                                <a href="http://credifana.com/billing/" target="_blank" class="full-access">Subscribe to customize bedroom and bathroom</a>
                             </div>
                             <div id="extra_bed_bath"></div>
                             <div class="details-container">
@@ -315,7 +318,7 @@
                                 </div>
                             </div>
                             <div class="evalute-btn">
-                                <button type="button" class="btn" id="evalute_btn">EVALUATE</button>
+                                <button type="button" class="btn" id="evalute_btn">Rental Housing Data</button>
                             </div>
                         </form>
                         <div id="property-api-data">
@@ -339,7 +342,7 @@
                                         <button type="button" class="btn recall-api recall-api-default" data-rentoption="options_btn" data-rentvalue="5">5%</button>
                                     </div>
                                     <div class="me-2">
-                                        <button type="button" class="btn recall-api recall-api-disabled" data-rentoption="options_btn" data-rentvalue="10" disabled>10%</button>
+                                        <button type="button" class="btn recall-api recall-api-default" data-rentoption="options_btn" data-rentvalue="10">10%</button>
                                     </div>
                                     <div class="me-2">
                                         <button type="button" class="btn recall-api recall-api-disabled" data-rentoption="options_btn" data-rentvalue="15" disabled>15%</button>
@@ -359,15 +362,22 @@
                             </div>
                             <div class="error-message rate-error"></div>
                             <div class="api-data">
+                                <div id="select_average_highest">
+                                    <span>Select Average Rent or Highest Rent</span>
+                                </div>
                                 <div class="data-container">
                                     <div class="api-average-rent">
-                                        <button class="recall-api recall-api-default" data-rentoption="average_rent" data-rentvalue="0">
-                                            <span>Average Rent</span>
+                                        <button class="recall-api recall-api-default position-relative" data-rentoption="average_rent" data-rentvalue="0">
+                                            <span class="d-block">Unit <span id="unit_count_average">1</span></span>
+                                            <span id="rent_increase_rate" style="color: green!important; font-size: 18px; position: absolute; top: 0; right: 0; font-family: Raleway, sans-serif; font-weight: 700;"></span>
+                                            <span id="average_rent_text">Average Rent</span>
+                                            <span id="increase_rent_text" style="display: none;">Rent Increase</span>
                                             <span id="average_rent" class="prop-data"></span>
                                         </button>
                                     </div>
                                     <div class="api-highest-rent">
                                         <button class="recall-api recall-api-disabled" data-rentoption="highest_rent" data-rentvalue="0" disabled>
+                                            <span class="d-block">Unit <span id="unit_count_highest">1</span></span>
                                             <span>Highest Rent</span>
                                             <span id="highest_rent" class="highest-rent"></span>
                                         </button>
@@ -494,7 +504,7 @@
                                     </div>
                                 </div>
                                 <div class="back-btn">
-                                    <a href="http://192.168.1.13:8000/billing/" target="_blank" class="full-access">Subscribe for full access</a>
+                                    <a href="http://credifana.com/billing/" target="_blank" class="full-access">Subscribe for full access</a>
                                     <button type="button" class="btn">BACK</button>
                                 </div>
                             </div>
