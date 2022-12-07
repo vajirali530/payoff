@@ -465,7 +465,7 @@
                                         width: 100%;
                                     }
                                     @include apiDataBlock;
-                                    span, span#unit_count_highest, span#unit_count_average{
+                                    span, span#unit_count_highest, span.unit_count_average{
                                         &:first-child{
                                             @include apiDataBlockTitle;
                                             span{
@@ -690,10 +690,22 @@
 
 #property_details em {
     color: $DarkRed;
-  }
-  #property_details .error-message, .plan-cancel-status.error-message {
+}
+#property_details .error-message, .plan-cancel-status.error-message {
     display: none;
-  }
+}
+
+.data-container.multi_unit_container {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+    &::-webkit-scrollbar {
+        height: 10px;
+        width: 100%;
+    }
+}
 
 
 

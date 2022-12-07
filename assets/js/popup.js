@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
 // const BASE_URL = "https://credifana.com/";
-const BASE_URL = "http://192.168.1.13:8000/";   
+const BASE_URL = "http://192.168.1.156:8000/";   
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -301,6 +301,8 @@ const getDataFromWebsite = async (msg, response)=>{
         if(cachedURL == currentSiteUrl && Object.keys(chachedData).length > 0) {
             let defaultData = chachedData[Object.keys(chachedData)[0]];
             $('.bed_bath_container').html('');
+            $('.data-container.multi_unit_container').html('');
+
             if(defaultData.user_current_plan_name != 'basic'){
                 $('.recall-api-disabled').removeAttr('disabled');
             } else {
@@ -313,6 +315,17 @@ const getDataFromWebsite = async (msg, response)=>{
                     let currBed = defaultData.extra_bed_bath[i].split('_')[0];
                     let currBath = defaultData.extra_bed_bath[i].split('_')[1];
                     let avgPrice = chachedData[currBed+'_'+currBath].average_rent;
+
+                    $('.data-container.multi_unit_container').append(
+                        `
+                            <div style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">
+                                <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${currBed+'_'+currBath}">${i+1}</span></span>
+                                <span class="d-block" id="average_rent_text${currBed+'_'+currBath}">Average Rent</span>
+                                <span class="d-block" id="average_rent${currBed+'_'+currBath}" class="prop-data">${avgPrice}</span>
+                            </div>
+                        `
+                    );
+
                     $('.bed_bath_container').append(
                         `
                         <div class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
@@ -324,6 +337,7 @@ const getDataFromWebsite = async (msg, response)=>{
                         `                                
                     ); 
                 }
+                $('.data-container.multi_unit_container').show()
                 $('.bed_bath_container').show();
             }
 
@@ -524,7 +538,8 @@ $('#evalute_btn').click(async function(){
                 let default_data = response.data[Object.keys(response.data)[0]];
                 
                 $('.bed_bath_container').html('');
-                console.log(default_data)
+                $('.data-container.multi_unit_container').html('');
+
                 if(default_data.user_current_plan_name != 'basic'){
                     $('.recall-api-disabled').removeAttr('disabled');
                 } else {
@@ -537,6 +552,16 @@ $('#evalute_btn').click(async function(){
                         let currBath = default_data.extra_bed_bath[i].split('_')[1];
                         let avgPrice = response.data[currBed+'_'+currBath].average_rent;
 
+                        $('.data-container.multi_unit_container').append(
+                            `
+                                <div style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">
+                                    <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${currBed+'_'+currBath}">${i+1}</span></span>
+                                    <span class="d-block" id="average_rent_text${currBed+'_'+currBath}">Average Rent</span>
+                                    <span class="d-block" id="average_rent${currBed+'_'+currBath}" class="prop-data">${avgPrice}</span>
+                                </div>
+                            `
+                        );
+
                         $('.bed_bath_container').append(
                             `
                             <div class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
@@ -548,6 +573,7 @@ $('#evalute_btn').click(async function(){
                             `                                
                         ); 
                     }
+                    $('.data-container.multi_unit_container').show()
                     $('.bed_bath_container').show();
                 }
                 // }else{
@@ -651,6 +677,7 @@ $(document).on('click','.property-history-btn .btn',function(){
     $("#rate_container_state").text(pro_detail["state"]);
     $("#property_id").val(property_id);
     $('.bed_bath_container').html('');
+    $('.data-container.multi_unit_container').html('');
     $('#rent_increase_rate').text('');
     $('#unit_count_average, #unit_count_highest').text(1);
     $("#property-api-data span#average_rent").siblings('#average_rent_text').css('text-decoration', 'none').siblings('#increase_rent_text').hide();
@@ -661,13 +688,13 @@ $(document).on('click','.property-history-btn .btn',function(){
                 let currBed = pro_detail.extra_bed_bath[i].split('_')[0];
                 let currBath = pro_detail.extra_bed_bath[i].split('_')[1];
                 let avgPrice = property_details[currBed+'_'+currBath].average_rent;
+                
                 $('.data-container.multi_unit_container').append(
                     `
-                        <div class= "extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
-                            <span>Average Rent : ${avgPrice} </span>
-                            <span>Bedroom : ${currBed} </span>
-                            <span>Bathroom : ${currBath} </span>
-                            <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
+                        <div style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">
+                            <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${currBed+'_'+currBath}">${i+1}</span></span>
+                            <span class="d-block" id="average_rent_text${currBed+'_'+currBath}">Average Rent</span>
+                            <span class="d-block" id="average_rent${currBed+'_'+currBath}" class="prop-data">${avgPrice}</span>
                         </div>
                     `
                 );
@@ -682,7 +709,10 @@ $(document).on('click','.property-history-btn .btn',function(){
                     `                                
                 ); 
             }
+            $('.data-container.multi_unit_container').show()
             $('.bed_bath_container').show();
+        } else {
+            $('.data-container.multi_unit_container').hide()
         }
     }
     

@@ -619,28 +619,28 @@
   height: 100%;
   width: 100%;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_average:first-child {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:first-child {
   font-size: 14px;
   line-height: 16px;
   font-weight: normal;
   font-family: "Raleway", sans-serif;
   color: #241F1F;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_average:first-child span {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:first-child span {
   font-size: 14px;
   line-height: 16px;
   font-weight: normal;
   font-family: "Raleway", sans-serif;
   color: #241F1F;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_average:last-child {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:last-child {
   font-family: "Raleway", sans-serif;
   font-size: 22px;
   font-weight: 700;
   line-height: 29px;
   color: #241F1F;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_average:last-child a {
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:last-child a {
   color: #241F1F;
   text-decoration: none;
 }
@@ -907,6 +907,17 @@
 
 #property_details .error-message, .plan-cancel-status.error-message {
   display: none;
+}
+
+.data-container.multi_unit_container {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.data-container.multi_unit_container::-webkit-scrollbar {
+  height: 10px;
+  width: 100%;
 }
 
 /* / scrollbar style start here / */
