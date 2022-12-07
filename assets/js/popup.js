@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-// const BASE_URL = "https://credifana.com/";
-const BASE_URL = "http://192.168.1.156:8000/";   
+const BASE_URL = "https://credifana.com/";
+// const BASE_URL = "http://192.168.1.156:8000/";   
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -975,8 +975,11 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
             data: {user_id : userInfoObj.id, property_id : property_id, clicktype : clicktype, active_unit: active_unit},
             success:function (response){
 
+                $('.recall-api').attr('disabled', false);
                 if(response.data.user_current_plan_name != 'basic'){
                     $('.recall-api-disabled').removeAttr('disabled');
+                } else {
+                    $('.recall-api-disabled').attr('disabled', true);
                 }
                 $('.recall-api-default').removeAttr('disabled');
 
@@ -994,7 +997,6 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
                     });
                     $("#property_id").val(response.data.last_id);
                     $('#rent_increase_rate').text('');
-                    $('.recall-api').attr('disabled', false);
                     $('#unit_count_average, #unit_count_highest').text(unitValue);
                     $('.extra_bedroom_bathroom').attr('disabled', false);
                 }else{
