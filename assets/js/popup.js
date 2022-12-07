@@ -318,11 +318,15 @@ const getDataFromWebsite = async (msg, response)=>{
 
                     $('.data-container.multi_unit_container').append(
                         `
-                            <div style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">
-                                <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${currBed+'_'+currBath}">${i+1}</span></span>
-                                <span class="d-block" id="average_rent_text${currBed+'_'+currBath}">Average Rent</span>
-                                <span class="d-block" id="average_rent${currBed+'_'+currBath}" class="prop-data">${avgPrice}</span>
-                            </div>
+                        <div class="position-relative api-highest-rent unit_box" id="unit${i+1}_box" style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">                            
+                            <button class="recall-api recall-api-default border-0 " data-rentoption="average_rent" data-rentvalue="0">
+                                <span class="rent_increase_rate" id="rent_increase_rate${i+1}" style="color: green!important; font-size: 18px; position: absolute; top: 0; right: 0; font-family: Raleway, sans-serif; font-weight: 700;"></span>
+                                <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${i+1}">${i+1}</span></span>
+                                <span class="d-block" id="average_rent_text${i+1}">Average Rent</span>
+                                <span id="increase_rent_text${i+1}" style="display: none;">Rent Increase</span>
+                                <span class="d-block" id="average_rent${i+1}" class="prop-data">${avgPrice}</span>
+                            </button>
+                        </div>
                         `
                     );
 
@@ -338,6 +342,7 @@ const getDataFromWebsite = async (msg, response)=>{
                     ); 
                 }
                 $('.data-container.multi_unit_container').show()
+                $('#api-average-rent').hide();
                 $('.bed_bath_container').show();
             }
 
@@ -554,11 +559,15 @@ $('#evalute_btn').click(async function(){
 
                         $('.data-container.multi_unit_container').append(
                             `
-                                <div style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">
-                                    <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${currBed+'_'+currBath}">${i+1}</span></span>
-                                    <span class="d-block" id="average_rent_text${currBed+'_'+currBath}">Average Rent</span>
-                                    <span class="d-block" id="average_rent${currBed+'_'+currBath}" class="prop-data">${avgPrice}</span>
-                                </div>
+                            <div class="api-highest-rent position-relative unit_box" id="unit${i+1}_box" style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">                            
+                                <button class="recall-api recall-api-default border-0 " data-rentoption="average_rent" data-rentvalue="0">
+                                    <span class="rent_increase_rate" id="rent_increase_rate${i+1}" style="color: green!important; font-size: 18px; position: absolute; top: 0; right: 0; font-family: Raleway, sans-serif; font-weight: 700;"></span>
+                                    <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${i+1}">${i+1}</span></span>
+                                    <span class="d-block" id="average_rent_text${i+1}">Average Rent</span>
+                                    <span id="increase_rent_text${i+1}" style="display: none;">Rent Increase</span>
+                                    <span class="d-block" id="average_rent${i+1}" class="prop-data">${avgPrice}</span>
+                                </button>
+                            </div>
                             `
                         );
 
@@ -575,6 +584,8 @@ $('#evalute_btn').click(async function(){
                     }
                     $('.data-container.multi_unit_container').show()
                     $('.bed_bath_container').show();
+                    $('#api-average-rent').hide();
+
                 }
                 // }else{
                 // }
@@ -678,7 +689,7 @@ $(document).on('click','.property-history-btn .btn',function(){
     $("#property_id").val(property_id);
     $('.bed_bath_container').html('');
     $('.data-container.multi_unit_container').html('');
-    $('#rent_increase_rate').text('');
+    $('.rent_increase_rate').text('');
     $('#unit_count_average, #unit_count_highest').text(1);
     $("#property-api-data span#average_rent").siblings('#average_rent_text').css('text-decoration', 'none').siblings('#increase_rent_text').hide();
 
@@ -691,13 +702,18 @@ $(document).on('click','.property-history-btn .btn',function(){
                 
                 $('.data-container.multi_unit_container').append(
                     `
-                        <div style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">
-                            <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${currBed+'_'+currBath}">${i+1}</span></span>
-                            <span class="d-block" id="average_rent_text${currBed+'_'+currBath}">Average Rent</span>
-                            <span class="d-block" id="average_rent${currBed+'_'+currBath}" class="prop-data">${avgPrice}</span>
-                        </div>
+                    <div class="position-relative api-highest-rent unit_box" id="unit${i+1}_box" style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">                            
+                        <button class="recall-api recall-api-default border-0" data-rentoption="average_rent" data-rentvalue="0">
+                            <span class="rent_increase_rate" id="rent_increase_rate${i+1}" style="color: green!important; font-size: 18px; position: absolute; top: 0; right: 0; font-family: Raleway, sans-serif; font-weight: 700;"></span>
+                            <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${i+1}">${i+1}</span></span>
+                            <span class="d-block" id="average_rent_text${i+1}">Average Rent</span>
+                            <span id="increase_rent_text${i+1}" style="display: none;">Rent Increase</span>
+                            <span class="d-block" id="average_rent${i+1}" class="prop-data">${avgPrice}</span>
+                        </button>
+                    </div>
                     `
                 );
+
                 $('.bed_bath_container').append(
                     `
                     <div class= "extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
@@ -711,7 +727,9 @@ $(document).on('click','.property-history-btn .btn',function(){
             }
             $('.data-container.multi_unit_container').show()
             $('.bed_bath_container').show();
+            $('#api-average-rent').hide();
         } else {
+            $('#api-average-rent').show();
             $('.data-container.multi_unit_container').hide()
         }
     }
@@ -781,16 +799,16 @@ $('.req-input').blur(function () {
 //   return new bootstrap.Tooltip(tooltipTriggerEl)
 // })
 
-$('.recall-api').click(async function(){
+$(document).on('click', '.recall-api', async function(){
     $('.recall-api').css('backgroundColor','#748EFF')
     $('.api-data .recall-api').css('backgroundColor','white')
     $('.api-data .recall-api span').css('color','#241F1F');
-    $('#rent_increase_rate').css('color','green');
+    $('.rent_increase_rate').css('color','green');
 
     if($(this).parents('div').hasClass("api-highest-rent") || $(this).parents('div').hasClass("api-average-rent")){
         $(this).find('span').css('color','white');
     }
-    $(this).css('backgroundColor','#374eb4');
+    $(this).css('backgroundColor','#374eb4').css('borderRadius', '6px');
 
     $('.recall-api').prop('disabled', true);
     $(".rate-error").html("");
@@ -801,6 +819,7 @@ $('.recall-api').click(async function(){
     let active_unit = $('.active_box').data('bedbath');
     let clicktype = $(this).data('rentoption');
     let rentValue = $(this).data('rentvalue');
+    let unitValue = $.trim($('.active_box').find('.unit_value').text());
 
     $.ajax({
         url: API_URL + "property-regenerate-details",
@@ -819,25 +838,25 @@ $('.recall-api').click(async function(){
                     if(value == '' && response.data.user_current_plan_name == 'basic'){
                         $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'" target="blank">subscribe</a>');
                     } else {
-                        if (clicktype == 'options_btn') {
-                            if (key == 'average_rent') {
-                                $("#property-api-data span#" + key).siblings('#average_rent_text').css('text-decoration', 'line-through').siblings('#increase_rent_text').css('display', 'inline-block');
-                            }
+                        if (key == 'average_rent') {
+                            if (clicktype == 'options_btn') {
+                                $("#property-api-data span#" + key + unitValue).siblings(`#average_rent_text${unitValue}`).css('text-decoration', 'line-through').siblings('#increase_rent_text'+unitValue).css('display', 'inline-block');
+                            } else {
+                                $("#property-api-data span#" + key + unitValue).siblings(`#average_rent_text${unitValue}`).css('text-decoration', 'none').siblings('#increase_rent_text'+unitValue).hide();
+                            } 
+                            $("#property-api-data span#" + key + unitValue).text(value);
                         } else {
-                            if (key == 'average_rent') {
-                                $("#property-api-data span#" + key).siblings('#average_rent_text').css('text-decoration', 'none').siblings('#increase_rent_text').hide();
-                            }
+                            $("#property-api-data span#" + key).text(value);
                         }
 
-                        $("#property-api-data span#" + key).text(value);
                     }
                 });
                 $("#property_id").val(response.data.last_id);
                 if (clicktype == 'options_btn')  {
                     $('#select_average_highest span').show();
-                    $('#rent_increase_rate').text(rentValue + '%+');
+                    $(`#rent_increase_rate${unitValue}`).text(rentValue + '%+');
                 } else {
-                    $('#rent_increase_rate').text('');
+                    $(`#rent_increase_rate${unitValue}`).text('');
                     $('#select_average_highest span').hide();
                 }
             }else{
@@ -960,11 +979,10 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
         $('.api-data .recall-api span').css('color','#241F1F');
         $(this).addClass('active_box');
         $('#select_average_highest span').hide();
-        let unitValue = $(this).find('.unit_value').text();
+        let unitValue = $.trim($(this).find('.unit_value').text());
 
         const userInfo = await getChromeStorage(["userData"]);
         const userInfoObj = JSON.parse(userInfo.userData);
-
         let clicktype = $(this).data('clicktype');
         let active_unit = $(this).data('bedbath');
         let property_id = $('#property_id').val();
@@ -986,18 +1004,23 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
                 $(".prop-data").text("");
                 
                 if(response.status == 'success'){
-                    $("#property-api-data span#average_rent").siblings('#average_rent_text').css('text-decoration', 'none').siblings('#increase_rent_text').hide();
-
+                    $("#property-api-data span#average_rent"+unitValue).siblings('#average_rent_text'+unitValue).css('text-decoration', 'none').siblings('#increase_rent_text'+unitValue).hide();
+                    $('.unit_box').css('border', 'none');
                     $.each(response.data, function (key, value) {
                         if(value == '' && response.data.user_current_plan_name == 'basic'){
                             $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+userInfoObj.token+'" target="blank">subscribe</a>');
                         } else {
-                            $("#property-api-data span#"+key).html(value != '' ? value : '-');
+                            if (key == 'average_rent') {
+                                $("#property-api-data span#"+key+unitValue).html(value != '' ? value : '-');
+                            } else {
+                                $("#property-api-data span#"+key).html(value != '' ? value : '-');
+                            }
                         }
                     });
                     $("#property_id").val(response.data.last_id);
-                    $('#rent_increase_rate').text('');
-                    $('#unit_count_average, #unit_count_highest').text(unitValue);
+                    $('.rent_increase_rate').text('');
+                    $(`#unit${unitValue}_box`).css('border', '1px solid #748EFF');
+                    // $('#unit_count_average, #unit_count_highest').text(unitValue);
                     $('.extra_bedroom_bathroom').attr('disabled', false);
                 }else{
                     $('.rate-error').show().html(response.message);
