@@ -420,19 +420,29 @@
                         .increase-rate-container-heading{
                             height: auto;
                             width: auto;
+                            text-align: center;
                             display: block;
                             margin-bottom: 10px;
                             padding: 5px;
                             font-style: italic;
                             font-size: 14px;
                             font-family: "Raleway", sans-serif;
+                            h2 {
+                                @include propertyTitle;
+                                margin-top: 10px;
+                                margin-bottom: 0;
+                                font-size: 22px;
+                            }
                         }
                         .api-data{
-                            .data-container{
+                            .all-data-container{
                                 display: flex;
+                                flex-wrap: wrap;
                                 align-items: center;
                                 justify-content: space-between;
-                                margin-bottom: 10px;
+                                div {
+                                    margin-bottom: 10px;
+                                }
                                 .api-average-rent{
                                     button{
                                         border:1px solid #748EFF;
@@ -663,10 +673,11 @@
         margin-bottom: 5px;
         text-decoration: none;
     }
+
+    .full-access {
+        display: block;
+    }
 }
-#details_container_with_arrow {
-    margin-bottom: 0!important;
-} 
 
 .error-message{
     @include error;

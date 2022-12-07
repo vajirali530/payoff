@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "https://credifana.com/";
-// const BASE_URL = "http://192.168.1.13:8000/";   
+// const BASE_URL = "https://credifana.com/";
+const BASE_URL = "http://192.168.1.13:8000/";   
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -177,6 +177,8 @@ $('#registerBtn').on('click', function () {
                     });
                 }else if(response.status == "success"){
                     let userData = response.user_data;
+                    console.log(userData);
+                    return;
                     setChromeStorage("userData", JSON.stringify(userData));
                     $('.credifanaRegister').hide()
                     determineExtensionProcess()
@@ -300,7 +302,7 @@ const getDataFromWebsite = async (msg, response)=>{
             let defaultData = chachedData[Object.keys(chachedData)[0]];
             $('.bed_bath_container').html('');
             if(defaultData.user_current_plan_name != 'basic'){
-                $('.recall-api-disabled').removeAttr('disabled').attr('title', 'Subscribe To Access Full features');
+                $('.recall-api-disabled').removeAttr('disabled');
             } else {
                 $('.recall-api-disabled').parents('.me-2').attr('title', 'Subscribe To Access Full features');
             }
@@ -324,7 +326,6 @@ const getDataFromWebsite = async (msg, response)=>{
                 }
                 $('.bed_bath_container').show();
             }
-            defaultData.user_current_plan_name == 'basic' ? $('.full-access').show() : $('.full-access').hide();
 
             $('#rate_container_city').text(defaultData.city)
             $('#rate_container_state').text(defaultData.state)
@@ -373,7 +374,13 @@ $("#plan_details_btn").on("click", async function () {
     if(result.status == 'success'){
         $('#planSpinner').hide();
         $(".used-clicks").text(result.data.used_click);
-        $(".total-clicks").text(result.data.total_click);
+        if (result.data.plan.toLowerCase() == 'premium') {
+            $(".total-clicks").hide();
+            $(".unlimited-clicks").text('Unlimited Clicks').show();
+        } else {
+            $(".unlimited-clicks").hide();
+            $(".total-clicks").text(result.data.total_click).show();
+        }
         $(".active-plan").text(result.data.plan);
         $(".expired-date").text(result.data.plan_end);
         $(".change-plan").attr('href',result.data.change_plan);
@@ -381,8 +388,15 @@ $("#plan_details_btn").on("click", async function () {
             $(".plan-cancel-status").show();
         }
 
-        if(result.data.plan != 'basic' && result.data.is_cancelled == 0){
-            $("#cancel_btn_cntnr").removeClass('d-none');
+        if(result.data.plan.toLowerCase() != 'basic'){
+            if (result.data.is_cancelled == 0) {
+                $("#cancel_btn_cntnr").removeClass('d-none');
+            } else {
+                $(".expired-date").siblings('i').text('Expired At');
+            }
+        }
+        if (result.data.plan.toLowerCase() == 'basic') {
+            $("#cancel_btn_cntnr").addClass('d-none');
         }
     }else{
       $('.loader').addClass('d-none')
@@ -448,7 +462,7 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  * Getting the message from popup.js
  */
 chrome.runtime.onMessage.addListener(async (msg,response) => {
-    console.log('Content Script recieve data', msg, response);
+    // console.log('Content Script recieve data', msg, response);
     property_data = msg;
     site_data = response;
     const loginInfo = await getChromeStorage(["userData"]);
@@ -509,30 +523,34 @@ $('#evalute_btn').click(async function(){
                 });
                 let default_data = response.data[Object.keys(response.data)[0]];
                 
-                // if(response.data.user_current_plan_name != 'basic'){
-                    $('.bed_bath_container').html('');
+                $('.bed_bath_container').html('');
+                console.log(default_data)
+                if(default_data.user_current_plan_name != 'basic'){
                     $('.recall-api-disabled').removeAttr('disabled');
-                    if ((default_data.extra_bed_bath) && (default_data.extra_bed_bath.length > 1)) {
-                        for (let i = 0; i < default_data.extra_bed_bath.length; i++) { 
-                            let currBed = default_data.extra_bed_bath[i].split('_')[0];  
-                            let currBath = default_data.extra_bed_bath[i].split('_')[1];
-                            let avgPrice = response.data[currBed+'_'+currBath].average_rent;
+                } else {
+                    $('.recall-api-disabled').attr('disabled', true).parents('.me-2').attr('title', 'Subscribe To Access Full features');
+                }
+                
+                if ((default_data.extra_bed_bath) && (default_data.extra_bed_bath.length > 1)) {
+                    for (let i = 0; i < default_data.extra_bed_bath.length; i++) { 
+                        let currBed = default_data.extra_bed_bath[i].split('_')[0];  
+                        let currBath = default_data.extra_bed_bath[i].split('_')[1];
+                        let avgPrice = response.data[currBed+'_'+currBath].average_rent;
 
-                            $('.bed_bath_container').append(
-                                `
-                                <div class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
-                                    <span>Average Price : ${avgPrice} </span>
-                                    <span>Bedroom : ${currBed} </span>
-                                    <span>Bathroom : ${currBath} </span>
-                                    <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
-                                </div>
-                                `                                
-                            ); 
-                        }
-                        $('.bed_bath_container').show();
+                        $('.bed_bath_container').append(
+                            `
+                            <div class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
+                                <span>Average Price : ${avgPrice} </span>
+                                <span>Bedroom : ${currBed} </span>
+                                <span>Bathroom : ${currBath} </span>
+                                <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
+                            </div>
+                            `                                
+                        ); 
                     }
+                    $('.bed_bath_container').show();
+                }
                 // }else{
-                    default_data.user_current_plan_name == 'basic' ? $('.full-access').show() : $('.full-access').hide();
                 // }
                 $('#rate_container_city').text(default_data.city)
                 $('#rate_container_state').text(default_data.state)
@@ -643,7 +661,16 @@ $(document).on('click','.property-history-btn .btn',function(){
                 let currBed = pro_detail.extra_bed_bath[i].split('_')[0];
                 let currBath = pro_detail.extra_bed_bath[i].split('_')[1];
                 let avgPrice = property_details[currBed+'_'+currBath].average_rent;
-                 
+                $('.data-container.multi_unit_container').append(
+                    `
+                        <div class= "extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
+                            <span>Average Rent : ${avgPrice} </span>
+                            <span>Bedroom : ${currBed} </span>
+                            <span>Bathroom : ${currBath} </span>
+                            <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
+                        </div>
+                    `
+                );
                 $('.bed_bath_container').append(
                     `
                     <div class= "extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
@@ -681,10 +708,17 @@ $('#cancel_btn').on('click', async function () {
         success: function (response) {
             $('#cancel_spinner').addClass('d-none')
             $(".evaluteSpinner").hide();
+            $("#cancel_btn_cntnr").addClass('d-none');
             if (response.status == "success") {
-                $("#cancel_btn_cntnr").addClass('d-none');
                 $(".plan-cancel-status").show();
-                }
+            } 
+        },
+        error: function (response) {  
+            $('#cancel_spinner').addClass('d-none')
+            $(".evaluteSpinner").hide();
+            $("#cancel_btn_cntnr").addClass('d-none');
+            $(".expired-date").siblings('i').text('Expired At');
+            $(".plan-cancel-status").show();
         }
     });
 });
@@ -795,25 +829,35 @@ $("#unit").change(function() {
              var append_bed_bath = '';
              
              for(var i = 2; i <= totalUnit; i++){
-                 append_bed_bath += `<div class="details-container">
-                                         <div class="bedrooms">
-                                             <span>Unit ${i} Bedrooms<em>*</em></span>
-                                             <div>
-                                                 <input type="number" class="form-control req-input extra-bedrooms" placeholder="Number of Bedroom" name="extra_bedrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
-                                                 <div class="error-message">Please enter number of bedrooms</div>
-                                             </div>
-                                         </div>
-                                         <div class="bathrooms">
-                                             <span>Unit ${i} Bathrooms<em>*</em></span>
-                                             <div>
-                                                 <input type="number" class="form-control req-input extra-bathrooms" placeholder="Number of Bathroom" name="extra_bathrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
-                                                 <div class="error-message">Please enter number of bathrooms</div>                                            
-                                             </div>
-                                         </div>
-                                     </div>`;
+                append_bed_bath += `
+                    <div class="details-container">
+                        <div class="bedrooms">
+                            <span>Unit ${i} Bedrooms<em>*</em></span>
+                            <div>
+                                <input type="number" class="form-control req-input extra-bedrooms" placeholder="Number of Bedroom" name="extra_bedrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
+                                <div class="error-message">Please enter number of bedrooms</div>
+                            </div>
+                        </div>
+                        <div class="bathrooms">
+                            <span>Unit ${i} Bathrooms<em>*</em></span>
+                            <div>
+                                <input type="number" class="form-control req-input extra-bathrooms" placeholder="Number of Bathroom" name="extra_bathrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
+                                <div class="error-message">Please enter number of bathrooms</div>                                            
+                            </div>
+                        </div>
+                    </div>
+                    ${
+                        userCurrentPlan == '' || userCurrentPlan == 'basic' 
+                        ?
+                            `<div id="subscribe_link">
+                                <a href="http://credifana.com/billing/" target="_blank" class="full-access">Subscribe to customize bedroom and bathroom</a>
+                            </div>`
+                        : 
+                            ''
+                    }
+                `;
              }
              
-             userCurrentPlan == '' || userCurrentPlan == 'basic' ?  $('#subscribe_link .full-access').show() : $('#subscribe_link .full-access').hide() ;
              $("#extra_bed_bath").append(append_bed_bath).show();
         } else {
             $('.up_arrow').hide();

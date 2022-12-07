@@ -269,9 +269,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="subscribe_link">
-                                <a href="http://credifana.com/billing/" target="_blank" class="full-access">Subscribe to customize bedroom and bathroom</a>
-                            </div>
                             <div id="extra_bed_bath"></div>
                             <div class="details-container">
                                     <div class="property-tax">
@@ -318,7 +315,7 @@
                                 </div>
                             </div>
                             <div class="evalute-btn">
-                                <button type="button" class="btn" id="evalute_btn">Rental Housing Data</button>
+                                <button type="button" class="btn" id="evalute_btn">Evaluate Property</button>
                             </div>
                         </form>
                         <div id="property-api-data">
@@ -335,7 +332,7 @@
                             </div>
                             <div class="increase-rate-container">
                                 <div class="rate-container-heading">
-                                    <span>Raise the rent price using percentage</span>
+                                    <span>Raise the average rent price using percentages for a single unit</span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="me-2">
@@ -356,16 +353,19 @@
                                 </div>
                             </div>
                             <div class="increase-rate-container-heading">
-                                <span>Note: select highest rent or average rent for properties in</span>
-                                <span id="rate_container_city"></span>
-                                <span id="rate_container_state"></span>
+                                <h2>Property Matrix</span>
+                                <!-- <span id="rate_container_city"></span>
+                                <span id="rate_container_state"></span> -->
                             </div>
                             <div class="error-message rate-error"></div>
                             <div class="api-data">
                                 <div id="select_average_highest">
                                     <span>Select Average Rent or Highest Rent</span>
                                 </div>
-                                <div class="data-container">
+                                <div class="all-data-container">
+                                    <div class="data-container multi_unit_container" style="display: none;">
+    
+                                    </div>
                                     <div class="api-average-rent">
                                         <button class="recall-api recall-api-default position-relative" data-rentoption="average_rent" data-rentvalue="0">
                                             <span class="d-block">Unit <span id="unit_count_average">1</span></span>
@@ -375,15 +375,14 @@
                                             <span id="average_rent" class="prop-data"></span>
                                         </button>
                                     </div>
-                                    <div class="api-highest-rent">
+                                    <!-- <div class="api-highest-rent">
                                         <button class="recall-api recall-api-disabled" data-rentoption="highest_rent" data-rentvalue="0" disabled>
                                             <span class="d-block">Unit <span id="unit_count_highest">1</span></span>
                                             <span>Highest Rent</span>
                                             <span id="highest_rent" class="highest-rent"></span>
                                         </button>
-                                    </div>
-                                </div>
-                                <div class="data-container">
+                                        </div> 
+                                    -->
                                     <div class="api-downpayment">
                                         <span>Down Payment (<span id="downpayment_percent" class="prop-data"></span>%)</span>
                                         <span id="downpayment" class="prop-data"></span>
@@ -392,8 +391,6 @@
                                         <span>Mortgage</span>
                                         <span id="mortgage" class="prop-data"></span>
                                     </div>
-                                </div>
-                                <div class="data-container">
                                     <div class="api-closing-cost">
                                         <span>Closing Cost (<span id="closingcost_per" class="prop-data"></span>%)</span>
                                         <span id="closingcost" class="prop-data"></span>
@@ -402,8 +399,6 @@
                                         <span>Estimate Cost of Repair</span>
                                         <span id="estimate_costofrepair" class="prop-data"></span>
                                     </div>
-                                </div>
-                                <div class="data-container">
                                     <div class="api-total-capital-needed">
                                         <span>Total Capital Needed</span>
                                         <span id="total_capital_needed" class="prop-data"></span>
@@ -412,8 +407,6 @@
                                         <span>Loan Term</span>
                                         <span id="loanterm" class="prop-data"></span>
                                     </div>                                    
-                                </div>
-                                <div class="data-container">
                                     <div class="api-interest-rate">
                                         <span>Interest Rate</span>
                                         <span id="interestrate" class="prop-data"></span>
@@ -422,8 +415,6 @@
                                         <span>Principal & Interest</span>
                                         <span id="principal_and_interest" class="prop-data"></span>
                                     </div>                                    
-                                </div>
-                                <div class="data-container">
                                     <div class="api-unit">
                                         <span>Unit</span>
                                         <span id="unit" class="prop-data"></span>
@@ -432,8 +423,6 @@
                                         <span>Gross Monthly Income</span>
                                         <span id="gross_monthly_income" class="prop-data"></span>
                                     </div>                                
-                                </div>
-                                <div class="data-container">
                                     <div class="api-gross-yearly-income">
                                         <span>Gross Yearly Income</span>
                                         <span id="gross_yearly_income" class="prop-data"></span>
@@ -442,8 +431,6 @@
                                         <span>Taxes</span>
                                         <span id="taxes" class="prop-data"></span>
                                     </div>                                   
-                                </div>
-                                <div class="data-container">
                                     <div class="api-insurance">
                                         <span>Insurance</span>
                                         <span id="insurance" class="prop-data"></span>
@@ -452,8 +439,6 @@
                                         <span>Vacancy (<span id="vacancy_percent" class="prop-data"></span>%)</span>
                                         <span id="vacancy" class="prop-data"></span>
                                     </div>                                    
-                                </div>
-                                <div class="data-container">
                                     <div class="api-management">
                                         <span>Management (<span id="management_percent" class="prop-data"></span>%)</span>
                                         <span id="management" class="prop-data"></span>
@@ -462,8 +447,6 @@
                                         <span>Maintenance (<span id="maintenance_percent" class="prop-data"></span>%)</span>
                                         <span id="maintenance" class="prop-data"></span>
                                     </div> 
-                                </div>
-                                <div class="data-container">
                                     <div class="api-total-monthly-cost">
                                         <span>Total Monthly Cost</span>
                                         <span id="total_monthly_cost" class="prop-data"></span>
@@ -472,8 +455,6 @@
                                         <span>Total Yearly Cost</span>
                                         <span id="total_yearly_cost" class="prop-data"></span>
                                     </div>
-                                </div>
-                                <div class="data-container">
                                     <div class="api-monthly-net-operator">
                                         <span>Monthly Net Operator</span>
                                         <span id="monthly_net_operator" class="prop-data"></span>
@@ -482,8 +463,6 @@
                                         <span>Yearly Net Operator</span>
                                         <span id="yearly_net_operator" class="prop-data"></span>
                                     </div>
-                                </div>
-                                <div class="data-container">
                                     <div class="api-cap-rate">
                                         <span>Cap Rate</span>
                                         <span id="cap_rate" class="prop-data"></span>
@@ -492,8 +471,6 @@
                                         <span>Cash on Cash Return</span>
                                         <span id="cash_on_cash_return" class="prop-data"></span>
                                     </div>
-                                </div>
-                                <div class="data-container">
                                     <div class="api-total-cash-flow-monthly">
                                         <span>Total Cash Flow Monthly</span>
                                         <span id="total_cash_flow_monthly" class="prop-data"></span>
@@ -526,6 +503,7 @@
                                 <div class="clicks-info">
                                     <div>
                                         <span>Total Clicks</span>
+                                        <span class="unlimited-clicks"></span>
                                         <span class="total-clicks">250</span>
                                     </div>
                                     <div>
@@ -534,7 +512,7 @@
                                     </div>
                                 </div>
                                 <div class="expired-info">
-                                    <span><i>Expired at</i> <span class="expired-date">15th Oct 2022</span></span>
+                                    <span><i>Renew date</i> <span class="expired-date">15th Oct 2022</span></span>
                                 </div>
                             </div>
                         </div>

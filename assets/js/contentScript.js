@@ -15,7 +15,6 @@
         chrome.storage.sync.set(storingData);
         return true;
     } catch (error) {
-        console.log('storing error', error);
         return false;
     }
 
@@ -170,14 +169,24 @@
 
         // city/state
         var state = city = '';
-        if(document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input')){
-          let cityState = document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input').getAttribute('value');
-          if(cityState != ''){
-            cityState = cityState.split(', ');
-            city = cityState[0] ?? '';
-            state = cityState[1] ?? '';
+        if(document.querySelector('.listing-summary-info .listing-info .address .address-value')){
+          const cityState = document.querySelector('.listing-summary-info .listing-info .address .address-value').textContent.split(',');
+          if(cityState.length == 3){
+            city = cityState[1].trim();
+            state = cityState[2].trim().split(' ')[0];
           }
         }
+
+        // if(document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input')){
+        //   let cityState = document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input').getAttribute('value');
+        //   if(cityState != ''){
+        //     cityState = cityState.split(', ');
+        //     console.log(document.querySelector('.address-value h1').textContent);
+
+        //     city = cityState[0] ?? '';
+        //     state = cityState[1] ?? '';
+        //   }
+        // }
 
         // property type
         let proType = '';
@@ -212,7 +221,6 @@
         sendDataWebtoExt(proDetailsObj);
         },2000)
       }else {
-        console.log('aliali');
         setTimeout(()=>{
           var text='false'
 
@@ -251,9 +259,9 @@
 
   
   function sendDataWebtoExt(myObj){
-    console.log('Sending object to popup js', myObj);
+    // console.log('Sending object to popup js', myObj);
     chrome.runtime.sendMessage(myObj, (response) => {
-      console.log('this is a response', response);
+      // console.log('this is a response', response);
       return response;
     });
   }
@@ -263,7 +271,7 @@
    * Getting the message from popup.js
    */
   chrome.runtime.onMessage.addListener((msg, sender, response) => {
-    console.log('Recieved message from popupjs', msg, sender, response);
+    // console.log('Recieved message from popupjs', msg, sender, response);
     if(document.readyState == 'complete'){
       getRealtorPropDetails();
     }
