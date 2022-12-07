@@ -332,8 +332,8 @@ const getDataFromWebsite = async (msg, response)=>{
 
                     $('.bed_bath_container').append(
                         `
-                        <div class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
-                            <span>Average Rent : ${avgPrice} </span>
+                        <div id="extra_bedroom_bathroom${i+1}" class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
+                            <span>Average Rent : <span class="average_rent">${avgPrice}</span> </span>
                             <span>Bedroom : ${currBed} </span>
                             <span>Bathroom : ${currBath} </span>
                             <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
@@ -354,7 +354,11 @@ const getDataFromWebsite = async (msg, response)=>{
                 if(value == '' && defaultData.user_current_plan_name == 'basic'){
                     $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+finaluserData.token+'" target="blank">subscribe</a>');
                 }else{
-                    $("#property-api-data span#"+key).html(value != '' ? value : '-');
+                    if (key == 'average_rent') {
+                        $("#property-api-data span#"+key+1).html(value != '' ? value : '-');
+                    } else {
+                        $("#property-api-data span#"+key).html(value != '' ? value : '-');
+                    }
                 }
             });
             $('#property_id').val(chachedData.last_id);
@@ -573,8 +577,8 @@ $('#evalute_btn').click(async function(){
 
                         $('.bed_bath_container').append(
                             `
-                            <div class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
-                                <span>Average Price : ${avgPrice} </span>
+                            <div id="extra_bedroom_bathroom${i+1}" class="extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
+                                <span>Average Rent : <span class="average_rent">${avgPrice}</span> </span>
                                 <span>Bedroom : ${currBed} </span>
                                 <span>Bathroom : ${currBath} </span>
                                 <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
@@ -597,7 +601,11 @@ $('#evalute_btn').click(async function(){
                     if(value == '' && default_data.user_current_plan_name == 'basic'){
                         $("#property-api-data span#"+key).html('<a href="'+BILLING_URL+'?token='+user_info.token+'" target="blank">subscribe</a>');
                     }else{
-                        $("#property-api-data span#"+key).html(value != '' ? value : '-');
+                        if (key == 'average_rent') {
+                            $("#property-api-data span#"+key+1).html(value != '' ? value : '-');
+                        } else {
+                            $("#property-api-data span#"+key).html(value != '' ? value : '-');
+                        }
                     }
                 });
                 $('#property_id').val(response.data.last_id);
@@ -716,8 +724,8 @@ $(document).on('click','.property-history-btn .btn',function(){
 
                 $('.bed_bath_container').append(
                     `
-                    <div class= "extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
-                        <span>Average Rent : ${avgPrice} </span>
+                    <div id="extra_bedroom_bathroom${i+1}" class= "extra_bedroom_bathroom ${i==0 ? 'active_box' : ''}" data-clicktype="changeProDetails" data-bedbath="${currBed+'_'+currBath}">
+                        <span>Average Rent : <span class="average_rent">${avgPrice}</span> </span>
                         <span>Bedroom : ${currBed} </span>
                         <span>Bathroom : ${currBath} </span>
                         <span>Unit : <span class="unit_value"> ${i+1} </span> </span>
@@ -820,7 +828,10 @@ $(document).on('click', '.recall-api', async function(){
     let clicktype = $(this).data('rentoption');
     let rentValue = $(this).data('rentvalue');
     let unitValue = $.trim($('.active_box').find('.unit_value').text());
-
+    if (!unitValue || unitValue =='') {
+        unitValue = 1;
+    }
+    
     $.ajax({
         url: API_URL + "property-regenerate-details",
         method: "POST",
@@ -980,6 +991,9 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
         $(this).addClass('active_box');
         $('#select_average_highest span').hide();
         let unitValue = $.trim($(this).find('.unit_value').text());
+        if (!unitValue || unitValue =='') {
+            unitValue = 1;
+        }
 
         const userInfo = await getChromeStorage(["userData"]);
         const userInfoObj = JSON.parse(userInfo.userData);
@@ -1003,8 +1017,8 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
 
                 $(".prop-data").text("");
                 
-                if(response.status == 'success'){
-                    $("#property-api-data span#average_rent"+unitValue).siblings('#average_rent_text'+unitValue).css('text-decoration', 'none').siblings('#increase_rent_text'+unitValue).hide();
+                if(response.status == 'success') {
+                    // $("#property-api-data span#average_rent"+unitValue).siblings('#average_rent_text'+unitValue).css('text-decoration', 'none').siblings('#increase_rent_text'+unitValue).hide();
                     $('.unit_box').css('border', 'none');
                     $.each(response.data, function (key, value) {
                         if(value == '' && response.data.user_current_plan_name == 'basic'){
@@ -1016,6 +1030,12 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
                                 $("#property-api-data span#"+key).html(value != '' ? value : '-');
                             }
                         }
+                    });
+                    $('.unit_box').each(function (i, element) {
+                        i = i + 1;
+                        $(element).find('#average_rent_text'+i).css('text-decoration', 'none').siblings('#increase_rent_text'+i).hide();
+                        console.log($('#extra_bedroom_bathroom'+i).find('.average_rent').text());
+                        $(element).find('#average_rent'+i).text($.trim($('#extra_bedroom_bathroom'+i).find('.average_rent').text()));
                     });
                     $("#property_id").val(response.data.last_id);
                     $('.rent_increase_rate').text('');
