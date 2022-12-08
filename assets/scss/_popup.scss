@@ -535,13 +535,17 @@
                             }
                         }
                         .clicks-status{
+                            min-width: 200px;
+                            width: 200px;
                             .clicks-info{
                                 display: flex;
                                 margin-bottom: 16px;
                                 justify-content: space-between;
+                                flex-direction: column;
                                 div{
                                     display: flex;
-                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: space-between;
                                     span{
                                         &:first-child{
                                             @include apiDataBlockTitle;
@@ -685,7 +689,7 @@
 
 .active_box {
     background-color: rgb(55, 78, 180)!important;
-    color: white
+    color: white;
 }
 
 #property_details em {
@@ -699,7 +703,10 @@
     display: flex;
     overflow-x: auto;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px;    
+    box-shadow: 0px 0px 9px 0px #748eff;
+    border-radius: 6px;
+    
     
     &::-webkit-scrollbar {
         height: 10px;

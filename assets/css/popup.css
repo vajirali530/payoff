@@ -711,14 +711,20 @@
   color: #241F1F;
   color: #748EFF;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status {
+  min-width: 200px;
+  width: 200px;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .clicks-info {
   display: flex;
   margin-bottom: 16px;
   justify-content: space-between;
+  flex-direction: column;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .clicks-info div {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-plan-details .plan-details-wrapper .plan-details .clicks-status .clicks-info div span:first-child {
   font-size: 14px;
@@ -914,6 +920,8 @@
   overflow-x: auto;
   padding: 10px;
   margin-bottom: 10px;
+  box-shadow: 0px 0px 9px 0px #748eff;
+  border-radius: 6px;
 }
 .data-container.multi_unit_container::-webkit-scrollbar {
   height: 10px;

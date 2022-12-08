@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "https://credifana.com/";
-// const BASE_URL = "http://192.168.1.156:8000/";   
+// const BASE_URL = "https://credifana.com/";
+const BASE_URL = "http://192.168.1.156:8000/";
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -395,8 +395,10 @@ $("#plan_details_btn").on("click", async function () {
     var finaluserData = JSON.parse(userDataCollection.userData);
     var result = await fetchDetails(API_URL + "getsubscription-details/" + finaluserData.id);
     if(result.status == 'success'){
+        console.log(result.data);
         $('#planSpinner').hide();
         $(".used-clicks").text(result.data.used_click);
+
         if (result.data.plan.toLowerCase() == 'premium') {
             $(".total-clicks").hide();
             $(".unlimited-clicks").text('Unlimited Clicks').show();
@@ -687,6 +689,7 @@ $(document).on('click','.property-history-btn .btn',function(){
     var property_details = JSON.parse(jsonData);
     var pro_detail = property_details[Object.keys(property_details)[0]];
     
+    console.log(pro_detail.average_rent);
     $(".property-img-price img").attr("src", pro_detail["property_image"]);
     $("#property_price").html("$" + pro_detail["property_price"]);
     $(".property-name span").text(pro_detail["property_name"]);
@@ -745,6 +748,7 @@ $(document).on('click','.property-history-btn .btn',function(){
     $('.recall-api').css('backgroundColor', '#748EFF');
     $('.api-data .recall-api').css('backgroundColor','white')
     $('.api-data .recall-api span').css('color','#241F1F')
+    $('#average_rent1').text(pro_detail.average_rent)
 
     $.each(pro_detail, function (key, value) {
       $("#property-api-data span#" + key).text(value);
@@ -812,6 +816,8 @@ $(document).on('click', '.recall-api', async function(){
     $('.api-data .recall-api').css('backgroundColor','white')
     $('.api-data .recall-api span').css('color','#241F1F');
     $('.rent_increase_rate').css('color','green');
+    $('#rent_increase_rate1').css('color','green');
+
 
     if($(this).parents('div').hasClass("api-highest-rent") || $(this).parents('div').hasClass("api-average-rent")){
         $(this).find('span').css('color','white');
@@ -894,14 +900,14 @@ $("#unit").change(function() {
                         <div class="bedrooms">
                             <span>Unit ${i} Bedrooms<em>*</em></span>
                             <div>
-                                <input type="number" class="form-control req-input extra-bedrooms" placeholder="Number of Bedroom" name="extra_bedrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
+                                <input type="number" class="form-control req-input extra-bedrooms" placeholder="Number of Bedroom" name="extra_bedrooms[]" min="1" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                 <div class="error-message">Please enter number of bedrooms</div>
                             </div>
                         </div>
                         <div class="bathrooms">
                             <span>Unit ${i} Bathrooms<em>*</em></span>
                             <div>
-                                <input type="number" class="form-control req-input extra-bathrooms" placeholder="Number of Bathroom" name="extra_bathrooms[]" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
+                                <input type="number" class="form-control req-input extra-bathrooms" placeholder="Number of Bathroom" name="extra_bathrooms[]" min="1" ${userCurrentPlan == '' || userCurrentPlan == 'basic' ? 'readonly style="cursor:not-allowed;"' : '' }>
                                 <div class="error-message">Please enter number of bathrooms</div>                                            
                             </div>
                         </div>
@@ -1039,7 +1045,7 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
                     });
                     $("#property_id").val(response.data.last_id);
                     $('.rent_increase_rate').text('');
-                    $(`#unit${unitValue}_box`).css('border', '1px solid #748EFF');
+                    $(`#unit${unitValue}_box`).css({'border':'1px solid #748EFF','overflow':'hidden'});
                     // $('#unit_count_average, #unit_count_highest').text(unitValue);
                     $('.extra_bedroom_bathroom').attr('disabled', false);
                 }else{
