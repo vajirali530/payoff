@@ -177,8 +177,6 @@ $('#registerBtn').on('click', function () {
                     });
                 }else if(response.status == "success"){
                     let userData = response.user_data;
-                    console.log(userData);
-                    return;
                     setChromeStorage("userData", JSON.stringify(userData));
                     $('.credifanaRegister').hide()
                     determineExtensionProcess()
@@ -567,7 +565,7 @@ $('#evalute_btn').click(async function(){
                             `
                             <div class="api-highest-rent position-relative unit_box" id="unit${i+1}_box" style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">                            
                                 <button class="recall-api recall-api-default border-0 " data-rentoption="average_rent" data-rentvalue="0">
-                                    <span class="rent_increase_rate" id="rent_increase_rate${i+1}" style="color: green!important; font-size: 18px; position: absolute; top: 0; right: 0; font-family: Raleway, sans-serif; font-weight: 700;"></span>
+                                    <span class="rent_increase_rate" id="rent_increase_rate${i+1}" style="color: green!important; font-size: 18px; position: absolute; top: 5px; right: 5px; font-family: Raleway, sans-serif; font-weight: 700;"></span>
                                     <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${i+1}">${i+1}</span></span>
                                     <span class="d-block" id="average_rent_text${i+1}">Average Rent</span>
                                     <span id="increase_rent_text${i+1}" style="display: none;">Rent Increase</span>
@@ -749,6 +747,8 @@ $(document).on('click','.property-history-btn .btn',function(){
     $('.api-data .recall-api').css('backgroundColor','white')
     $('.api-data .recall-api span').css('color','#241F1F')
     $('#average_rent1').text(pro_detail.average_rent)
+    $('#rent_increase_rate1').css('color','green');
+
 
     $.each(pro_detail, function (key, value) {
       $("#property-api-data span#" + key).text(value);
