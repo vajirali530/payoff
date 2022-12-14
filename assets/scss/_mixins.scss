@@ -175,3 +175,15 @@
     margin-top: 6px;
     margin-bottom: 10px;
 }
+@mixin info{
+    background-color: #748EFF;
+    color: white !important;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold !important;
+    cursor: pointer;
+}

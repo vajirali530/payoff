@@ -124,7 +124,9 @@
             <div class="site-message">
                 <h2>No Property</h2>
                 <span>Please select any property to Evaluate</span>
-                <img src="./assets/images/propertysearchtutorial.gif" alt="realtorLogo">
+                <div class="site-gif-demo">
+                    <img src="./assets/images/propertysearchtutorial.gif" alt="realtorLogo">
+                </div>
             </div>
         </div>
         <div class="prop-details-spinner text-center d-none">
@@ -226,7 +228,7 @@
                                     </div>
                                     <div class="unit">
                                         <div class="unit-info d-flex align-items-center">
-                                            <span class="me-2">Unit<em>*</em></span>
+                                            <span class="me-2">Unit<em>*</em> <span class="info" title="Number of units for this property">i</span></span>
                                         </div>
                                         <div>
                                             <input type="number" class="form-control req-input" name="unit" id="unit" min="1" max="100" value="1">
@@ -284,7 +286,7 @@
                                     </div>
                                 </div>
                                 <div class="city">
-                                    <span>City<em>*</em></span>
+                                    <span>City<em>*</em> <span class="info" title="Philadelphia, Houston, Los Angeles">i</span></span>
                                     <div>
                                         <input type="text" class="form-control req-input" name="city" id="city">
                                         <div class="error-message">Please enter city</div>                                           
@@ -293,7 +295,7 @@
                             </div>
                             <div class="details-container">
                                 <div class="state">
-                                    <span>State<em>*</em></span>
+                                    <span>State<em>*</em> <span class="info" title="abbreviation:PA, NY, CA">i</span></span>
                                     <div>
                                         <input type="text" class="form-control req-input" name="state" id="state">
                                         <div class="error-message">Please enter state</div>
@@ -359,6 +361,7 @@
                                     </section>
                                     <div class="api-average-rent" id="api-average-rent">
                                         <button class="recall-api recall-api-default position-relative" data-rentoption="average_rent" data-rentvalue="0">
+                                            <span class="info" title="Number of unit(s) selected at current market value for specific bedroom and bathroom.">i</span>
                                             <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average1">1</span></span>
                                             <span id="rent_increase_rate1" style="color: green!important; font-size: 18px; position: absolute; top: 5px; right: 5px; font-family: Raleway, sans-serif; font-weight: 700;"></span>
                                             <span id="average_rent_text1">Average Rent</span>
@@ -387,10 +390,12 @@
                                         <span id="closingcost" class="prop-data"></span>
                                     </div>
                                     <div class="api-estimate-costof-repair">
+                                        <span class="info" title="Expenses that occur from renovating property.">i</span>
                                         <span>Estimate Cost of Repair</span>
                                         <span id="estimate_costofrepair" class="prop-data"></span>
                                     </div>
                                     <div class="api-total-capital-needed">
+                                        <span class="info" title="The down payment amount plus the closing cost amount.">i</span>
                                         <span>Total Capital Needed</span>
                                         <span id="total_capital_needed" class="prop-data"></span>
                                     </div>
@@ -407,14 +412,17 @@
                                         <span id="principal_and_interest" class="prop-data"></span>
                                     </div>                                    
                                     <div class="api-unit">
+                                        <span class="info" title="Current number units selected.">i</span>
                                         <span>Unit</span>
                                         <span id="unit" class="prop-data"></span>
                                     </div>
                                     <div class="api-gross-monthly-income">
+                                        <span class="info" title=" Is the total monthly earnings before taxes, or any other deductions.">i</span>
                                         <span>Gross Monthly Income</span>
                                         <span id="gross_monthly_income" class="prop-data"></span>
                                     </div>                                
                                     <div class="api-gross-yearly-income">
+                                        <span class="info" title="Is the total yearly earnings before taxes, or any other deductions.">i</span>
                                         <span>Gross Yearly Income</span>
                                         <span id="gross_yearly_income" class="prop-data"></span>
                                     </div>
@@ -427,46 +435,57 @@
                                         <span id="insurance" class="prop-data"></span>
                                     </div>
                                     <div class="api-vacancy">
+                                        <span class="info" title="expenses that occur from property being unoccupied for a period of time.">i</span>
                                         <span>Vacancy (<span id="vacancy_percent" class="prop-data"></span>%)</span>
                                         <span id="vacancy" class="prop-data"></span>
                                     </div>                                    
                                     <div class="api-management">
+                                        <span class="info" title=" expenses that occur from having an individual or group oversee residential or commercial real estate property.">i</span>
                                         <span>Management (<span id="management_percent" class="prop-data"></span>%)</span>
                                         <span id="management" class="prop-data"></span>
                                     </div>    
                                     <div class="api-maintenance">
+                                        <span class="info" title="expenses that occur from maintaining daily stability for property.">i</span>
                                         <span>Maintenance (<span id="maintenance_percent" class="prop-data"></span>%)</span>
                                         <span id="maintenance" class="prop-data"></span>
                                     </div> 
                                     <div class="api-total-monthly-cost">
+                                        <span class="info" title="Monthly expenses which include Taxes, Insurance, Maintenance, Vacancy, and management fees.">i</span>
                                         <span>Total Monthly Cost</span>
                                         <span id="total_monthly_cost" class="prop-data"></span>
                                     </div>                                    
                                     <div class="api-total-yearly-cost">
+                                        <span class="info" title=" Yearly expenses which include Taxes, Insurance, Maintenance, Vacancy, and management fees.">i</span>
                                         <span>Total Yearly Cost</span>
                                         <span id="total_yearly_cost" class="prop-data"></span>
                                     </div>
                                     <div class="api-monthly-net-operator">
+                                        <span class="info" title="The difference between Gross monthly income and current monthly expenses.">i</span>
                                         <span>Monthly Net Operator</span>
                                         <span id="monthly_net_operator" class="prop-data"></span>
                                     </div>                                   
                                     <div class="api-yearly-net-operator">
+                                        <span class="info" title="The difference between Gross yearly income and current yearly expenses.">i</span>
                                         <span>Yearly Net Operator</span>
                                         <span id="yearly_net_operator" class="prop-data"></span>
                                     </div>
                                     <div class="api-cap-rate">
+                                        <span class="info" title="The expected rate of return on a real estate investment property.">i</span>
                                         <span>Cap Rate</span>
                                         <span id="cap_rate" class="prop-data"></span>
                                     </div>                                
                                     <div class="api-cashon-cash-return">
+                                        <span class="info" title="measures annual cash flow a property can make in relations to the capital needed for that investment property.">i</span>
                                         <span>Cash on Cash Return</span>
                                         <span id="cash_on_cash_return" class="prop-data"></span>
                                     </div>
                                     <div class="api-total-cash-flow-monthly">
+                                        <span class="info" title="The amount of money the property generates monthly after the expenses have been deducted.">i</span>
                                         <span>Total Cash Flow Monthly</span>
                                         <span id="total_cash_flow_monthly" class="prop-data"></span>
                                     </div>                                    
                                     <div class="api-total-cash-flow-yearly">
+                                        <span class="info" title="The amount of money the property generates yearly after the expenses have been deducted.">i</span>
                                         <span>Total Cash Flow Yearly</span>
                                         <span id="total_cash_flow_yearly" class="prop-data"></span>
                                     </div>

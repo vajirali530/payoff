@@ -211,14 +211,14 @@
             span{
                 @include commonSubHeaderInfo;
             }
-            img{
-                max-width: 100%;
+            .site-gif-demo{
                 padding: 10px;
                 margin-top: 10px;
-                display: inline-block;
                 box-shadow: 0px 0px 20px #748eff;
-                overflow: hidden;
                 border-radius: 20px;
+                img{
+                    max-width: 100%;
+                }
             }
         }
     }
@@ -319,6 +319,18 @@
                                     margin-bottom: 30px;
                                 }
                                 div{
+                                    span{
+                                        &:first-child{
+                                            display: flex;
+                                            align-items: center;
+                                            .info{
+                                                margin-left: 5px;
+                                            }
+                                        }
+                                    }
+                                    .info{
+                                        @include info;
+                                    }
                                     &:first-child{
                                         margin-right: 16px;
                                     }
@@ -343,6 +355,12 @@
 
                                     }
                                     .unit-info{
+                                        span{
+                                            &:first-child{
+                                                display: flex;
+                                                align-items: center;
+                                            }
+                                        }
                                         img{
                                             cursor: pointer;
                                         }
@@ -451,17 +469,27 @@
                                 justify-content: space-between;
                                 div {
                                     margin-bottom: 10px;
+                                    .info{
+                                        @include info;
+                                    }
                                 }
                                 .api-average-rent{
                                     button{
                                         border:1px solid #748EFF;
                                         border-radius: 6px;
+                                        .info{
+                                            margin: auto;
+                                        }
                                     }
                                 }
                                 .api-maintenance{
                                     background-color: $LightSkyBlue;
                                     span{
                                         color: $White !important;
+                                    }
+                                    .info{
+                                        background-color: white;
+                                        color: #241F1F !important;
                                     }
                                 }
                                

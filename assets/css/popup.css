@@ -329,14 +329,14 @@
   line-height: 19px;
   font-size: 16px;
 }
-.credifana .realtor-site-screen .site-message img {
-  max-width: 100%;
+.credifana .realtor-site-screen .site-message .site-gif-demo {
   padding: 10px;
   margin-top: 10px;
-  display: inline-block;
   box-shadow: 0px 0px 20px #748eff;
-  overflow: hidden;
   border-radius: 20px;
+}
+.credifana .realtor-site-screen .site-message .site-gif-demo img {
+  max-width: 100%;
 }
 .credifana .realtor-property-details {
   display: none;
@@ -459,6 +459,25 @@
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container:last-child {
   margin-bottom: 30px;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div span:first-child {
+  display: flex;
+  align-items: center;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div span:first-child .info {
+  margin-left: 5px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div .info {
+  background-color: #748EFF;
+  color: white !important;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold !important;
+  cursor: pointer;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div:first-child {
   margin-right: 16px;
 }
@@ -476,6 +495,10 @@
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .unit div:first-child {
   margin: 0px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .unit .unit-info span:first-child {
+  display: flex;
+  align-items: center;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container .unit .unit-info img {
   cursor: pointer;
@@ -600,15 +623,34 @@
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div {
   margin-bottom: 10px;
 }
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div .info {
+  background-color: #748EFF;
+  color: white !important;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold !important;
+  cursor: pointer;
+}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container .api-average-rent button {
   border: 1px solid #748EFF;
   border-radius: 6px;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container .api-average-rent button .info {
+  margin: auto;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container .api-maintenance {
   background-color: #748EFF;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container .api-maintenance span {
   color: #ffffff !important;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container .api-maintenance .info {
+  background-color: white;
+  color: #241F1F !important;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div {
   background-color: #ffffff;
