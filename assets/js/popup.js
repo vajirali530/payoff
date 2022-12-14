@@ -821,6 +821,7 @@ $(document).on('click', '.recall-api', async function(){
 
     if($(this).parents('div').hasClass("api-highest-rent") || $(this).parents('div').hasClass("api-average-rent")){
         $(this).find('span').css('color','white');
+        $(this).find('.info-detail')[0].style.color="#241F1F";
     }
     $(this).css('backgroundColor','#374eb4').css('borderRadius', '6px');
 
@@ -1056,3 +1057,14 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
     }
 
 });
+
+
+
+$('.info').click(function (e) { 
+    e.preventDefault();
+    $(this).siblings('.info-detail').css({'visibility':'visible','opacity':'1'});
+});
+$('.info-detail svg').click(function (e) { 
+    e.preventDefault();
+    console.log($(this).parents('.info-detail').css({'opacity':'0','visibility':'hidden'}));
+})

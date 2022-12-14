@@ -228,7 +228,7 @@
                                     </div>
                                     <div class="unit">
                                         <div class="unit-info d-flex align-items-center">
-                                            <span class="me-2">Unit<em>*</em> <span class="info" title="Number of units for this property">i</span></span>
+                                            <span class="me-2">Unit<em>*</em> <span class="info">i</span> <span class="info-detail">Number of units for this property <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span></span>
                                         </div>
                                         <div>
                                             <input type="number" class="form-control req-input" name="unit" id="unit" min="1" max="100" value="1">
@@ -286,7 +286,9 @@
                                     </div>
                                 </div>
                                 <div class="city">
-                                    <span>City<em>*</em> <span class="info" title="Philadelphia, Houston, Los Angeles">i</span></span>
+                                    <div>
+                                        <span class="me-2">City<em>*</em> <span class="info">i</span> <span class="info-detail">Philadelphia, Houston, Los Angeles <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span></span>
+                                    </div>
                                     <div>
                                         <input type="text" class="form-control req-input" name="city" id="city">
                                         <div class="error-message">Please enter city</div>                                           
@@ -295,7 +297,9 @@
                             </div>
                             <div class="details-container">
                                 <div class="state">
-                                    <span>State<em>*</em> <span class="info" title="abbreviation:PA, NY, CA">i</span></span>
+                                    <div>
+                                        <span class="me-2">State<em>*</em> <span class="info">i</span> <span class="info-detail">abbreviation:PA, NY, CA<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span></span>
+                                    </div>
                                     <div>
                                         <input type="text" class="form-control req-input" name="state" id="state">
                                         <div class="error-message">Please enter state</div>
@@ -361,12 +365,13 @@
                                     </section>
                                     <div class="api-average-rent" id="api-average-rent">
                                         <button class="recall-api recall-api-default position-relative" data-rentoption="average_rent" data-rentvalue="0">
-                                            <span class="info" title="Number of unit(s) selected at current market value for specific bedroom and bathroom.">i</span>
-                                            <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average1">1</span></span>
+                                            <span class="info">i</span> 
+                                            <span class="d-block api-data-title">Unit <span class="unit_count_average api-data-value" id="unit_count_average1">1</span></span>
                                             <span id="rent_increase_rate1" style="color: green!important; font-size: 18px; position: absolute; top: 5px; right: 5px; font-family: Raleway, sans-serif; font-weight: 700;"></span>
-                                            <span id="average_rent_text1">Average Rent</span>
-                                            <span id="increase_rent_text1" style="display: none;">Rent Increase</span>
-                                            <span id="average_rent1" class="prop-data"></span>
+                                            <span id="average_rent_text1" class="api-data-title">Average Rent</span>
+                                            <span id="increase_rent_text1" style="display: none;" class="api-data-title">Rent Increase</span>
+                                            <span id="average_rent1" class="prop-data api-data-value"></span>
+                                            <span class="info-detail api-data-title">Number of unit(s) selected at current market value for specific bedroom and bathroom.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                         </button>
                                     </div>
                                     <!-- <div class="api-highest-rent">
@@ -378,116 +383,139 @@
                                         </div> 
                                     -->
                                     <div class="api-downpayment">
-                                        <span>Down Payment (<span id="downpayment_percent" class="prop-data"></span>%)</span>
-                                        <span id="downpayment" class="prop-data"></span>
+                                        <span class="api-data-title">Down Payment (<span id="downpayment_percent" class="prop-data"></span>%)</span>
+                                        <span id="downpayment" class="prop-data api-data-value"></span>
                                     </div>
                                     <div class="api-mortgage">
-                                        <span>Mortgage</span>
-                                        <span id="mortgage" class="prop-data"></span>
+                                        <span class="api-data-title">Mortgage</span>
+                                        <span id="mortgage" class="prop-data api-data-value"></span>
                                     </div>
                                     <div class="api-closing-cost">
-                                        <span>Closing Cost (<span id="closingcost_per" class="prop-data"></span>%)</span>
-                                        <span id="closingcost" class="prop-data"></span>
+                                        <span class="api-data-title">Closing Cost (<span id="closingcost_per" class="prop-data"></span>%)</span>
+                                        <span id="closingcost" class="prop-data api-data-value"></span>
                                     </div>
                                     <div class="api-estimate-costof-repair">
-                                        <span class="info" title="Expenses that occur from renovating property.">i</span>
-                                        <span>Estimate Cost of Repair</span>
-                                        <span id="estimate_costofrepair" class="prop-data"></span>
+                                        <span class="info" title="">i</span>
+                                        <span class="api-data-title">Estimate Cost of Repair</span>
+                                        <span id="estimate_costofrepair" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">Expenses that occur from renovating property.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>
                                     <div class="api-total-capital-needed">
-                                        <span class="info" title="The down payment amount plus the closing cost amount.">i</span>
-                                        <span>Total Capital Needed</span>
-                                        <span id="total_capital_needed" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Total Capital Needed</span>
+                                        <span id="total_capital_needed" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">The down payment amount plus the closing cost amount.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>
                                     <div class="api-loan-term">
-                                        <span>Loan Term</span>
-                                        <span id="loanterm" class="prop-data"></span>
+                                        <span class="api-data-title">Loan Term</span>
+                                        <span id="loanterm" class="prop-data api-data-value"></span>
                                     </div>                                    
                                     <div class="api-interest-rate">
-                                        <span>Interest Rate</span>
-                                        <span id="interestrate" class="prop-data"></span>
+                                        <span class="api-data-title">Interest Rate</span>
+                                        <span id="interestrate" class="prop-data api-data-value"></span>
                                     </div>
                                     <div class="api-principal-interest">
-                                        <span>Principal & Interest</span>
-                                        <span id="principal_and_interest" class="prop-data"></span>
+                                        <span class="api-data-title">Principal & Interest</span>
+                                        <span id="principal_and_interest" class="prop-data api-data-value"></span>
                                     </div>                                    
                                     <div class="api-unit">
-                                        <span class="info" title="Current number units selected.">i</span>
-                                        <span>Unit</span>
-                                        <span id="unit" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Unit</span>
+                                        <span id="unit" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">Current number units selected.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>
                                     <div class="api-gross-monthly-income">
-                                        <span class="info" title=" Is the total monthly earnings before taxes, or any other deductions.">i</span>
-                                        <span>Gross Monthly Income</span>
-                                        <span id="gross_monthly_income" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Gross Monthly Income</span>
+                                        <span id="gross_monthly_income" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">Is the total monthly earnings before taxes, or any other deductions.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>                                
                                     <div class="api-gross-yearly-income">
-                                        <span class="info" title="Is the total yearly earnings before taxes, or any other deductions.">i</span>
-                                        <span>Gross Yearly Income</span>
-                                        <span id="gross_yearly_income" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Gross Yearly Income</span>
+                                        <span id="gross_yearly_income" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">Is the total yearly earnings before taxes, or any other deductions.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>
                                     <div class="api-taxes">
-                                        <span>Taxes</span>
-                                        <span id="taxes" class="prop-data"></span>
+                                        <span class="api-data-title">Taxes</span>
+                                        <span id="taxes" class="prop-data api-data-value"></span>
                                     </div>                                   
                                     <div class="api-insurance">
-                                        <span>Insurance</span>
-                                        <span id="insurance" class="prop-data"></span>
+                                        <span class="api-data-title">Insurance</span>
+                                        <span id="insurance" class="prop-data api-data-value"></span>
                                     </div>
                                     <div class="api-vacancy">
-                                        <span class="info" title="expenses that occur from property being unoccupied for a period of time.">i</span>
-                                        <span>Vacancy (<span id="vacancy_percent" class="prop-data"></span>%)</span>
-                                        <span id="vacancy" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Vacancy (<span id="vacancy_percent" class="prop-data"></span>%)</span>
+                                        <span id="vacancy" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">expenses that occur from property being unoccupied for a period of time.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>                                    
                                     <div class="api-management">
-                                        <span class="info" title=" expenses that occur from having an individual or group oversee residential or commercial real estate property.">i</span>
-                                        <span>Management (<span id="management_percent" class="prop-data"></span>%)</span>
-                                        <span id="management" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Management (<span id="management_percent" class="prop-data"></span>%)</span>
+                                        <span id="management" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">expenses that occur from having an individual or group oversee residential or commercial real estate property.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>    
                                     <div class="api-maintenance">
-                                        <span class="info" title="expenses that occur from maintaining daily stability for property.">i</span>
-                                        <span>Maintenance (<span id="maintenance_percent" class="prop-data"></span>%)</span>
-                                        <span id="maintenance" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Maintenance (<span id="maintenance_percent" class="prop-data"></span>%)</span>
+                                        <span id="maintenance" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">expenses that occur from maintaining daily stability for property.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div> 
                                     <div class="api-total-monthly-cost">
-                                        <span class="info" title="Monthly expenses which include Taxes, Insurance, Maintenance, Vacancy, and management fees.">i</span>
-                                        <span>Total Monthly Cost</span>
-                                        <span id="total_monthly_cost" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Total Monthly Cost</span>
+                                        <span id="total_monthly_cost" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">Monthly expenses which include Taxes, Insurance, Maintenance, Vacancy, and management fees.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
                                     </div>                                    
                                     <div class="api-total-yearly-cost">
-                                        <span class="info" title=" Yearly expenses which include Taxes, Insurance, Maintenance, Vacancy, and management fees.">i</span>
-                                        <span>Total Yearly Cost</span>
-                                        <span id="total_yearly_cost" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Total Yearly Cost</span>
+                                        <span id="total_yearly_cost" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">Yearly expenses which include Taxes, Insurance, Maintenance, Vacancy, and management fees.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
+
                                     </div>
                                     <div class="api-monthly-net-operator">
-                                        <span class="info" title="The difference between Gross monthly income and current monthly expenses.">i</span>
-                                        <span>Monthly Net Operator</span>
-                                        <span id="monthly_net_operator" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Monthly Net Operator</span>
+                                        <span id="monthly_net_operator" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">The difference between Gross monthly income and current monthly expenses.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
+
                                     </div>                                   
                                     <div class="api-yearly-net-operator">
-                                        <span class="info" title="The difference between Gross yearly income and current yearly expenses.">i</span>
-                                        <span>Yearly Net Operator</span>
-                                        <span id="yearly_net_operator" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Yearly Net Operator</span>
+                                        <span id="yearly_net_operator" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">The difference between Gross yearly income and current yearly expenses.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
+
                                     </div>
                                     <div class="api-cap-rate">
-                                        <span class="info" title="The expected rate of return on a real estate investment property.">i</span>
-                                        <span>Cap Rate</span>
-                                        <span id="cap_rate" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Cap Rate</span>
+                                        <span id="cap_rate" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">The expected rate of return on a real estate investment property.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
+
                                     </div>                                
                                     <div class="api-cashon-cash-return">
-                                        <span class="info" title="measures annual cash flow a property can make in relations to the capital needed for that investment property.">i</span>
-                                        <span>Cash on Cash Return</span>
-                                        <span id="cash_on_cash_return" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Cash on Cash Return</span>
+                                        <span id="cash_on_cash_return" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">measures annual cash flow a property can make in relations to the capital needed for that investment property.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
+
                                     </div>
                                     <div class="api-total-cash-flow-monthly">
-                                        <span class="info" title="The amount of money the property generates monthly after the expenses have been deducted.">i</span>
-                                        <span>Total Cash Flow Monthly</span>
-                                        <span id="total_cash_flow_monthly" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Total Cash Flow Monthly</span>
+                                        <span id="total_cash_flow_monthly" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">The amount of money the property generates monthly after the expenses have been deducted.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
+
                                     </div>                                    
                                     <div class="api-total-cash-flow-yearly">
-                                        <span class="info" title="The amount of money the property generates yearly after the expenses have been deducted.">i</span>
-                                        <span>Total Cash Flow Yearly</span>
-                                        <span id="total_cash_flow_yearly" class="prop-data"></span>
+                                        <span class="info">i</span>
+                                        <span class="api-data-title">Total Cash Flow Yearly</span>
+                                        <span id="total_cash_flow_yearly" class="prop-data api-data-value"></span>
+                                        <span class="info-detail api-data-title">The amount of money the property generates yearly after the expenses have been deducted.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="20" width="20"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> </span>
+
                                     </div>
                                 </div>
                                 <div class="back-btn">
@@ -555,6 +583,7 @@
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
     <!-- jquery -->
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script></script>
     <!-- custom js -->
     <script src="./assets/js/popup.js" type="module"></script>
 </body>
