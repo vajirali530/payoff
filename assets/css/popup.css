@@ -511,6 +511,7 @@
   visibility: hidden;
   transition: all 0.5s;
   z-index: 1;
+  font-family: "Raleway", sans-serif;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property_details .details-container div div .info-detail svg {
   position: absolute;
@@ -689,6 +690,7 @@
   left: 0;
   font-weight: normal !important;
   color: #241F1F !important;
+  font-family: "Raleway", sans-serif;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div .info-detail svg {
   position: absolute;
@@ -727,36 +729,18 @@
   height: 100%;
   width: 100%;
 }
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:first-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:first-child {
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: normal;
-  font-family: "Raleway", sans-serif;
-  color: #241F1F;
-}
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:first-child span, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:first-child span {
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: normal;
-  font-family: "Raleway", sans-serif;
-  color: #241F1F;
-}
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:nth-child(3), .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span .prop-data, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:nth-child(3), .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest .prop-data, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:nth-child(3), .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:last-child, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average .prop-data {
-  font-family: "Raleway", sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 29px;
-  color: #241F1F;
-}
-.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:nth-child(3) a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span .prop-data a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:nth-child(3) a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span#unit_count_highest .prop-data a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:nth-child(3) a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average:last-child a, .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div span.unit_count_average .prop-data a {
-  color: #241F1F;
-  text-decoration: none;
-}
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div .api-data-title {
   font-size: 14px;
   line-height: 16px;
   font-weight: normal;
   font-family: "Raleway", sans-serif;
+  color: #241F1F;
+}
+.credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div .api-data-title .prop-data {
+  font-family: "Raleway", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 29px;
   color: #241F1F;
 }
 .credifana .realtor-property-details #pills-tabContent #pills-property-details .property-details-wrapper #property-api-data .api-data .all-data-container div .api-data-value {

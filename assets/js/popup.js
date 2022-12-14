@@ -319,10 +319,10 @@ const getDataFromWebsite = async (msg, response)=>{
                         <div class="position-relative api-highest-rent unit_box" id="unit${i+1}_box" style="margin-right: 10px; margin-bottom: 0px; min-width: 175px;">                            
                             <button class="recall-api recall-api-default border-0 " data-rentoption="average_rent" data-rentvalue="0">
                                 <span class="rent_increase_rate" id="rent_increase_rate${i+1}" style="color: green!important; font-size: 18px; position: absolute; top: 0; right: 0; font-family: Raleway, sans-serif; font-weight: 700;"></span>
-                                <span class="d-block">Unit <span class="unit_count_average" id="unit_count_average${i+1}">${i+1}</span></span>
-                                <span class="d-block" id="average_rent_text${i+1}">Average Rent</span>
-                                <span id="increase_rent_text${i+1}" style="display: none;">Rent Increase</span>
-                                <span class="d-block" id="average_rent${i+1}" class="prop-data">${avgPrice}</span>
+                                <span class="d-block api-data-title">Unit <span class="unit_count_average api-data-value" id="unit_count_average${i+1}">${i+1}</span></span>
+                                <span class="d-block api-data-title" id="average_rent_text${i+1}">Average Rent</span>
+                                <span class="api-data-title" id="increase_rent_text${i+1}" style="display: none;">Rent Increase</span>
+                                <span class="d-block api-data-value" id="average_rent${i+1}" class="prop-data">${avgPrice}</span>
                             </button>
                         </div>
                         `
@@ -821,7 +821,6 @@ $(document).on('click', '.recall-api', async function(){
 
     if($(this).parents('div').hasClass("api-highest-rent") || $(this).parents('div').hasClass("api-average-rent")){
         $(this).find('span').css('color','white');
-        $(this).find('.info-detail')[0].style.color="#241F1F";
     }
     $(this).css('backgroundColor','#374eb4').css('borderRadius', '6px');
 

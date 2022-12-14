@@ -364,6 +364,7 @@
                                             visibility: hidden;
                                             transition: all 0.5s;
                                             z-index: 1;
+                                            font-family: "Raleway", sans-serif;
                                             svg{
                                                 position: absolute;
                                                 top: 3px;
@@ -526,6 +527,7 @@
                                         left: 0;
                                         font-weight: normal !important;
                                         color: #241F1F !important; 
+                                        font-family: "Raleway", sans-serif;
                                         svg{
                                             position: absolute;
                                             top: 3px;
@@ -558,23 +560,11 @@
                                         width: 100%;
                                     }
                                     @include apiDataBlock;
-                                    span, span#unit_count_highest, span.unit_count_average{
-                                        &:first-child{
-                                            @include apiDataBlockTitle;
-                                            span{
-                                                @include apiDataBlockTitle;
-                                            }
-                                        }
-                                        &:nth-child(3),&:last-child,.prop-data{
-                                            @include apiDataPrice;
-                                            a{
-                                                color: $Black;
-                                                text-decoration: none;
-                                            }
-                                        }
-                                    }
                                     .api-data-title{
                                         @include apiDataBlockTitle;
+                                        .prop-data{
+                                            @include apiDataPrice;
+                                        }
                                     }
                                     .api-data-value{
                                         @include apiDataPrice;
