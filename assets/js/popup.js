@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
 // const BASE_URL = "https://credifana.com/";
-const BASE_URL = "http://192.168.1.156:8000/";
+const BASE_URL = "http://192.168.1.10:8000/";
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -396,14 +396,7 @@ $("#plan_details_btn").on("click", async function () {
         console.log(result.data);
         $('#planSpinner').hide();
         $(".used-clicks").text(result.data.used_click);
-
-        if (result.data.plan.toLowerCase() == 'premium') {
-            $(".total-clicks").hide();
-            $(".unlimited-clicks").text('Unlimited Clicks').show();
-        } else {
-            $(".unlimited-clicks").hide();
-            $(".total-clicks").text(result.data.total_click).show();
-        }
+        $(".total-clicks").text(result.data.total_click);
         $(".active-plan").text(result.data.plan);
         $(".expired-date").text(result.data.plan_end);
         $(".change-plan").attr('href',result.data.change_plan);
