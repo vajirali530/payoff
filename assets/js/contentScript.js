@@ -190,10 +190,11 @@
 
         // property type
         let proType = '';
-        if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-indicatorCont div ul li:first-child svg').getAttribute('data-testid').includes('home')){
-          var node = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-indicatorCont div ul li:first-child div div:last-child')
-          var type = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-indicatorCont div ul li:first-child div div:last-child').textContent
-          if(node && type != ''){
+        let proTypeCheck = document.querySelector('.listing-indicatorCont div ul li:first-child svg'); 
+        if(proTypeCheck.getAttribute('data-testid').includes('home') || proTypeCheck.getAttribute('data-testid').includes('icon-home')){
+          var node = document.querySelector('.listing-indicatorCont div ul li:first-child div div:last-child');
+          if(node != null){
+            var type = node.textContent
             proType = type
           }
         }
