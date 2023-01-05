@@ -7,6 +7,7 @@
    * @returns boolen
    */
 
+
   function setChromeStorage(key, value) {
     let storingData = {};
     storingData[key] = value;
@@ -177,17 +178,6 @@
           }
         }
 
-        // if(document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input')){
-        //   let cityState = document.querySelector('#rdc-ldp-search-filter-tray div div .input-wrapper input').getAttribute('value');
-        //   if(cityState != ''){
-        //     cityState = cityState.split(', ');
-        //     console.log(document.querySelector('.address-value h1').textContent);
-
-        //     city = cityState[0] ?? '';
-        //     state = cityState[1] ?? '';
-        //   }
-        // }
-
         // property type
         let proType = '';
         let proTypeCheck = document.querySelector('.listing-indicatorCont div ul li:first-child svg'); 
@@ -225,27 +215,6 @@
         setTimeout(()=>{
           var text='false'
 
-        // title
-        // var proTitle = ''
-        // if(document.querySelector(".ldp-learn-more-title")){
-        //   const proTitleArr=document.querySelector(".ldp-learn-more-title").textContent.split(' ')
-        //   const proTitleAboutIndex=proTitleArr.indexOf('about')
-        //   const title=proTitleArr.splice(proTitleAboutIndex+1,proTitleArr.length).join(' ')
-        //   if(!(title == 'this property'))
-        //   {
-        //     proTitle = title
-        //   }
-        //   if((proTitle.startsWith('.'))){
-        //     proTitle = ''
-        //   }
-        // }
-
-        // img
-        // var proImg = '';
-        // if(document.querySelector('.slick-slider .slick-list .slick-track .slick-active div div picture img')){
-        //   proImg = document.querySelector('.slick-slider .slick-list .slick-track .slick-active div div picture img').getAttribute("src");
-        // }
-
         const proDetailsObj = {
           text:text
           // proTitle: proTitle,
@@ -258,11 +227,10 @@
     }
   };
 
+
   
   function sendDataWebtoExt(myObj){
-    // console.log('Sending object to popup js', myObj);
     chrome.runtime.sendMessage(myObj, (response) => {
-      // console.log('this is a response', response);
       return response;
     });
   }
@@ -272,7 +240,20 @@
    * Getting the message from popup.js
    */
   chrome.runtime.onMessage.addListener((msg, sender, response) => {
-    // console.log('Recieved message from popupjs', msg, sender, response);
+    if (msg.subject == 'login' && msg.login == true) {
+      sessionStorage.setItem('UD', encodeURIComponent(JSON.stringify(msg.userData)));
+    } else if (msg.subject == 'getuserdata') {
+      console.log(msg);
+      let userData = sessionStorage.getItem('UD');
+      userData = JSON.parse(decodeURIComponent(userData)); 
+      
+      chrome.runtime.sendMessage(userData, (response) => {
+        return response;
+      });
+    } else if (msg.logout) {
+      this.window.sessionStorage.removeItem('UD');
+    }
+
     if(document.readyState == 'complete'){
       getRealtorPropDetails();
     }
