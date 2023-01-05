@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-const BASE_URL = "https://credifana.com/";
-// const BASE_URL = "http://192.168.1.10:8000/";
+// const BASE_URL = "https://credifana.com/";
+const BASE_URL = "http://192.168.1.156:8000/";
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -26,6 +26,45 @@ function loginRegister(e){
     }
 }
 
+/**
+ * Adding a logout property
+ * Emptying the chrome storage
+ */
+$('#logout_btn').on("click", function (e) {
+    chrome.storage.sync.clear();
+    $('.credifanaRegister').hide()
+    $('.realtor-site-screen').hide()
+    $('.realtor-property-details').hide()
+    $('#property_details').hide()
+    $('#property-api-data').hide()
+    $('.logout-btn').hide()
+    $('.response_errors').html('')
+
+    chrome.tabs.query(
+      {
+        active: true,
+        currentWindow: true,
+      },
+      (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          from: "popup",
+          subject: "DOMInfo",
+          tabsUrl: tabs[0].url,
+          logout: true,
+        });
+      }
+    );
+
+    chrome.cookies.remove({
+        url:'http://192.168.1.156:8000/', 
+        name: 'UD'
+    }, function (cookie) {
+        console.log(cookie);
+    });
+
+    $('.credifanaLogin').show()
+});
+
 // dom load
 document.addEventListener('DOMContentLoaded', async function(){
     
@@ -34,8 +73,27 @@ document.addEventListener('DOMContentLoaded', async function(){
     const evaluatedData = await getChromeStorage(["evaluatedData"]);
 
     if (storedData.userData && storedData.userData.length > 0) {
-        $('.credifanaLogin').hide()
-        determineExtensionProcess(storedData.userData);
+        chrome.cookies.get({
+            url:'http://192.168.1.156:8000/', 
+            name: 'UD'
+        }, function (cookie) {
+            if (cookie) {
+                $('.credifanaLogin').hide()
+                determineExtensionProcess(storedData.userData);
+            }
+        });
+    } else {
+        chrome.cookies.get({
+            url:'http://192.168.1.156:8000/', 
+            name: 'UD'
+        }, function (cookie) {  
+            if (cookie) {
+                let UD = atob(cookie.value)
+                setChromeStorage("userData", UD);
+                $('.credifanaLogin').hide()
+                determineExtensionProcess(UD);
+            }
+        });
     }
 })
 
@@ -100,7 +158,22 @@ $('#loginBtn').on('click', function () {
                     $('#login_form .response_errors').append(`<div class="response_error">${response.message}</div>`);
                 } else if(response.status == "success"){
                     let userData = response.user_data;
-                    setChromeStorage("userData", JSON.stringify(userData)); 
+                    setChromeStorage("userData", JSON.stringify(userData));
+                    chrome.cookies.set({
+                        url:'http://192.168.1.156:8000/', 
+                        name: 'UD',
+                        value: btoa(JSON.stringify(userData)),
+                    }, function (cookie) {
+                        console.log(cookie);
+                    })
+                    chrome.tabs.query({active: true}, (tabs) => {  
+                        chrome.tabs.sendMessage(tabs[0].id, {
+                            from: "extension",
+                            subject: "login",
+                            userData: userData,
+                            login: true,
+                        });
+                    });
                     $('.credifanaLogin').hide()
                     determineExtensionProcess()
                 }
@@ -215,38 +288,6 @@ const determineExtensionProcess = async (userData) => {
     return true;
     
 }
-
-/**
- * Adding a logout property
- * Emptying the chrome storage
- */
- $('#logout_btn').on("click", function (e) {
-    chrome.storage.sync.clear();
-    $('.credifanaRegister').hide()
-    $('.realtor-site-screen').hide()
-    $('.realtor-property-details').hide()
-    $('#property_details').hide()
-    $('#property-api-data').hide()
-    $('.logout-btn').hide()
-    $('.response_errors').html('')
-
-    chrome.tabs.query(
-      {
-        active: true,
-        currentWindow: true,
-      },
-      (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, {
-          from: "popup",
-          subject: "DOMInfo",
-          tabsUrl: tabs[0].url,
-          logout: true,
-        });
-      }
-    );
-
-    $('.credifanaLogin').show()
-});
 
 // get datafromwebsite
 const getDataFromWebsite = async (msg, response)=>{
@@ -393,7 +434,6 @@ $("#plan_details_btn").on("click", async function () {
     var finaluserData = JSON.parse(userDataCollection.userData);
     var result = await fetchDetails(API_URL + "getsubscription-details/" + finaluserData.id);
     if(result.status == 'success'){
-        console.log(result.data);
         $('#planSpinner').hide();
         $(".used-clicks").text(result.data.used_click);
         $(".total-clicks").text(result.data.total_click);
@@ -478,7 +518,15 @@ const sendChromeTabMessage = (checked, userDetails = null, realtor=false) => {
  * Getting the message from popup.js
  */
 chrome.runtime.onMessage.addListener(async (msg,response) => {
-    // console.log('Content Script recieve data', msg, response);
+    
+    if (msg) {
+        if (msg.PID && msg.PID != '') {
+            setChromeStorage("userData", JSON.stringify(msg));
+        }
+    } else {
+        $('.logout-btn').trigger('click');
+    }
+
     property_data = msg;
     site_data = response;
     const loginInfo = await getChromeStorage(["userData"]);
@@ -680,7 +728,6 @@ $(document).on('click','.property-history-btn .btn',function(){
     var property_details = JSON.parse(jsonData);
     var pro_detail = property_details[Object.keys(property_details)[0]];
     
-    console.log(pro_detail.average_rent);
     $(".property-img-price img").attr("src", pro_detail["property_image"]);
     $("#property_price").html("$" + pro_detail["property_price"]);
     $(".property-name span").text(pro_detail["property_name"]);
@@ -1033,7 +1080,7 @@ $(document).on('click', '.extra_bedroom_bathroom', async function () {
                     $('.unit_box').each(function (i, element) {
                         i = i + 1;
                         $(element).find('#average_rent_text'+i).css('text-decoration', 'none').siblings('#increase_rent_text'+i).hide();
-                        console.log($('#extra_bedroom_bathroom'+i).find('.average_rent').text());
+                        // console.log($('#extra_bedroom_bathroom'+i).find('.average_rent').text());
                         $(element).find('#average_rent'+i).text($.trim($('#extra_bedroom_bathroom'+i).find('.average_rent').text()));
                     });
                     $("#property_id").val(response.data.last_id);
@@ -1058,5 +1105,5 @@ $('.info').click(function (e) {
 });
 $('.info-detail svg').click(function (e) { 
     e.preventDefault();
-    console.log($(this).parents('.info-detail').css({'opacity':'0','visibility':'hidden'}));
+    // console.log($(this).parents('.info-detail').css({'opacity':'0','visibility':'hidden'}));
 })
