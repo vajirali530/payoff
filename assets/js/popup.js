@@ -56,7 +56,7 @@ $('#logout_btn').on("click", function (e) {
     );
 
     chrome.cookies.remove({
-        url:'http://192.168.1.156:8000/', 
+        url:BASE_URL, 
         name: 'UD'
     }, function (cookie) {
         console.log(cookie);
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async function(){
 
     if (storedData.userData && storedData.userData.length > 0) {
         chrome.cookies.get({
-            url:'http://192.168.1.156:8000/', 
+            url:BASE_URL, 
             name: 'UD'
         }, function (cookie) {
             if (cookie) {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async function(){
         });
     } else {
         chrome.cookies.get({
-            url:'http://192.168.1.156:8000/', 
+            url:BASE_URL, 
             name: 'UD'
         }, function (cookie) {  
             if (cookie) {
@@ -160,7 +160,7 @@ $('#loginBtn').on('click', function () {
                     let userData = response.user_data;
                     setChromeStorage("userData", JSON.stringify(userData));
                     chrome.cookies.set({
-                        url:'http://192.168.1.156:8000/', 
+                        url:BASE_URL, 
                         name: 'UD',
                         value: btoa(JSON.stringify(userData)),
                     }, function (cookie) {
