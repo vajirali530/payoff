@@ -1,9 +1,8 @@
 {
     "name": "Credifana",
     "version": "0.2",
-    "description": "Extension showing price of all listed products when paid with credit card, listing the time period and percentage of interest per product.",
+    "description": "Rental property calculator and analysis.",
     "permissions": ["tabs", "storage"],
-    "host_permissions": [],
     "background": {
       "service_worker": "./background.js"
     },
