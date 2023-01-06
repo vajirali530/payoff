@@ -251,6 +251,13 @@ $('#registerBtn').on('click', function () {
                 }else if(response.status == "success"){
                     let userData = response.user_data;
                     setChromeStorage("userData", JSON.stringify(userData));
+                    chrome.cookies.set({
+                        url:BASE_URL, 
+                        name: 'UD',
+                        value: btoa(JSON.stringify(userData)),
+                    }, function (cookie) {
+                        console.log(cookie);
+                    })
                     $('.credifanaRegister').hide()
                     determineExtensionProcess()
                 }
