@@ -135,26 +135,58 @@
 
         // bedrooms
         var proBedrooms = 2;
-        if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child')){
-          if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child').getAttribute('data-testid').includes('beds')){
-            var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span')
-            var beds = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span').textContent)
-            if(span && beds != "" && Number.isInteger(beds)){
-            proBedrooms = beds
+        if (document.querySelector('.property-meta li[data-testid="property-meta-beds"]')) {
+          if (document.querySelector('.property-meta li[data-testid="property-meta-beds"] span[data-testid="meta-value"]')) {
+            let beds = document.querySelector('.property-meta li[data-testid="property-meta-beds"] span[data-testid="meta-value"]').textContent;
+            if (beds.slice(-1) == '+') {
+              beds = Math.round(beds.slice(0, -1));
+              beds = Number(beds);
+            } else {
+              beds = Number(beds);
+            }
+            if(beds != "" && Number.isInteger(beds)){
+              proBedrooms = beds
             } 
           }
         }
+
+        // if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child')){
+        //   if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child').getAttribute('data-testid').includes('beds')){
+        //     var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span')
+        //     var beds = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span').textContent)
+        //     if(span && beds != "" && Number.isInteger(beds)){
+        //       proBedrooms = beds
+        //     } 
+        //   }
+        // }
+
         // bathroom
         var proBath = 2;
-        if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)')){
-          if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)').getAttribute('data-testid').includes('baths')){
-            var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span')
-            var bath = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span').textContent)
-            if(span && bath != "" && Number.isInteger(bath)){
-            proBath = bath
+
+        if (document.querySelector('.property-meta li[data-testid="property-meta-baths"]')) {
+          if (document.querySelector('.property-meta li[data-testid="property-meta-baths"] span[data-testid="meta-value"]')) {
+            let bath = document.querySelector('.property-meta li[data-testid="property-meta-baths"] span[data-testid="meta-value"]').textContent;
+            if (bath.slice(-1) == '+') {
+              bath = Math.round(bath.slice(0, -1));
+              bath = Number(bath);
+            } else {
+              bath = Number(bath);
+            }
+            if(bath != "" && Number.isInteger(bath)){
+              proBath = bath
             } 
           }
         }
+
+        // if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)')){
+        //   if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)').getAttribute('data-testid').includes('baths')){
+        //     var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span')
+        //     var bath = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span').textContent)
+        //     if(span && bath != "" && Number.isInteger(bath)){
+        //      proBath = bath
+        //     } 
+        //   }
+        // }
 
         // tax
         var proTax = '';

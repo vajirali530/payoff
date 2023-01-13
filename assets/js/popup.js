@@ -1,7 +1,7 @@
 import { setChromeStorage, getChromeStorage } from "../../helper.js";
 
-// const BASE_URL = "https://credifana.com/";
-const BASE_URL = "http://192.168.1.156:8000/";
+const BASE_URL = "https://credifana.com/";
+// const BASE_URL = "http://192.168.1.156:8000/";
 const API_URL = BASE_URL+"api/";   
 const BILLING_URL = BASE_URL+"billing/";
 const PRIVACY_POLICY_URL = BASE_URL+"privacy-policy/";
@@ -80,9 +80,12 @@ document.addEventListener('DOMContentLoaded', async function(){
             if (cookie) {
                 $('.credifanaLogin').hide()
                 determineExtensionProcess(storedData.userData);
+            } else {
+                chrome.storage.sync.clear();
             }
         });
     } else {
+        console.log("xyz");
         chrome.cookies.get({
             url:BASE_URL, 
             name: 'UD'
@@ -304,7 +307,6 @@ const getDataFromWebsite = async (msg, response)=>{
     let chachedData = await getChromeStorage(["evaluatedData"]);
     cachedURL = cachedURL.currentURL;
     chachedData = chachedData.evaluatedData;
-    
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         currentSiteName = tabs[0].url.split("/")[2].split(".")[1];
         currentSiteUrl = tabs[0].url.split("/").join();
