@@ -167,7 +167,7 @@
             proBedrooms = bed.textContent.split('.')[0];
           }
           else{
-            proBedrooms = bed.textContent;
+            proBedrooms = bed.textContent.split('')[0];
           }
         }
 
@@ -180,7 +180,7 @@
             proBath = bath.textContent.split('.')[0];
           }
           else{
-            proBath = bath.textContent;
+            proBath = bath.textContent.split('')[0];
           }
         }
 
@@ -224,7 +224,7 @@
           var stateCityAttr = stateCity.getAttribute('data-testid');
           if(stateCityAttr == "address"){
             city = document.querySelector('.address-value').textContent.split(',')[1].trim();
-            state = document.querySelector('.address-value').textContent.split(',')[2].split(' ')[0];
+            state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
           }
         }
         else{
