@@ -220,23 +220,24 @@
         var state = city = '';
         var stateCity = document.querySelector('.address');
         var searchInput = document.querySelector('#searchbox-input');
-        if(stateCity){
-          var stateCityAttr = stateCity.getAttribute('data-testid');
-          if(stateCityAttr == "address"){
-            city = document.querySelector('.address-value').textContent.split(',')[1].trim();
-            state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
-          }
-          else{
-            city = document.querySelector('.address-value').textContent.split(',')[1].trim();
-            state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
+        
+        if(searchInput){
+          city = searchInput.value.split(',')[0];
+          state = searchInput.value.split(',')[1];
+        }else{
+          if(stateCity){
+            var stateCityAttr = stateCity.getAttribute('data-testid');
+            if(stateCityAttr == "address"){
+              city = document.querySelector('.address-value').textContent.split(',')[1].trim();
+              state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
+            }
+            else{
+              city = document.querySelector('.address-value').textContent.split(',')[1].trim();
+              state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
+            }
           }
         }
-        else{
-          if(searchInput){
-            city = searchInput.value.split(',')[0];
-            state = searchInput.value.split(',')[1];
-          }
-        }
+    
 
         // property type
         let proType = '';
@@ -268,6 +269,7 @@
           proType:proType
         };
 
+        console.log(proDetailsObj);
         setChromeStorage("propertyDetails", JSON.stringify(proDetailsObj));
         sendDataWebtoExt(proDetailsObj);
         },2000)

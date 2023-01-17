@@ -1,6 +1,6 @@
 {
     "name": "Credifana",
-    "version": "0.2",
+    "version": "0.3",
     "description": "Rental property calculator and analysis.",
     "permissions": ["tabs", "storage", "cookies"],
     "host_permissions": ["<all_urls>"],
