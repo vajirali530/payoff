@@ -160,27 +160,27 @@
 
         // bedrooms
         var proBedrooms = 2;
-        var bed = document.querySelector('#section_summary [data-testid=property-meta-beds]'); 
+        var bed = document.querySelector('#section_summary [data-testid=property-meta-beds] [data-testid=meta-value]'); 
         if (bed) {
           var findDot = bed.textContent.includes('.');
           if(findDot){
             proBedrooms = bed.textContent.split('.')[0];
           }
           else{
-            proBedrooms = bed.textContent.split('')[0];
+            proBedrooms = bed.textContent;
           }
         }
 
         // bathroom
         var proBath = 2;
-        var bath = document.querySelector('#section_summary [data-testid=property-meta-baths]'); 
+        var bath = document.querySelector('#section_summary [data-testid=property-meta-baths] [data-testid=meta-value]'); 
         if (bath) {
           var findDot = bath.textContent.includes('.');
           if(findDot){
             proBath = bath.textContent.split('.')[0];
           }
           else{
-            proBath = bath.textContent.split('')[0];
+            proBath = bath.textContent;
           }
         }
 
