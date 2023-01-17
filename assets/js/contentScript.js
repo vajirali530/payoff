@@ -62,46 +62,69 @@
         
         // title
         var proTitle = '';
-        if(document.querySelector('.listing-summary-info .listing-info .address .address-value')){
-          const proTitleArr=document.querySelector('.listing-summary-info .listing-info .address .address-value').textContent.split(',');
-          if(proTitleArr.length == 3){
-            proTitle = proTitleArr[0];
+        var topTitle = document.querySelector('.address');
+        var bottomTitle = document.querySelector('#bottom-lead-form');
+        if(topTitle){
+          var topTitleAttr = topTitle.getAttribute('data-testid');
+          if(topTitleAttr == 'address'){
+            var address = document.querySelector('.address-value').textContent.split(',')[0];
+            proTitle = address;
           }
         }
         else{
-          if(document.querySelector('#bottom-lead-form section .leadform-section .hidden-xxs')){
-            const proTitleArr=document.querySelector('#bottom-lead-form section .leadform-section h2').textContent.split(' ')
-            const proTitleAboutIndex=proTitleArr.indexOf('about')
-            proTitle=proTitleArr.splice(proTitleAboutIndex+1,proTitleArr.length).join(' ')
+          if(bottomTitle){
+            var bottomTitleAttr = bottomTitle.getAttribute('data-testid');
+            if(bottomTitleAttr == 'bottom-leadform-container'){
+              var address = document.querySelector('.leadform-section h2').textContent.split(' ');
+              var aboutIndex = address.indexOf('about');
+              proTitle = address.splice(aboutIndex+1,address.length).join(' ');
+            }
           }
         }
 
         // img
         var proImg = '';
-        if(document.querySelector('.hero-carousel .photo-gallery .slick-slider .slick-list .slick-track .slick-active div .main-carousel picture img')){
-          proImg = document.querySelector('.hero-carousel .photo-gallery .slick-slider .slick-list .slick-track .slick-active div .main-carousel picture img').getAttribute("src");
+        var topImg = document.querySelector('.main-carousel');
+        var bottomImg = document.querySelector('#bottom-lead-form');
+        if(topImg){
+          var topImgAttr = topImg.getAttribute('data-testid');
+          if(topImgAttr == 'gallery-item'){
+            proImg = document.querySelector('.main-carousel picture img').getAttribute("src");
+          }
         }
         else{
-          if(document.querySelector('#bottom-lead-form section .leadform-section .hires-img-wrapper .hires-image picture img')){
-            proImg = document.querySelector('#bottom-lead-form section .leadform-section .hires-img-wrapper .hires-image picture img').getAttribute('src')
+          if(bottomImg){
+            var bottomImgAttr = topTitle.getAttribute('data-testid');
+            if(bottomImgAttr == 'bottom-leadform-container'){
+              var img = document.querySelector('.hires-image');
+              if(img){
+                proImg = document.querySelector('.hires-image picture img').getAttribute('src');
+              }
+            }
           }
         }
 
         // price
         var proPrice = '';
-        if(document.querySelector('.col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .price-section h2 .price-info div div')){
-          proPrice = document.querySelector('.col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .price-section h2 .price-info div div').textContent
+        var topPrice = document.querySelector('.list-price');
+        var bottomPrice = document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child .mortgage-components__sc-1ro4z1s-8.csSJoc div .mortgage-components__sc-1ro4z1s-6.mortgage-components__sc-1ro4z1s-7.gPPcfG.criyWf');
+        if(topPrice){
+          var topPriceAttr = topPrice.getAttribute('data-testid');
+          if(topPriceAttr == 'list-price'){
+            proPrice = topPrice.textContent;
+          }
         }
         else{
-          if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child .mortgage-components__sc-1ro4z1s-8.csSJoc div .mortgage-components__sc-1ro4z1s-6.mortgage-components__sc-1ro4z1s-7.gPPcfG.criyWf')){
-            proPrice = document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child .mortgage-components__sc-1ro4z1s-8.csSJoc div .mortgage-components__sc-1ro4z1s-6.mortgage-components__sc-1ro4z1s-7.gPPcfG.criyWf').textContent
+          if(bottomPrice){
+            proPrice = bottomPrice.textContent;
           }
         }
 
         // downpayment
         var proDownpayment = 20;
-        if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div .mortgage-components__sc-p6kdi-0.iAOpUA div:nth-child(2) div:first-child')){
-          var str = document.querySelector('#content-payment_calculator div div:first-child div:first-child div .mortgage-components__sc-p6kdi-0.iAOpUA div:nth-child(2) div:first-child').textContent
+        var downpayment = document.querySelector('#content-payment_calculator div div:first-child div:first-child div .mortgage-components__sc-p6kdi-0.iAOpUA div:nth-child(2) div:first-child');
+        if(downpayment){
+          var str = downpayment.textContent;
           str = str.replace(/[^0-9\s]/gi,'');
           if(str != ''){
             str = Number(str.trim());
@@ -111,8 +134,9 @@
 
         // estimate closing cost
         var proEstClosingCost = 4;
-        if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div .mortgage-components__sc-p6kdi-0.iAOpUA div:nth-child(3) div:first-child')){
-          var str = document.querySelector('#content-payment_calculator div div:first-child div:first-child div .mortgage-components__sc-p6kdi-0.iAOpUA div:nth-child(3) div:first-child').textContent
+        var estClosingCost = document.querySelector('#content-payment_calculator div div:first-child div:first-child div .mortgage-components__sc-p6kdi-0.iAOpUA div:nth-child(3) div:first-child');
+        if(estClosingCost){
+          var str = estClosingCost.textContent;
           str = str.replace(/[^0-9\s]/gi,'');
           if(str != ''){
             str = Number(str.trim());
@@ -123,9 +147,10 @@
         // loan term && interest rate
         var proLoanTerm = 30;
         var proInterestRate = 5;
-        if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child span:nth-child(4) div div:last-child div span')){
-          var loanTerm = Number(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child span:nth-child(4) div div:last-child div span').textContent.split(' ')[0].split('-')[0])
-          var interestRate =  document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child span:nth-child(4) div div:last-child div span').textContent.split(' ')
+        var loan = document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child span:nth-child(4) div div:last-child div span');
+        if(loan){
+          var loanTerm = Number(loan.textContent.split(' ')[0].split('-')[0])
+          var interestRate =loan.textContent.split(' ');
           var fullRate = Number(Math.floor(interestRate[interestRate.length-1].split("%")[0]));
           if(loanTerm != '' || fullRate != '' ){
               proLoanTerm = loanTerm
@@ -135,78 +160,77 @@
 
         // bedrooms
         var proBedrooms = 2;
-        if (document.querySelector('.property-meta li[data-testid="property-meta-beds"]')) {
-          if (document.querySelector('.property-meta li[data-testid="property-meta-beds"] span[data-testid="meta-value"]')) {
-            let beds = document.querySelector('.property-meta li[data-testid="property-meta-beds"] span[data-testid="meta-value"]').textContent;
-            if (beds.slice(-1) == '+') {
-              beds = Math.round(beds.slice(0, -1));
-              beds = Number(beds);
-            } else {
-              beds = Number(beds);
-            }
-            if(beds != "" && Number.isInteger(beds)){
-              proBedrooms = beds
-            } 
+        var bed = document.querySelector('#section_summary [data-testid=property-meta-beds]'); 
+        if (bed) {
+          var findDot = bed.textContent.includes('.');
+          if(findDot){
+            proBedrooms = bed.textContent.split('.')[0];
+          }
+          else{
+            proBedrooms = bed.textContent;
           }
         }
-
-        // if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child')){
-        //   if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child').getAttribute('data-testid').includes('beds')){
-        //     var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span')
-        //     var beds = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:first-child span').textContent)
-        //     if(span && beds != "" && Number.isInteger(beds)){
-        //       proBedrooms = beds
-        //     } 
-        //   }
-        // }
 
         // bathroom
         var proBath = 2;
-
-        if (document.querySelector('.property-meta li[data-testid="property-meta-baths"]')) {
-          if (document.querySelector('.property-meta li[data-testid="property-meta-baths"] span[data-testid="meta-value"]')) {
-            let bath = document.querySelector('.property-meta li[data-testid="property-meta-baths"] span[data-testid="meta-value"]').textContent;
-            if (bath.slice(-1) == '+') {
-              bath = Math.round(bath.slice(0, -1));
-              bath = Number(bath);
-            } else {
-              bath = Number(bath);
-            }
-            if(bath != "" && Number.isInteger(bath)){
-              proBath = bath
-            } 
+        var bath = document.querySelector('#section_summary [data-testid=property-meta-baths]'); 
+        if (bath) {
+          var findDot = bath.textContent.includes('.');
+          if(findDot){
+            proBath = bath.textContent.split('.')[0];
+          }
+          else{
+            proBath = bath.textContent;
           }
         }
 
-        // if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)')){
-        //   if(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2)').getAttribute('data-testid').includes('baths')){
-        //     var span = document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span')
-        //     var bath = Number(document.querySelector('.container div div:last-child .col-main .property-three-sec-view .left-column .listing-summary-info .listing-summary-info-map .listing-summary-info-ref .listing-info .property-meta ul li:nth-child(2) span').textContent)
-        //     if(span && bath != "" && Number.isInteger(bath)){
-        //      proBath = bath
-        //     } 
-        //   }
-        // }
-
         // tax
         var proTax = '';
-        if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)')){
-          proTax = Number(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)').textContent.replace(/[^0-9\s]/gi,''));
+        var taxBarchart = document.querySelector('#payment_calculator [data-testid=bar-chart]');
+        var propertyTax = document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(2)')
+        if(taxBarchart){
+          var tax = document.querySelector('#payment_calculator [data-testid=bar-chart] [data-testid=tax] .tooltiptext');
+          if(tax){
+            proTax = tax.lastChild.textContent.replace(/[^0-9\s]/gi,'');
+          }
+        }
+        else{
+          if(propertyTax){
+            proTax = propertyTax.textContent.replace(/[^0-9\s]/gi,'');
+          }
         }
 
         // home insurance
         var proHomeIns = '';
-        if(document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(3)')){
-          proHomeIns =  document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(3)').textContent.replace(/[^0-9\s]/gi,'');
+        var homeBarchart = document.querySelector('#payment_calculator [data-testid=bar-chart]');
+        var propertyHomeInsurance = document.querySelector('#content-payment_calculator div div:first-child div:first-child div div:first-child div:nth-child(6) div div:last-child ul li:nth-child(3)');
+        if(homeBarchart){
+          var insurance = document.querySelector('#payment_calculator [data-testid=bar-chart] [data-testid=hoi] .tooltiptext');
+          if(insurance){
+            proHomeIns = insurance.lastChild.textContent.replace(/[^0-9\s]/gi,'');
+          }
+        }
+        else{
+          if(propertyHomeInsurance){
+            proHomeIns = propertyHomeInsurance.textContent.replace(/[^0-9\s]/gi,'');
+          }
         }
 
         // city/state
         var state = city = '';
-        if(document.querySelector('.listing-summary-info .listing-info .address .address-value')){
-          const cityState = document.querySelector('.listing-summary-info .listing-info .address .address-value').textContent.split(',');
-          if(cityState.length == 3){
-            city = cityState[1].trim();
-            state = cityState[2].trim().split(' ')[0];
+        var stateCity = document.querySelector('.address');
+        var searchInput = document.querySelector('#searchbox-input');
+        if(stateCity){
+          var stateCityAttr = stateCity.getAttribute('data-testid');
+          if(stateCityAttr == "address"){
+            city = document.querySelector('.address-value').textContent.split(',')[1].trim();
+            state = document.querySelector('.address-value').textContent.split(',')[2].split(' ')[0];
+          }
+        }
+        else{
+          if(searchInput){
+            city = searchInput.value.split(',')[0];
+            state = searchInput.value.split(',')[1];
           }
         }
 
