@@ -67,6 +67,7 @@ $('#logout_btn').on("click", function (e) {
 
 // dom load
 document.addEventListener('DOMContentLoaded', async function(){
+    // getDataFromWebsite();
     
     const storedData = await getChromeStorage(["userData"]);
     const currentURL = await getChromeStorage(["currentURL"]);
@@ -301,6 +302,7 @@ const determineExtensionProcess = async (userData) => {
 
 // get datafromwebsite
 const getDataFromWebsite = async (msg, response)=>{
+    console.log(msg);
     let currentSiteName = '';
     let currentSiteUrl=''
     let cachedURL = await getChromeStorage(["currentURL"]);

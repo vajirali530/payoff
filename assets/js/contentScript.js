@@ -226,6 +226,10 @@
             city = document.querySelector('.address-value').textContent.split(',')[1].trim();
             state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
           }
+          else{
+            city = document.querySelector('.address-value').textContent.split(',')[1].trim();
+            state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
+          }
         }
         else{
           if(searchInput){
@@ -314,5 +318,4 @@
       getRealtorPropDetails();
     }
   });
-
 })();
