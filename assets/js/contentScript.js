@@ -62,20 +62,29 @@
         
         // title
         var proTitle = '';
+        var url = location.href;
         var topTitle = document.querySelector('.address');
         var bottomTitle = document.querySelector('#bottom-lead-form');
-        if(topTitle){
-          var topTitleAttr = topTitle.getAttribute('data-testid');
-          if(topTitleAttr == 'address'){
-            var address = document.querySelector('.address-value').textContent.split(',')[0];
-            proTitle = address;
-          }
+        
+        if(url){
+          var urlArr = url.split('/');
+          var idx = urlArr.indexOf('realestateandhomes-detail');
+          var title = urlArr[idx+1].split('_')[0].replaceAll('-',' ');
+          proTitle = title;
+        }
+        else if(topTitle){
+            var topTitleAttr = topTitle.getAttribute('data-testid');
+            if(topTitleAttr == 'address'){
+              var address = document.querySelector('.address-value').innerText.split(',')[0];
+              console.log(address,'add');
+              proTitle = address;
+            }
         }
         else{
           if(bottomTitle){
             var bottomTitleAttr = bottomTitle.getAttribute('data-testid');
             if(bottomTitleAttr == 'bottom-leadform-container'){
-              var address = document.querySelector('.leadform-section h2').textContent.split(' ');
+              var address = document.querySelector('.leadform-section h2').innerText.split(' ');
               var aboutIndex = address.indexOf('about');
               proTitle = address.splice(aboutIndex+1,address.length).join(' ');
             }
