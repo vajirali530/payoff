@@ -230,24 +230,38 @@
         var stateCity = document.querySelector('.address');
         var searchInput = document.querySelector('#searchbox-input');
         
-        if(searchInput){
-          city = searchInput.value.split(',')[0];
-          state = searchInput.value.split(',')[1];
-        }else{
-          if(stateCity){
-            var stateCityAttr = stateCity.getAttribute('data-testid');
-            if(stateCityAttr == "address"){
+        if(stateCity){
+          var stateCityAttr = stateCity.getAttribute('data-testid');
+          if(stateCityAttr == "address"){
+            var length = document.querySelector('.address-value').textContent.split(',').length;
+            if(length == 3){
               city = document.querySelector('.address-value').textContent.split(',')[1].trim();
               state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
             }
             else{
+              var length = document.querySelector('.address-value').textContent.split(',')[0].trim().split(' ').length;
+              city = document.querySelector('.address-value').textContent.split(',')[0].trim().split(' ')[length-1];
+              state = document.querySelector('.address-value').textContent.split(',')[1].trim().split(' ')[0];
+            }
+          }
+          else{
+            if(length == 3){
               city = document.querySelector('.address-value').textContent.split(',')[1].trim();
               state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
             }
+            else{
+              var length = document.querySelector('.address-value').textContent.split(',')[0].trim().split(' ').length;
+              city = document.querySelector('.address-value').textContent.split(',')[0].trim().split(' ')[length-1];
+              state = document.querySelector('.address-value').textContent.split(',')[1].trim().split(' ')[0];
+            }
           }
         }
+        else
+          if(searchInput){
+          city = searchInput.value.split(',')[0];
+          state = searchInput.value.split(',')[1];
+        }
     
-
         // property type
         let proType = '';
         let proTypeCheck = document.querySelector('.listing-indicatorCont div ul li:first-child svg'); 
