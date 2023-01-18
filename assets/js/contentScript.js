@@ -176,7 +176,10 @@
             proBedrooms = bed.textContent.split('.')[0];
           }
           else{
-            proBedrooms = bed.textContent;
+            var regExp = /[a-zA-Z]/g;
+            if(!regExp.test(bed.textContent)){
+              proBedrooms = bed.textContent;
+            }
           }
         }
 
