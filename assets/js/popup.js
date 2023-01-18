@@ -1116,5 +1116,5 @@ $('.info').click(function (e) {
 });
 $('.info-detail svg').click(function (e) { 
     e.preventDefault();
-    // console.log($(this).parents('.info-detail').css({'opacity':'0','visibility':'hidden'}));
+    $(this).parents('.info-detail').css({'opacity':'0','visibility':'hidden'});
 })
