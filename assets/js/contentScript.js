@@ -248,6 +248,7 @@
             }
           }
           else{
+            var length = document.querySelector('.address-value').textContent.split(',').length;
             if(length == 3){
               city = document.querySelector('.address-value').textContent.split(',')[1].trim();
               state = document.querySelector('.address-value').textContent.split(',')[2].trim().split(' ')[0];
